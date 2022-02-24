@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "BuildHtmlAdmin.php";
+//require_once "BuildHtmlAdmin.php";
 require_once "../controller.php";
 require_once "../triggers.php";
 ?>
@@ -11,7 +11,8 @@ require_once "../triggers.php";
     {}
     else
     {
-        header("Location: ../index.php");
+        header("Location: ../");
+        exit('Inte inloggad som admin');
     }
 ?>
 <!DOCTYPE html>

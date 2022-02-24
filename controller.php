@@ -10,14 +10,14 @@ class UserController
     function VerifyUser($username,$password)
     {
         $db = new Database();
-        $row = $db->Login($username,$password);
+        $row = $db->Login($username);
         //Kontrollerar lösenordet och att det är rätt användarnamn
         if (password_verify($password,$row['Password']) && $username === $row['Username'])
         {
         //Sätter sessions värden
-        $_SESSION['userId'] = $row['id'];
+        $_SESSION['userId'] = $row['ID'];
         $_SESSION['username'] = $username;
-        $_SESSION['email'] = $row['email'];
+        $_SESSION['email'] = $row['Email'];
         $_SESSION['is_logged_in'] = true;
         return true;
         }
