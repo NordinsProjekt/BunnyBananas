@@ -76,7 +76,7 @@ class Database extends PDOHandler
     {
       if (!$this->CheckIfGroupExist($gruppnamn))
       {
-        $stmt = $this->Connect()->prepare('INSERT INTO groups (grupp_namn) VALUES(:gruppnamn)');
+        $stmt = $this->Connect()->prepare('INSERT INTO groups (GroupName) VALUES(:gruppnamn)');
         $param = [':gruppnamn'=>$gruppnamn];
         $stmt->execute($param);
         return true;
@@ -86,7 +86,7 @@ class Database extends PDOHandler
     protected function CheckIfGroupExist($gruppnamn)
     {
       $gruppnamn = $this->CheckUserInputs($gruppnamn);
-      $stmt = $this->Connect()->prepare('SELECT * FROM groups WHERE grupp_namn =?;');
+      $stmt = $this->Connect()->prepare('SELECT * FROM groups WHERE GroupName =?;');
       $stmt->execute(array($gruppnamn));
       if (count($stmt->fetchAll())>0)
       {
