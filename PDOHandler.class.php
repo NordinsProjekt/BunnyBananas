@@ -1,7 +1,7 @@
 <?php
 abstract class PDOHandler
 {
-    private $database = "oasis";
+    private $database = "webshop";
     private $host =  "localhost";
     private $userName = "root";
     private $password = "";
