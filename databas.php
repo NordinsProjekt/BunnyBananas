@@ -30,7 +30,7 @@ class Database extends PDOHandler
       }      
     }
 
-    function Login($username, $password)
+    function Login($username)
     {
         $stmt = $this->Connect()->prepare('SELECT * FROM users WHERE username=:username');
         $stmt->bindParam(':username',$username,PDO::PARAM_STR);

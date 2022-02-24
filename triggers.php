@@ -6,7 +6,7 @@ key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) )
 {
     $username = $_POST['txtUsername'];
     $password = $_POST['txtPassword'];
-    $email = $_POST['email'];
+    $email = $_POST['txtEmail'];
 
     if ($username == "" or $password == "" or $email == "")
     {
