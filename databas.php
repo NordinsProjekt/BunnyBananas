@@ -46,7 +46,7 @@ class Database extends PDOHandler
       {
         if ($hashedPassword = password_hash($password, PASSWORD_DEFAULT))
         {
-          $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disabled) VALUES(:username,:password,:email,false)');
+          $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disabled) VALUES(:username,:password,:email,0)');
           $param = [
             ':username'=>$username,
             ':password'=>$hashedPassword,
