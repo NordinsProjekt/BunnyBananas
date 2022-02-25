@@ -17,7 +17,7 @@ Ett första utkast på databas-designen gjordes i draw.io.
   
 Enkel inloggnings funktionallitet lades till av Markus.
 
-En simpel routingfunkonalitet samt viewtamplet struktur sattes upp av Staffan.
+En simpel routingfunkonalitet samt view-tamplates-struktur sattes upp av Staffan.
 
 
 
