@@ -6,7 +6,7 @@ key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) )
 {
     $username = $_POST['txtUsername'];
     $password = $_POST['txtPassword'];
-    $email = $_POST['txtEmail'];
+    $email = $_POST['email'];
 
     if ($username == "" or $password == "" or $email == "")
     {
@@ -16,6 +16,7 @@ key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) )
     $controller = new UserController();
     $controller->AddNewUser($username,$password,$email);
 }
+
 if (key_exists('login',$_POST))
 {
     $username = $_POST['txtUsername'];
