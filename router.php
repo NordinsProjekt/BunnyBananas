@@ -2,25 +2,24 @@
 
 require_once('controller.php');
 
-$request = $_SERVER['REQUEST_URI'];
+//$request = $_SERVER['REQUEST_URI'];
 
+//var_dump (parseUrl());
+//$washedRequest = explode('/?', $_SERVER['REQUEST_URI']);
 
-$washedRequest = explode('/?', $_SERVER['REQUEST_URI']);
-
-// echo var_dump($washedRequest);
-
-switch ($washedRequest[0]) {
+//echo var_dump($washedRequest);
+switch (parseUrl()[0]) {
     
-    case '/' :
+    case 'NULL' :
         require __DIR__ . '/views/index.php';
         break;
     case '' :
         require __DIR__ . '/views/index.php';
         break;
-    case '/about' :
+    case 'about' :
         require __DIR__ . '/views/about.php';
         break;
-    case '/admin' :
+    case 'admin' :
         require __DIR__ . '/admin/index.php';
         break;
     default:
@@ -29,4 +28,23 @@ switch ($washedRequest[0]) {
         break;
 }
 
+function parseUrl()
+{
+    //Löser splittningen
+    //löser inte riktiga folder och filer.
+    if(isset($_GET['url']))
+    {
+        $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+        var_dump($url);
+        if ($url == NULL)
+        {
+            return array("");
+        }
+        return $url;
+    }
+    else
+    {
+        return array("");
+    }
+}
 ?>
