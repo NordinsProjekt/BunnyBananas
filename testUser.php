@@ -14,14 +14,7 @@ require_once "triggers.php";
 <body>
 <h1>Login</h1>
 <?php
-    if (isset($_SESSION['is_logged_in']))
-    {
-        header("Location: admin/index.php");
-    }
-    else
-    {
-        echo LoginForm();
-    }
+    
 ?>
 </body>
 </html>
