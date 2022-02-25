@@ -1,6 +1,9 @@
 <?php
 
 require_once('User.Controller.php');
+require_once('Order.Controller.php');
+
+//echo var_dump($_SERVER).'<br>';
 
 //$request = $_SERVER['REQUEST_URI'];
 
@@ -19,6 +22,9 @@ switch (parseUrl()[0]) {
     case 'about' :
         require __DIR__ . '/views/about.php';
         break;
+    case 'orders' :
+        require __DIR__ . '/views/orders.php';
+        break;
     case 'admin' :
         require __DIR__ . '/admin/index.php';
         $controller = new UserController();
@@ -36,7 +42,7 @@ function parseUrl()
     if(isset($_GET['url']))
     {
         $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-        var_dump($url);
+        //var_dump($url);
         if ($url == NULL)
         {
             return array("");
