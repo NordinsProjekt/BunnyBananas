@@ -2,6 +2,10 @@
 
 require_once('User.Controller.php');
 
+echo var_dump($_GET['url']).'<br>';
+echo var_dump($_GET).'<br>';
+//echo var_dump($_SERVER).'<br>';
+
 //$request = $_SERVER['REQUEST_URI'];
 
 //var_dump (parseUrl());
@@ -36,7 +40,7 @@ function parseUrl()
     if(isset($_GET['url']))
     {
         $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-        var_dump($url);
+        //var_dump($url);
         if ($url == NULL)
         {
             return array("");
