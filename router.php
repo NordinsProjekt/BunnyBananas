@@ -1,5 +1,7 @@
 <?php
 
+require_once('controller.php');
+
 $request = $_SERVER['REQUEST_URI'];
 
 
