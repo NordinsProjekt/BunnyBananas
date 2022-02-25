@@ -1,2 +1,27 @@
-Vem har gjort vad?
-Datum, tid, syssla och person.
+# 24/2
+
+
+Satte struktur:
+  *Databas struktur/arkitektur
+  *Projekt struktur/arkitektur
+      (en förenklad mvc-inspirerad variant)
+
+Använder github för enkel versionshantering.
+
+Satte upp trello och fyllde backlogen med lämpliga userstories
+
+Vi mob-programerade en grundstruktur som vi alla kan arbeta med och är införstådda i hur den fungerar.
+
+Ett första utkast på databas-designen gjordes i draw.io.
+  *User, group, usergroups tabeller skapades för att kunna testa inlognings systemet.
+  
+Enkel inloggnings funktionallitet lades till av Markus.
+
+En simpel routingfunkonalitet samt viewtamplet struktur sattes upp av Staffan.
+
+
+
+
+
+  
+
