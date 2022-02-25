@@ -1,6 +1,6 @@
 <?php
 
-require_once('controller.php');
+require_once('User.Controller.php');
 
 //$request = $_SERVER['REQUEST_URI'];
 
@@ -21,6 +21,7 @@ switch (parseUrl()[0]) {
         break;
     case 'admin' :
         require __DIR__ . '/admin/index.php';
+        $controller = new UserController();
         break;
     default:
         http_response_code(404);

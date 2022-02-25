@@ -1,5 +1,5 @@
 <?php
-require_once "databas.php";
+require_once "User.Model.php";
 class UserController
 {
     function __destruct()
@@ -9,7 +9,7 @@ class UserController
 
     function VerifyUser($username,$password)
     {
-        $db = new Database();
+        $db = new UserModel();
         $row = $db->Login($username);
         //Kontrollerar lösenordet och att det är rätt användarnamn
         if (password_verify($password,$row['Password']) && $username === $row['Username'])
@@ -24,7 +24,7 @@ class UserController
     }
     function AddNewUser($username,$password,$email)
     {
-        $db = new Database();
+        $db = new UserModel();
         $svar = $db->SetUser($username,$password,$email);
         if ($svar == true)
         {

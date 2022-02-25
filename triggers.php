@@ -1,5 +1,5 @@
 <?php
-require_once "controller.php";
+require_once "User.Controller.php";
 
 if (key_exists('add',$_POST) && key_exists('txtUsername',$_POST) && 
 key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) )
