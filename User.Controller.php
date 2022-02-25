@@ -14,12 +14,12 @@ class UserController
         //Kontrollerar lösenordet och att det är rätt användarnamn
         if (password_verify($password,$row['Password']) && $username === $row['Username'])
         {
-        //Sätter sessions värden
-        $_SESSION['userId'] = $row['ID'];
-        $_SESSION['username'] = $username;
-        $_SESSION['email'] = $row['Email'];
-        $_SESSION['is_logged_in'] = true;
-        return true;
+            //Sätter sessions värden
+            $_SESSION['userId'] = $row['ID'];
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $row['Email'];
+            $_SESSION['is_logged_in'] = true;
+            return true;
         }
     }
     function AddNewUser($username,$password,$email)
@@ -34,6 +34,25 @@ class UserController
         {
             echo "Användaren skapades inte";
         }
+    }
+    function VerifyUserAdmin()
+    {
+        $db = new UserModel();
+        if(isset($_SESSION['userId']))
+        {
+            $id = $_SESSION['userId'];
+            if ($id > 0)
+            {
+                $group = $db->GetUserGroup($id);
+                foreach ($group as $row => $item) {
+                    if (strtoupper($item) === "ADMIN")
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     function GetLetterArray(){

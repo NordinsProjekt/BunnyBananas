@@ -15,6 +15,16 @@ class UserModel extends PDOHandler
       return $stmt->fetchAll();       
     }
 
+    function GetUserGroup($id)
+    {
+      $stmt = $this->Connect()->prepare('SELECT GroupName as name FROM groups
+      INNER JOIN usergroups ON groups.ID = usergroups.GroupID 
+      WHERE UserID =:id;');
+      $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+      $stmt->execute();
+      return $stmt->fetch();;
+    }
+
     private function CheckIfUserExists($username, $email)
     {
       $username = $this->CheckUserInputs($username);
@@ -22,7 +32,7 @@ class UserModel extends PDOHandler
       $stmt->execute(array($username,$email));
       if (count($stmt->fetchAll())>0)
       {
-          return true;
+        return true;
       }
       else
       {

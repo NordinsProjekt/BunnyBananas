@@ -1,19 +1,10 @@
 <?php
 session_start();
-//require_once "BuildHtmlAdmin.php";
-require_once "../controller.php";
+require_once "../User.Controller.php";
 require_once "../triggers.php";
 ?>
 
 <?php
-//Så länge en är inloggad så händer detta, ingen koll på användargrupp m.m.
-    if (isset($_SESSION['is_logged_in']))
-    {}
-    else
-    {
-        header("Location: ../");
-        exit('Inte inloggad som admin');
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,11 +16,12 @@ require_once "../triggers.php";
 </head>
 <body>
 <header>
+    <?php require_once('../header.php'); ?>
 </header>
     <h1>Main Page</h1>
     <main>
         <section class="Add user">
-            <h2>Add User></h2>
+            <h2>Add User</h2>
         <form method="post">
             <label for="txtUsername" id ="lblUsername" class="">Username: </label>
             <input type="text" id ="txtUsername" name="txtUsername" class="userInput" value="" size="30" /><br />
@@ -41,20 +33,15 @@ require_once "../triggers.php";
             <br />
         </form>
         </section>
+        <section>
+            <?php 
+            echo "Session var_dump <br />";
+            var_dump($_SESSION);
+            $controller = new UserController();
+
+            echo "<br />Is user Admin? " . $controller->VerifyUserAdmin();
+            ?>
+        </section>
     </main>
 </body>
 </html>
-<?php
-function ValidateLogin()
-{
-    if (key_exists('is_logged_in',$_SESSION))
-    {
-        if ($_SESSION['is_logged_in'])
-        {
-            return true;
-        }
-        return false;
-    }
-    return false;
-}
-?>
