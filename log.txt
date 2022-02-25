@@ -1,3 +1,6 @@
+Mycket av arbetet var svårdokumenterat med tanke på att vi inte skrev ner varje gång vi diskuterat ett problem med varandra. Vi har i största möjliga mån försökt dokumentera vem som har gjort vad. Men alla har bidragit mycket mer än det som faktiskt står specifierat vid varje namn.
+
+
 # 24/2
 
 
