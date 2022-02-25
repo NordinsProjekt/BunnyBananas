@@ -14,7 +14,7 @@ require_once "triggers.php";
 <body>
 <h1>Login</h1>
 <?php
-    
+    //Detta är en kommentar :)
 ?>
 </body>
 </html>
