@@ -35,5 +35,12 @@ class UserController
             echo "Användaren skapades inte";
         }
     }
+
+    function GetLetterArray(){
+        $letterArray = array('a','b','c','d');
+        return $letterArray;
+    }
 }
+
+
 ?>
