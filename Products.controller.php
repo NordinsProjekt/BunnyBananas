@@ -13,9 +13,21 @@ class ProductController
         $model = new ProductDB();
         $arr = $model->getAllColors();
 
-        echo '<pre>';
-        var_dump($arr);
-        echo '</pre>';
+        echo "<h2>Colors</h2>";
+        echo "<table>";
+            echo "<tr>";
+                echo "<th>ID</th>";
+                echo "<th>Name</th>";
+            echo "</tr>";
+
+        foreach ($arr as $row)
+        {
+            echo "<tr>";
+                echo "<td>" . $row["ID"]. "</td>";
+                echo "<td>" . $row["Name"]. "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
     }
 
     function listAllCategories()
@@ -23,9 +35,21 @@ class ProductController
         $model = new ProductDB();
         $arr = $model->getAllCategories();
 
-        echo '<pre>';
-        var_dump($arr);
-        echo '</pre>';
+        echo "<h2>Categories</h2>";
+        echo "<table>";
+            echo "<tr>";
+                echo "<th>ID</th>";
+                echo "<th>Name</th>";
+            echo "</tr>";
+
+        foreach ($arr as $row)
+        {
+            echo "<tr>";
+                echo "<td>" . $row["ID"]. "</td>";
+                echo "<td>" . $row["Name"]. "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
     }
 
     function listAllProducts()
@@ -33,69 +57,44 @@ class ProductController
         $model = new ProductDB();
         $arr = $model->getAllProducts();
 
-        // echo '<pre>';
-        // var_dump($arr);
-        // echo '</pre>';
-        // foreach($arr as $x => $x_value)
-        // {
-        //     $arr2 = $x_value;
-        //     foreach($arr2 as $y => $y_value)
-        //     {
-        //         echo "Key = " . $y . ", Value = " . $y_value." | ";
-        //     }
-        //     echo "<br><br>";
-        // }
+        echo "<h2>Products</h2>";
+        echo "<table>";
+            echo "<tr>";
+                echo "<th>ID</th>";
+                echo "<th>Category</th>";
+                echo "<th>Name</th>";
+                echo "<th>Price</th>";
+                echo "<th>Balance</th>";
+                echo "<th>Discontinued</th>";
+            echo "</tr>";
 
-        // for ($i=0; $i < count($arr); $i++)
-        // {   
-        //     echo '<table>';
-        //         echo '<tr>';
-        //             echo '<th>ID</th>';
-        //             echo '<th>Category</th>';
-        //             echo '<th>Name</th>';
-        //             echo '<th>Color</th>';
-        //             echo '<th>Price</th>';
-        //             echo '<th>Balance</th>';
-        //             echo '<th>Discontinued</th>';
-        //         echo '</tr>';
-        //         echo '<tr>';
-        //             echo '<td>Alfreds Futterkiste</td>';
-        //             echo '<td>Maria Anders</td>';
-        //             echo '<td>Germany</td>';
-        //         echo '</tr>';
-        //         echo '<tr>';
-        //             echo '<td>Centro comercial Moctezuma</td>';
-        //             echo '<td>Francisco Chang</td>';
-        //             echo '<td>Mexico</td>';
-        //         echo '</tr>';
-        //     echo '</table>';
-        // }
-
-        if ($arr->num_rows > 0) {
-            echo "<table><tr><th>ID</th><th>Name</th></tr>";
-            // output data of each row
-            while($row = $arr->fetch_assoc()) {
-                echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["Name"]. " " . $row["Price"]. "</td></tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "0 results";
+        foreach ($arr as $row) //same as ($model->getAllProducts() as $row)
+        {
+            echo "<tr>";
+                echo "<td>" . $row["ID"]. "</td>";
+                echo "<td>" . $row["Category"]. "</td>";
+                echo "<td>" . $row["Name"]. "</td>";
+                echo "<td>" . $row["Price"]. "</td>";
+                echo "<td>" . $row["Balance"]. "</td>";
+                echo "<td>" . $row["Discontinued"]. "</td>";
+            echo "</tr>";
         }
-        
+        echo "</table>";
+    }
 
-       
-       
+    function listProduct(){
+        
     }
 
     function insertColor($color)
     {
-        // $model = new ProductDB();
-        // echo "Input: ".$color." [UNWASHED]"."<br>";
-        // echo "Input: ".$this->washInput($color)." [WASHED]";
-        // echo "<br>"."-------------------"."<br>";
-        // echo $this->checkUserInput($color);
-        // echo "<br>"."<br>"."<br>";
-        // $input = $this->checkUserInput($color);
+        $model = new ProductDB();
+        echo "Input: ".$color." [UNWASHED]"."<br>";
+        echo "Input: ".$this->washInput($color)." [WASHED]";
+        echo "<br>"."-------------------"."<br>";
+        echo $this->checkUserInput($color);
+        echo "<br>"."<br>"."<br>";
+        $input = $this->checkUserInput($color);
         // //$model->setColorDB($input);
     }
 
