@@ -14,10 +14,6 @@ require_once "triggers.php";
     <title>Main Page</title>
 </head>
 <body>
-<header>
-    <?php require_once('header.php'); ?>
-</header>
-    <h1>Main Page</h1>
     <main>
         <section class="Add user">
             <h2>Add User</h2>
