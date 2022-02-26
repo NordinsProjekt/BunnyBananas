@@ -2,6 +2,10 @@
 session_start();
 require_once "buildHTML.php";
 require_once "triggers.php";
+require_once "Products.controller.php";
+
+//TESTINDEX
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +18,16 @@ require_once "triggers.php";
 <body>
 <h1>Login</h1>
 <?php
-    //Detta är en kommentar :)
+    $controller = new ProductController();
+    //$controller->listAllCategories();
+
+    // $color = "--/*sv-art ((";
+    // $controller->insertColor($color);
+
+    // $category = "--/*ho-odie/ ((";
+    // $controller->insertCategory($category);
+
+    $controller->listAllProducts();
 ?>
 </body>
 </html>
