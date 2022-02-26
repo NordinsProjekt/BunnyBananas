@@ -23,7 +23,35 @@ Enkel inloggnings funktionallitet lades till av Markus.
 
 En simpel routingfunkonalitet samt view-tamplates-struktur sattes upp av Staffan.
 
+# 25/2
 
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+
+Lucas
+- Tabellerna för Products, Categories, Colors
+- Kodat Model och Controller för Products
+- Börjat titta på Products Views
+- Fyllt tabellerna med information för webshoppen.
+- Testkod för dessa.
+
+Markus
+- Skapat tabellerna för User, Groups och usergroups
+- Fyllt dem med information
+- Kodat Model, Controller och Views som är kopplade till användaren.
+- Gjort klart inloggningen, samt låst Adminpanelen från användare som inte är med i gruppen
+  Admin.
+- Lagt till logga ut knapp i headern samt gömt inloggningsrutan när användaren är inloggad.
+- Gjort ett litet mini API som kan skicka mail via en googlemail (C#).
+
+Staffan
+
+# 26/2
+
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
+
+Markus
+ - Lagt till profilknapp och adminknapp i headern.
 
 
 
