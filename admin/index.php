@@ -1,7 +1,6 @@
 <?php
-session_start();
-require_once "../User.Controller.php";
-require_once "../triggers.php";
+require_once "User.Controller.php";
+require_once "triggers.php";
 ?>
 
 <?php
@@ -16,7 +15,7 @@ require_once "../triggers.php";
 </head>
 <body>
 <header>
-    <?php require_once('../header.php'); ?>
+    <?php require_once('header.php'); ?>
 </header>
     <h1>Main Page</h1>
     <main>
