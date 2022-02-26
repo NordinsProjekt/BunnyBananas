@@ -27,5 +27,13 @@ function ProfileButtonForm()
     $text .= "</form>";
     return $text;
 }
+function AdminPanelButton()
+{
+    $text = "";
+    $text .= "<form method='post'>";
+    $text .= "<input type='submit' id='admin' class='adminButton' name='adminButton' value='Admin' />";
+    $text .= "</form>";
+    return $text;
+}
 
 ?>

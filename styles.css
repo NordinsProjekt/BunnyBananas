@@ -1,0 +1,14 @@
+header {
+  background-color:white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 20px;
+}
+form {
+  padding: 0px;
+  margin: 0px;
+}
+body{
+    background-color: aqua;
+}
