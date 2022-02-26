@@ -1,16 +1,15 @@
 <?php 
 session_start();
 require_once('triggers.php');
-
 ?>
 <html>
 <head>
-
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" media="all" href="styles.css">
 </head>
 <body>
-
+<header>
 <?php require_once('header.php');?>
+</header>
 
 <h1>WEBSHOP!</h1>
 
@@ -18,5 +17,4 @@ require_once('triggers.php');
 
 </body>
 
-    
 </html>

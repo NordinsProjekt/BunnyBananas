@@ -14,6 +14,22 @@ class UserModel extends PDOHandler
       $stmt->execute();
       return $stmt->fetchAll();       
     }
+    function GetUserShippingAddress($userId)
+    {
+      $stmt = $this->Connect()->prepare('SELECT Firstname,Lastname,Adress1,Adress2,Postort,Postnummer,Land 
+      FROM users WHERE ID=:id;');
+      $stmt->bindParam(':id',$userId);
+      $stmt->execute();
+      return $stmt->fetch();
+    }
+
+    function UpdateUserShippingAddress($userinputs)
+    {
+      $stmt = $this->Connect()->prepare('UPDATE users SET Firstname = ?, Lastname = ?, Adress1 = ?,
+        Adress2 = ?, Postnummer = ?, Postort = ?, Land = ? WHERE ID = ?;');
+      $stmt->bindParam(':id',$userId,PDO::PARAM_INT);
+      $stmt->execute($userinputs);
+    }
 
     function GetUserGroup($id)
     {
@@ -22,7 +38,7 @@ class UserModel extends PDOHandler
       WHERE UserID =:id;');
       $stmt->bindParam(':id',$id,PDO::PARAM_INT);
       $stmt->execute();
-      return $stmt->fetch();;
+      return $stmt->fetch();
     }
 
     private function CheckIfUserExists($username, $email)
@@ -56,12 +72,13 @@ class UserModel extends PDOHandler
       {
         if ($hashedPassword = password_hash($password, PASSWORD_DEFAULT))
         {
-          $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disabled) VALUES(:username,:password,:email,0)');
+          $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disable) VALUES(:username,:password,:email,0)');
           $param = [
             ':username'=>$username,
             ':password'=>$hashedPassword,
             ':email'=>$email];
           $stmt->execute($param);
+
           return true;
         }
         else
