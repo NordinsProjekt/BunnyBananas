@@ -10,11 +10,11 @@ require_once('triggers.php');
 </head>
 <body>
 
-<?php include('header.php');?>
+<?php require_once('header.php');?>
 
 <h1>WEBSHOP!</h1>
 
-<?php include('router.php');?>
+<?php require_once('router.php');?>
 
 </body>
 

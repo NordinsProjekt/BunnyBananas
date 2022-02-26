@@ -1,6 +1,8 @@
 <?php
 require_once "User.Controller.php";
 
+
+
 if (key_exists('add',$_POST) && key_exists('txtUsername',$_POST) && 
 key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) )
 {
@@ -44,5 +46,7 @@ if (key_exists('logout',$_POST))
 if (key_exists('profile',$_POST))
 {
     header("Location: ./profile");
+    header("Refresh: 0");
+    exit();
 }
 ?>
