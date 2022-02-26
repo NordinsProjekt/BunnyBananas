@@ -1,5 +1,6 @@
 <?php
-function ValidateLogin()
+//Onödig fil????
+function jValidateLogin()
 {
     if (key_exists('is_logged_in',$_SESSION))
     {
@@ -11,7 +12,7 @@ function ValidateLogin()
     }
     return false;
 }
-function LogOut()
+function lLogOut()
 {
     session_destroy();
 }
