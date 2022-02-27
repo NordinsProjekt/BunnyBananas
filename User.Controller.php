@@ -22,19 +22,29 @@ class UserController
             return true;
         }
     }
-    function AddNewUser($username,$password,$email)
+    function AddNewUser($username,$password,$email,$groupId)
     {
         $db = new UserModel();
-        $svar = $db->SetUser($username,$password,$email);
-        if ($svar == true)
+        if ($db->SetUser($username,$password,$email))
         {
-            echo "Allt gick bra";
+            $userId = $db->GetUserId($username);
+            $arr = array (
+                $groupId,$userId['ID']
+            );
+            $db->SetGroupToUser($arr);
+            echo "Användaren skapades och lades till i en grupp";
         }
         else
         {
             echo "Användaren skapades inte";
         }
     }
+
+    function AddUserToGroup($userId,$groupId)
+    {
+
+    }
+
     function VerifyUserAdmin()
     {
         $db = new UserModel();
@@ -56,6 +66,12 @@ class UserController
             }
         }
         return false;
+    }
+    function GetAllUserGroups()
+    {
+        $db = new UserModel();
+        $arr = $db->GetAllGroups();
+        return $arr;
     }
 
     function GetShippingAddress()

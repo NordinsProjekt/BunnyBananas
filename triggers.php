@@ -1,22 +1,20 @@
 <?php
 require_once "User.Controller.php";
 
-
-
-if (key_exists('add',$_POST) && key_exists('txtUsername',$_POST) && 
-key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) )
+if (key_exists('addUser',$_POST) && key_exists('txtUsername',$_POST) && 
+key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) && key_exists('selGroups',$_POST))
 {
     $username = $_POST['txtUsername'];
     $password = $_POST['txtPassword'];
     $email = $_POST['txtEmail'];
-
+    $groupId = (int)$_POST['selGroups'];
     if ($username == "" or $password == "" or $email == "")
     {
         echo "Fyll i alla fält tack";
         exit();
     }
     $controller = new UserController();
-    $controller->AddNewUser($username,$password,$email);
+    $controller->AddNewUser($username,$password,$email,$groupId);
 }
 
 if (key_exists('login',$_POST))

@@ -15,7 +15,7 @@ require_once "triggers.php";
 </head>
 <body>
     <main>
-        <section class="Add user">
+        <section class="AddUser">
             <h2>Add User</h2>
         <form method="post">
             <label for="txtUsername" id ="lblUsername" class="">Username: </label>
@@ -24,11 +24,21 @@ require_once "triggers.php";
             <input type="password" id ="txtPassword" name="txtPassword" class="userInput" value="" size="30" /><br />
             <label for="txtEmail" id ="lblEmail" class="">Email: </label>
             <input type="email" id ="txtEmail" name="txtEmail" class="userInput" value="" size="30" /><br />
-            <input type="submit" id="add" class="addButton" name="add" value="Add user" />
+            <label for="selGroups" id="lblGroups" class="">Grupp: </label>
+            <select name="selGroups" id="selGroups">
+                <?php 
+                $arr = $controller->GetAllUserGroups();
+                var_dump($arr);
+                foreach ($arr as $key => $value) {
+                    echo "<option value='".$value['ID']."'>". $value["name"] . "</option>";
+                }
+                ?>
+            </select><br />
+            <input type="submit" id="add" class="addButton" name="addUser" value="Add user" />
             <br />
         </form>
         </section>
-        <section>
+        <section class="Session">
             <?php 
             echo "Session var_dump <br />";
             var_dump($_SESSION);
@@ -36,6 +46,9 @@ require_once "triggers.php";
 
             echo "<br />Is user Admin? " . $controller->VerifyUserAdmin();
             ?>
+        </section>
+        <section class="CreateGroup">
+
         </section>
     </main>
 </body>

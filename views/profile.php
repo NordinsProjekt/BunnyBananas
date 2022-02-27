@@ -1,5 +1,5 @@
 <?php $ctrlr = new UserController()?>
-<h1>Profile för <?php echo $_SESSION['username']; ?></h1>
+<h1>Profilsida för <?php echo $_SESSION['username']; ?></h1>
 
 <h2>Kund uppgifter</h2>
 <?php $row = $ctrlr->GetShippingAddress(); 

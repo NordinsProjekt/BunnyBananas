@@ -14,6 +14,23 @@ class UserModel extends PDOHandler
       $stmt->execute();
       return $stmt->fetchAll();       
     }
+
+    function GetUser($id)
+    {
+      $stmt = $this->Connect()->prepare('SELECT * FROM users WHERE ID=:id;');
+      $stmt->bindParam(':id',$id);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
+    function GetUserId($username)
+    {
+      $stmt = $this->Connect()->prepare('SELECT ID FROM users WHERE Username = :username');
+      $stmt->bindParam(':username',$username);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
     function GetUserShippingAddress($userId)
     {
       $stmt = $this->Connect()->prepare('SELECT Firstname,Lastname,Adress1,Adress2,Postort,Postnummer,Land 
@@ -30,6 +47,28 @@ class UserModel extends PDOHandler
       $stmt->bindParam(':id',$userId,PDO::PARAM_INT);
       $stmt->execute($userinputs);
     }
+    function GetGroup($id)
+    {
+      $stmt = $this->Connect()->prepare('SELECT GroupName as name FROM groups WHERE ID = :id;');
+      $stmt->bindParam(':id',$id);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
+    function GetGroupId($groupName)
+    {
+      $stmt = $this->Connect()->prepare('SELECT ID FROM groups WHERE GroupName = :groupname;');
+      $stmt->bindParam(':groupname',$groupName);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
+    function GetAllGroups()
+    {
+      $stmt = $this->Connect()->prepare('SELECT ID, GroupName as name FROM groups;');
+      $stmt->execute();
+      return $stmt->fetchAll();     
+    }
 
     function GetUserGroup($id)
     {
@@ -41,6 +80,25 @@ class UserModel extends PDOHandler
       return $stmt->fetch();
     }
 
+    function SetGroup($gruppnamn)
+    {
+      if (!$this->CheckIfGroupExist($gruppnamn))
+      {
+        $stmt = $this->Connect()->prepare('INSERT INTO groups (GroupName) VALUES(:gruppnamn)');
+        $param = [':gruppnamn'=>$gruppnamn];
+        $stmt->execute($param);
+        return true;
+      }
+      return false;
+    }
+
+    function SetGroupToUser($idArray)
+    {
+      $stmt = $this->Connect()->prepare('INSERT INTO usergroups (GroupID,UserID) VALUES (?,?);');
+      $stmt->execute($idArray);
+      return $stmt->fetch();
+
+    }
     private function CheckIfUserExists($username, $email)
     {
       $username = $this->CheckUserInputs($username);
@@ -89,24 +147,6 @@ class UserModel extends PDOHandler
       else
       {
         return false;
-      }
-    }
-
-    function GetAllGroups()
-    {
-      $stmt = $this->Connect()->prepare('SELECT id,grupp_namn as name FROM groups;');
-      $stmt->execute();
-      return $stmt->fetchAll();     
-    }
-
-    protected function SetGroup($gruppnamn)
-    {
-      if (!$this->CheckIfGroupExist($gruppnamn))
-      {
-        $stmt = $this->Connect()->prepare('INSERT INTO groups (GroupName) VALUES(:gruppnamn)');
-        $param = [':gruppnamn'=>$gruppnamn];
-        $stmt->execute($param);
-        return true;
       }
     }
 
