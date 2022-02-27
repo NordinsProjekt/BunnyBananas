@@ -52,6 +52,10 @@ Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges gör
 
 Markus
  - Lagt till profilknapp och adminknapp i headern.
+ - Gjort signup Views och lagt till Skapa konto länk i headern.
+ - Skapa user i adminpanelen kan välja användargrupp och lägga till nya grupper.
+ - Vanlig person blir medlem i user group.
+
 
 
 
