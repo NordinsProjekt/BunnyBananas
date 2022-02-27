@@ -15,11 +15,11 @@ switch (parseUrl()[0]) {
     case 'orders' :
         require __DIR__ . '/views/orders.php';
         break;
-    case 'admin2' :
+    case 'admin' :
         $controller = new UserController();
         if ($controller->VerifyUserAdmin())
         {
-            require_once __DIR__ . '/admin/index.php';
+            require_once __DIR__ . '/views/admin.php';
         }
         else
         {
@@ -36,6 +36,9 @@ switch (parseUrl()[0]) {
             require_once __DIR__ . '/views/index.php';
         }
         
+        break;
+    case 'signup':
+        require_once __DIR__ . '/views/signup.php';
         break;
     case 'test':
         break;

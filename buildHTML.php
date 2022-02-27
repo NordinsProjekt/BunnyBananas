@@ -2,6 +2,7 @@
 function LoginForm()
 {
     $text = "";
+    $text .= "<a href='./signup'>Skapa konto</a>";
     $text .= "<form method='post'>";
     $text .= "<label for='txtUsername' id ='lblUsername' class=''>Username: </label>";
     $text .= "<input type='text' id ='txtUsername' name='txtUsername' class='userInput' value='' size='10' />";

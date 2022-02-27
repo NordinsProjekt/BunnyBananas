@@ -8,13 +8,14 @@ key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) && key_exists(
     $password = $_POST['txtPassword'];
     $email = $_POST['txtEmail'];
     $groupId = (int)$_POST['selGroups'];
+    $reklam = false;
     if ($username == "" or $password == "" or $email == "")
     {
         echo "Fyll i alla fält tack";
         exit();
     }
     $controller = new UserController();
-    $controller->AddNewUser($username,$password,$email,$groupId);
+    $controller->AddNewUser($username,$password,$email,$groupId,$reklam);
 }
 
 if (key_exists('login',$_POST))
@@ -49,7 +50,7 @@ if (key_exists('profile',$_POST))
 
 if (key_exists('adminButton',$_POST))
 {
-    header("Location: ./admin2");
+    header("Location: ./admin");
     exit();
 }
 
@@ -63,5 +64,28 @@ if (key_exists('saveProfile',$_POST))
     $_POST['txtPostalarea'],$_POST['txtCountry']);
     header("Location: ./profile");
     exit();
+}
+if (key_exists('signup',$_POST))
+{
+    $username = $_POST['txtUsername'];
+    $password = $_POST['txtPassword'];
+    $email = $_POST['txtEmail'];
+    if (key_exists('reklam',$_POST))
+    {
+        $reklam = true;
+    }
+    else
+    {
+        $reklam = false;
+    }
+    $controller = new UserController();
+    $groupId = 2; //Detta är User gruppen.
+    $controller->AddNewUser($username,$password,$email,$groupId,$reklam);
+}
+if (key_exists('addGroup',$_POST))
+{
+    $groupName = $_POST['txtGroupname'];
+    $controller = new UserController();
+    $controller->AddGroup($groupName);
 }
 ?>
