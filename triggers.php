@@ -50,7 +50,7 @@ if (key_exists('profile',$_POST))
 
 if (key_exists('adminButton',$_POST))
 {
-    header("Location: ./admin2");
+    header("Location: ./admin");
     exit();
 }
 
