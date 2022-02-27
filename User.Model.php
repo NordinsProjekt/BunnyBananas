@@ -47,6 +47,7 @@ class UserModel extends PDOHandler
       $stmt->bindParam(':id',$userId,PDO::PARAM_INT);
       $stmt->execute($userinputs);
     }
+    
     function GetGroup($id)
     {
       $stmt = $this->Connect()->prepare('SELECT GroupName as name FROM groups WHERE ID = :id;');
@@ -126,6 +127,7 @@ class UserModel extends PDOHandler
         $stmt->execute();
         return $stmt->fetch();
     }
+
     function SetUser($userArr)
     {    
       $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disable) VALUES(?,?,?,0)');
@@ -135,17 +137,9 @@ class UserModel extends PDOHandler
 
     function CheckIfGroupExist($gruppnamn)
     {
-      $gruppnamn = $this->CheckUserInputs($gruppnamn);
       $stmt = $this->Connect()->prepare('SELECT COUNT(ID) as row FROM groups WHERE GroupName =?;');
       $stmt->execute(array($gruppnamn));
       return $stmt->fetch();
-    }
-
-    private function CheckUserInputs($notsafeText)
-    {
-      $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]");
-      $safe = str_replace($banlist,"",$notsafeText);
-      return $safe;
     }
 }
 
