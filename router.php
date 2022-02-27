@@ -37,6 +37,9 @@ switch (parseUrl()[0]) {
         }
         
         break;
+    case 'signup':
+        require_once __DIR__ . '/views/signup.php';
+        break;
     case 'test':
         break;
     default:

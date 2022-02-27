@@ -92,26 +92,35 @@ class UserModel extends PDOHandler
       return false;
     }
 
+    function SetReklam($userId)
+    { 
+      $stmt = $this->Connect()->prepare('INSERT INTO reklam (UserID) VALUES (:userId);');
+      $stmt->bindParam(':userId',$userId);
+      $stmt->execute();
+      return $stmt->fetch();
+    }
+
+    function DeleteReklam($userId)
+    {
+      $stmt = $this->Connect()->prepare('DELETE FROM reklam WHERE UserId = :userId;');
+      $stmt->bindParam(':userId',$userId);
+      $stmt->execute();
+      return $stmt->fetch();
+    }
+
     function SetGroupToUser($idArray)
     {
       $stmt = $this->Connect()->prepare('INSERT INTO usergroups (GroupID,UserID) VALUES (?,?);');
       $stmt->execute($idArray);
       return $stmt->fetch();
-
     }
-    private function CheckIfUserExists($username, $email)
+
+    function CheckIfUserExists($username)
     {
-      $username = $this->CheckUserInputs($username);
-      $stmt = $this->Connect()->prepare('SELECT * FROM users WHERE username =? OR email=?;');
-      $stmt->execute(array($username,$email));
-      if (count($stmt->fetchAll())>0)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }      
+      $stmt = $this->Connect()->prepare('SELECT COUNT(ID) as row FROM users WHERE username =:username;');
+      $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+      $stmt->execute();
+      return $stmt->fetch();    
     }
 
     function Login($username)
@@ -121,36 +130,14 @@ class UserModel extends PDOHandler
         $stmt->execute();
         return $stmt->fetch();
     }
-    function SetUser($username,$password,$email)
-    {
-      $username = $this->CheckUserInputs($username);
-      $password = $this->CheckUserInputs($password);
-      
-      if (!$this->CheckIfUserExists($username,$email))
-      {
-        if ($hashedPassword = password_hash($password, PASSWORD_DEFAULT))
-        {
-          $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disable) VALUES(:username,:password,:email,0)');
-          $param = [
-            ':username'=>$username,
-            ':password'=>$hashedPassword,
-            ':email'=>$email];
-          $stmt->execute($param);
-
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      else
-      {
-        return false;
-      }
+    function SetUser($userArr)
+    {    
+      $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disable) VALUES(?,?,?,0)');
+      $stmt->execute($userArr);
+      return true;
     }
 
-    protected function CheckIfGroupExist($gruppnamn)
+    function CheckIfGroupExist($gruppnamn)
     {
       $gruppnamn = $this->CheckUserInputs($gruppnamn);
       $stmt = $this->Connect()->prepare('SELECT * FROM groups WHERE GroupName =?;');
