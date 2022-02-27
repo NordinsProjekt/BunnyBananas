@@ -12,25 +12,23 @@ class ProductDB extends PDOHandler
 
     function getAllColors()
     {
-        $stmt = $this->Connect()->prepare("SELECT * FROM `colors`;");
+        $stmt = $this->Connect()->prepare("SELECT Name FROM `colors`;");
         $stmt->execute();
         return $result = $stmt->fetchAll();
     }
 
     function getAllCategories()
     {
-        $stmt = $this->Connect()->prepare("SELECT * FROM `categories`;");
+        $stmt = $this->Connect()->prepare("SELECT Name FROM `categories`;");
         $stmt->execute();
         return $result = $stmt->fetchAll();
     }
 
     function getAllProducts()
     {
-        $query = "SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Balance, pr.Discontinued
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Balance, pr.Discontinued
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
-        INNER JOIN colors AS co ON pr.ColorID = co.ID;";
-        //$stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Balance, pr.Discontinued FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID INNER JOIN colors AS co ON pr.ColorID = co.ID;");
-        $stmt = $this->Connect()->prepare($query);
+        INNER JOIN colors AS co ON pr.ColorID = co.ID;");
         $stmt->execute();
         return $result = $stmt->fetchAll();
     }
@@ -40,7 +38,7 @@ class ProductDB extends PDOHandler
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Discontinued 
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID 
         INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE ca.Name = ':name';");
-        
+
         $stmt->bindParam(':name', $categoryName);
         $stmt->execute();
         return $result = $stmt->fetchAll();

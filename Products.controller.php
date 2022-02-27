@@ -8,105 +8,68 @@ class ProductController
 
     }
 
+    function listAllProducts()
+    {
+        $model = new ProductDB();
+        return $model->getAllProducts();
+    }
+
     function listAllColors()
     {
         $model = new ProductDB();
-        $arr = $model->getAllColors();
+        return $model->getAllColors();
 
-        echo "<h2>Colors</h2>";
-        echo "<table>";
-            echo "<tr>";
-                echo "<th>ID</th>";
-                echo "<th>Name</th>";
-            echo "</tr>";
+        // echo "<h2>Colors</h2>";
+        // echo "<table>";
+        //     echo "<tr>";
+        //         echo "<th>ID</th>";
+        //         echo "<th>Name</th>";
+        //     echo "</tr>";
 
-        foreach ($arr as $row)
-        {
-            echo "<tr>";
-                echo "<td>" . $row["ID"]. "</td>";
-                echo "<td>" . $row["Name"]. "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+        // foreach ($arr as $row)
+        // {
+        //     echo "<tr>";
+        //         echo "<td>" . $row["ID"]. "</td>";
+        //         echo "<td>" . $row["Name"]. "</td>";
+        //     echo "</tr>";
+        // }
+        // echo "</table>";
     }
 
     function listAllCategories()
     {
         $model = new ProductDB();
-        $arr = $model->getAllCategories();
-
-        echo "<h2>Categories</h2>";
-        echo "<table>";
-            echo "<tr>";
-                echo "<th>ID</th>";
-                echo "<th>Name</th>";
-            echo "</tr>";
-
-        foreach ($arr as $row)
-        {
-            echo "<tr>";
-                echo "<td>" . $row["ID"]. "</td>";
-                echo "<td>" . $row["Name"]. "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+        return $model->getAllCategories();
     }
 
-    function listAllProducts()
+    function listProduct()
     {
-        $model = new ProductDB();
-        $arr = $model->getAllProducts();
 
-        echo "<h2>Products</h2>";
-        echo "<table>";
-            echo "<tr>";
-                echo "<th>ID</th>";
-                echo "<th>Category</th>";
-                echo "<th>Name</th>";
-                echo "<th>Price</th>";
-                echo "<th>Balance</th>";
-                echo "<th>Discontinued</th>";
-            echo "</tr>";
-
-        foreach ($arr as $row) //same as ($model->getAllProducts() as $row)
-        {
-            echo "<tr>";
-                echo "<td>" . $row["ID"]. "</td>";
-                echo "<td>" . $row["Category"]. "</td>";
-                echo "<td>" . $row["Name"]. "</td>";
-                echo "<td>" . $row["Price"]. "</td>";
-                echo "<td>" . $row["Balance"]. "</td>";
-                echo "<td>" . $row["Discontinued"]. "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    }
-
-    function listProduct(){
-        
     }
 
     function insertColor($color)
     {
         $model = new ProductDB();
+        $arr = $model->getAllColors();
         echo "Input: ".$color." [UNWASHED]"."<br>";
         echo "Input: ".$this->washInput($color)." [WASHED]";
         echo "<br>"."-------------------"."<br>";
-        echo $this->checkUserInput($color);
+        echo $this->checkUserInput($color, $arr);
         echo "<br>"."<br>"."<br>";
-        $input = $this->checkUserInput($color);
-        // //$model->setColorDB($input);
+        $input = $this->checkUserInput($color, $arr);
+        //$model->setColorDB($input);
     }
 
     function insertCategory($category)
     {
         $model = new ProductDB();
+        $arr = $model->getAllCategories();
         echo "Input: ".$category." [UNWASHED]"."<br>";
         echo "Input: ".$this->washInput($category)." [WASHED]";
         echo "<br>"."-------------------"."<br>";
-        echo $this->checkUserInput($category);
+        echo $this->checkUserInput($category, $arr);
         echo "<br>"."<br>"."<br>";
-        $input = $this->checkUserInput($category);
+        $input = $this->checkUserInput($category, $arr);
         //$model->setCategoryDB($input);
     }
 
@@ -114,46 +77,41 @@ class ProductController
     {
         $input = htmlspecialchars($input, ENT_QUOTES);
         $input = trim($input, " ");
-        $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]","-","*");
+        $input = preg_replace('/[0-9]+/', '', $input);
+        $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]","-","*","%","!","#","?","&");
         $safeInput = str_replace($banlist,"",$input);
         return ucfirst($safeInput); //Capitalize first letter
         
     }
 
-    function checkUserInput($input)
+    function checkUserInput($input, $arr)
     {
         $model = new ProductDB();
-        $arr = $model->getAllColors();
+        //$arr = $model->getAllColors();
         $input = $this->washInput($input);
         $clr = "";
-        if ($input == NULL || $input == "") 
-        {
-            return $msg = "Insertion failed: Invalid input!";
+        if ($input == NULL || $input == "") {
+            //return $msg = "Insertion failed: Invalid input!";
+            return $input;
         }
-        else
-        {
-            for ($i=0; $i<count($arr); $i++)
-            { 
+        else{
+            for ($i=0; $i<count($arr); $i++){ 
                 $clr = $arr[$i]['Name'];
-                
-                if ($input == $clr) 
-                {
+                if ($input == $clr) {
                     return $msg = "Insertion failed: Input already exists in DB!";
                     break;
                 }
-
             }
-            if ($input != $clr) //Check if input not already exists
-            {
+            //Check if input not already exists
+            if ($input != $clr) {
                 return $input;
-            }
-            else
-            {
+            } else{
                 return $msg = "ERROR! Something went wrong with the insertion.";
-                
             }
         }
     }
+
+
 
 }
 
