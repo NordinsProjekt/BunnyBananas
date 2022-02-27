@@ -133,6 +133,16 @@ class UserController
         $db->UpdateUserShippingAddress($userinputs);
     }
 
+    function AddGroup($groupName)
+    {
+        $groupName = $this->CheckUserInputs($groupName);
+        $db = new UserModel();
+        if ($db->CheckIfGroupExist($groupName)['row'] == 0)
+        {
+            $db->SetGroup($groupName);
+        }
+    }
+
     private function ValidateEmail($email)
     {
         if(filter_var($email, FILTER_VALIDATE_EMAIL)) {

@@ -82,4 +82,10 @@ if (key_exists('signup',$_POST))
     $groupId = 2; //Detta är User gruppen.
     $controller->AddNewUser($username,$password,$email,$groupId,$reklam);
 }
+if (key_exists('addGroup',$_POST))
+{
+    $groupName = $_POST['txtGroupname'];
+    $controller = new UserController();
+    $controller->AddGroup($groupName);
+}
 ?>

@@ -28,7 +28,6 @@ require_once "triggers.php";
             <select name="selGroups" id="selGroups">
                 <?php 
                 $arr = $controller->GetAllUserGroups();
-                var_dump($arr);
                 foreach ($arr as $key => $value) {
                     echo "<option value='".$value['ID']."'>". $value["name"] . "</option>";
                 }
@@ -48,7 +47,12 @@ require_once "triggers.php";
             ?>
         </section>
         <section class="CreateGroup">
-
+            <h2>Add Group</h2>
+            <form method="post">
+                <label for="txtGroupname" id ="lblGroupname" class="">Group name: </label>
+                <input type="text" id ="txtGroupname" name="txtGroupname" class="userInput" value="" size="10" /><br />
+                <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Add Group" />
+            </form>
         </section>
     </main>
 </body>

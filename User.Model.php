@@ -82,14 +82,10 @@ class UserModel extends PDOHandler
 
     function SetGroup($gruppnamn)
     {
-      if (!$this->CheckIfGroupExist($gruppnamn))
-      {
         $stmt = $this->Connect()->prepare('INSERT INTO groups (GroupName) VALUES(:gruppnamn)');
         $param = [':gruppnamn'=>$gruppnamn];
         $stmt->execute($param);
         return true;
-      }
-      return false;
     }
 
     function SetReklam($userId)
@@ -140,16 +136,9 @@ class UserModel extends PDOHandler
     function CheckIfGroupExist($gruppnamn)
     {
       $gruppnamn = $this->CheckUserInputs($gruppnamn);
-      $stmt = $this->Connect()->prepare('SELECT * FROM groups WHERE GroupName =?;');
+      $stmt = $this->Connect()->prepare('SELECT COUNT(ID) as row FROM groups WHERE GroupName =?;');
       $stmt->execute(array($gruppnamn));
-      if (count($stmt->fetchAll())>0)
-      {
-          return true;
-      }
-      else
-      {
-        return false;
-      }  
+      return $stmt->fetch();
     }
 
     private function CheckUserInputs($notsafeText)
