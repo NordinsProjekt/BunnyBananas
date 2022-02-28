@@ -3,39 +3,38 @@ require_once('User.Controller.php');
 require_once('Order.Controller.php');
 
 switch (parseUrl()[0]) {
-    case 'NULL' :
+    case 'NULL':
         require_once __DIR__ . '/views/index.php';
         break;
-    case '' :
+    case '':
         require_once __DIR__ . '/views/index.php';
         break;
-    case 'about' :
+    case 'about':
         require_once __DIR__ . '/views/about.php';
         break;
-    case 'orders' :
+    case 'orders':
         require __DIR__ . '/views/orders.php';
         break;
-    case 'admin' :
+    case 'cart':
+        require __DIR__ . '/views/cart.php';
+        break;
+    case 'admin':
         $controller = new UserController();
-        if ($controller->VerifyUserAdmin())
-        {
+        if ($controller->VerifyUserAdmin()) {
             require_once __DIR__ . '/views/admin.php';
         }
-        else
-        {
+        else {
             require_once __DIR__ . '/views/index.php';
         }
         break;
     case 'profile':
-        if (key_exists('is_logged_in',$_SESSION))
-        {
+        if (key_exists('is_logged_in', $_SESSION)) {
             require_once __DIR__ . '/views/profile.php';
         }
-        else
-        {
+        else {
             require_once __DIR__ . '/views/index.php';
         }
-        
+
         break;
     case 'signup':
         require_once __DIR__ . '/views/signup.php';
@@ -52,18 +51,15 @@ function parseUrl()
 {
     //Löser splittningen
     //löser inte riktiga folder och filer.
-    if(isset($_GET['url']))
-    {
+    if (isset($_GET['url'])) {
         $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         //var_dump($url);
-        if ($url == NULL)
-        {
+        if ($url == NULL) {
             return array("");
         }
         return $url;
     }
-    else
-    {
+    else {
         return array("");
     }
 }
