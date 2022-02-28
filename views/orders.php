@@ -15,7 +15,7 @@
     </tr>
 </thead>
 <tbody>
-<?php foreach($orderController->GetAllOrders() as $value){?>
+<?php foreach($orderController->ListAllOrders() as $value){?>
 
     <tr>
         <td><a href="?orderID=<?php echo $value['ID']?>"><?php echo $value['ID']?></a></td>
@@ -47,7 +47,7 @@
     </tr>
 </thead>
 <tbody>
-<?php foreach($orderController->GetSpecificOrder($_GET['orderID']) as $value){?>
+<?php foreach($orderController->ListSpecificOrder($_GET['orderID']) as $value){?>
 
     <tr>
         <td><?php echo $value['ID']?></td>

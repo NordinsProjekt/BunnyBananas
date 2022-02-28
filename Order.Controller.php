@@ -8,14 +8,14 @@ class OrderController {
         
     }
 
-    function GetAllOrders(){
+    function ListAllOrders(){
 
         $db = new OrderModel;
 
         return $db->GetAllOrders();
     }
 
-    function GetSpecificOrder($value){
+    function ListSpecificOrder($value){
 
         $db = new OrderModel;
 

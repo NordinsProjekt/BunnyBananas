@@ -1,15 +1,18 @@
-<?php $ctrlr = new UserController()?>
+<?php 
 
-<h1>INDEX</h1>
+$userController = new UserController();
+$productController = new ProductController();
 
-LETS PUT SOME DRAWINGLOGIC HERE?!
+?>
+
+
 <table>
 <?php
 
-foreach ($ctrlr->GetLetterArray() as $letter) { ?>
+foreach ($productController->listAllProducts() as $product) { ?>
 
     <tr>
-        <td><?php echo $letter; ?></td>
+        <td><?php echo ProductCard($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?></td>
     </tr>
 
 <?php }?>
