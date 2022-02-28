@@ -60,6 +60,50 @@ class ProductDB extends PDOHandler
         echo $msg = "SUCCESS! New category added to DB!";
     }
 
+    function setNewProductDB($name, $category, $color, $description, $price, $balance)
+    {
+        $stmt = $this->Connect()->prepare("INSERT INTO products (Name, CategoryID, ColorID, Description, Price, Balance, Discontinued) 
+        VALUES (':name','category','color',':description',':price',':balance',':discontinued')");
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":category", $category);
+        $stmt->bindParam(":color", $color);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":balance", $balance);
+        $stmt->bindParam(":discontinued", 0); //När ny produkt skapas förutsätt det att den ska finnas med i sortimentet
+        $stmt->execute();
+        echo $msg = "SUCCESS! New product added to DB!";
+    }
+
+
+
+
+
+
+
+
+
+
+    function getColorID($colorName)
+    {
+        $stmt = $this->Connect()->prepare("SELECT ID FROM `colors` WHERE Name=':name';");
+        $stmt->bindParam(":name", $colorName);
+        $stmt->execute();
+        return $result = $stmt->fetchAll();
+    }
+
+    function getAllCategoriesID($categoryName)
+    {
+        $stmt = $this->Connect()->prepare("SELECT ID FROM `categories` WHERE Name=':name';");
+        $stmt->bindParam(":name", $categoryName);
+        $stmt->execute();
+        return $result = $stmt->fetchAll();
+    }
+
+
+
+
+
 }
 
 

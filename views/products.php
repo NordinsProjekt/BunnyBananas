@@ -50,20 +50,26 @@ if (isset($_GET['module']))
                 echo "<select name='categories' id='categories'>";
                 echo "<option value=''>Select category</option>";
                 foreach ($controller->listAllCategories() as $row){
-                    echo "<option value='category'>".$row["Name"]."</option>";
+                    echo "<option>".$row["Name"]."</option>";
                 } echo "</select>"."<br><br>";
                 echo "<select name='colors' id='colors'>";
                 echo "<option value=''>Select color</option>";
                 foreach ($controller->listAllColors() as $row){
-                    echo "<option value='color'>".$row["Name"]."</option>";
+                    echo "<option>".$row["Name"]."</option>";
                 } echo "</select>"."<br><br>";
                 echo "<textarea name='description' rows='4' placeholder='Description'></textarea><br><br>";
                 echo "<input type='text' id='new-price' name='new-price' placeholder='Price'><br><br>";
-                echo "<label for='quantity'><b>Quantity: </b></label>";
-                echo "<input type='number' id='quantity' name='quantity' placeholder='0' min='1' max='100'><br><br>";
+                echo "<label for='balance'><b>Quantity: </b></label>";
+                echo "<input type='number' id='balance' name='balance' placeholder='0' min='1' max='100'><br><br>";
                 echo "<input type='submit' name='submit-product' value='Execute'>";
             echo "</form>";
+            echo $val = addNewProductToDB();
             break;
+
+
+
+
+
 
         case 'newColor':
             echo "<h3>Add new color</h3>";
@@ -72,7 +78,7 @@ if (isset($_GET['module']))
                 echo "<input type='text' id='new-color' name='new-color' placeholder='Color'>";
                 echo "<input type='submit' name='submit-color' value='Execute'>";
             echo "</form>";
-            echo $val = sendNewColorToDB();
+            echo $val = addNewColorToDB();
             break;
 
         case 'newCategory':
@@ -82,7 +88,7 @@ if (isset($_GET['module']))
                 echo "<input type='text' id='new-category' name='new-category' placeholder='Category'>";
                 echo "<input type='submit' name='submit-category' value='Execute'>";
             echo "</form>";
-            echo $val = sendNewCategoryToDB();
+            echo $val = addNewCategoryToDB();
             break;
 
         case 'newPrice': //Måste hämta alla produkter istället för kategorier.
@@ -112,44 +118,63 @@ if (isset($_GET['module']))
     }
 }
 
-function checkNewProductInput()
+function addNewProductToDB()
 {
-    $prod = "";
+    $controller = new ProductController();
+    $name = "";
+    $category = "";
+    $color = "";
+    $description = "";
+    $price = "";
+    $category = "";
+    $balance = "";
 
-    if (isset($_POST['submit']))
+    if (isset($_POST['submit-product']))
     {
         if (isset($_POST['new-product']))
         {
-            $prod = $_POST['new-product'];
-            echo "Input: $prod";
+            $name = $_POST['new-product'];
+            echo "Name: $name";
+            echo "<br>";
         }
-        // if (isset($_POST['new-category']))
-        // {
-        //     echo "Input: category";
-        // }
-        // if (isset($_POST['new-color']))
-        // {
-        //     echo "Input: color";
-        // }
-        // if (isset($_POST['description']))
-        // {
-        //     echo "Input: description";
-        // }
-        // if (isset($_POST['-new-price']))
-        // {
-        //     echo "Input: price";
-        // }
-        // if (isset($_POST['quantity']))
-        // {
-        //     echo "Input: quantity";
-        // }
-        // else {
-        //     echo "Incorrect input!";
-        // }
+        if (isset($_POST['categories']))
+        {
+            $category = $_POST['categories'];
+            echo "Category: $category";
+            echo "<br>";
+        }
+        if (isset($_POST['colors']))
+        {
+            $color = $_POST['colors'];
+            echo "Color: $color";
+            echo "<br>";
+        }
+        if (isset($_POST['description']))
+        {
+            $description = $_POST['description'];
+            echo "Desc: $description";
+            echo "<br>";
+        }
+        if (isset($_POST['new-price']))
+        {
+            $price = $_POST['new-price'];
+            echo "Price: $price";
+            echo "<br>";
+        }
+        if (isset($_POST['balance']))
+        {
+            $balance = $_POST['balance'];
+            echo "Balance: $balance";
+            echo "<br>";
+        }
+        else {
+            echo "Incorrect input!";
+        }
+        $controller->insertProduct($name, $category, $color, $description, $price, $balance);
     }
 }
 
-function sendNewColorToDB()
+function addNewColorToDB()
 {
     $controller = new ProductController();
     $color = "";
@@ -163,7 +188,7 @@ function sendNewColorToDB()
     }
 }
 
-function sendNewCategoryToDB()
+function addNewCategoryToDB()
 {
     $controller = new ProductController();
     $category = "";
