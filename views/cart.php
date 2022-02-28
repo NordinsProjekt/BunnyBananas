@@ -1,15 +1,56 @@
 <?php $cartController = new CartController(); ?>
+<?php $ctrlr = new UserController(); ?>
+ 
 
-<?php foreach ($cartController->listCart() as $product) {?>
+<?php if (isset($_SESSION['ShoppingCart'])) {
+    foreach ($cartController->listCart() as $product) {?>
+        <?php echo CartProduct($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?>
 
-<?php echo CartProduct($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?>
+    <?php }?>
 
+    <?php 
+    $sum = 0;
+    foreach($_SESSION['ShoppingCart'] as $productID){ 
+        
+        $sum += ($productID[0] * $productID[1]);
+
+    }?>
+
+    Totalt: <?php echo $sum;?>:-
+
+
+    <?php if(key_exists('userId', $_SESSION)) {?>
+                
+
+        <h2>Leveransadress:</h2>
+        <?php $row = $ctrlr->GetShippingAddress(); ?>
+        <form class="profileForm" method="post">
+            <label for="fname">Förnamn:</label><br>
+            <input type="text" id="fname" name="txtFirstname" value="<?php echo $row['Firstname']; ?>"><br>
+            <label for="txt">Efternamn:</label><br>
+            <input type="text" id="lname" name="txtLastname" value="<?php echo $row['Lastname']; ?>"><br>
+            <label for="address">Adress</label><br>
+            <input type="text" id="address" name="txtAddress" value="<?php echo $row['Adress1']; ?>"><br>
+            <label for="address2">Adress 2:</label><br>
+            <input type="text" id="address2" name="txtAddress2" value="<?php echo $row['Adress2']; ?>"><br>
+            <label for="postalcode">Postnummer:</label><br>
+            <input type="text" id="postalcode" name="txtPostalcode" value="<?php echo $row['Postnummer']; ?>"><br>
+            <label for="postalarea">Postort:</label><br>
+            <input type="text" id="postalarea" name="txtPostalarea" value="<?php echo $row['Postort']; ?>"><br>
+            <label for="country">Land:</label><br>
+            <input type="text" id="country" name="txtCountry" value="<?php echo $row['Land']; ?>"><br>
+            <input type="submit" name="betala" value="betala" />
+        </form>
+    
+    <?php }?>
+   
+
+
+
+
+
+   
+
+<?php } else { ?>
+    Din varukorg är tom!
 <?php }?>
-
-<!-- 
-<form action="" method="POST">
-<input type="text" Name="productID">ProductID<br>
-<input type="text" Name="amount">Amount<br>
-<input type="submit" Name="AddToCart" Value="AddToCart">
-</form>
- -->
