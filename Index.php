@@ -12,8 +12,11 @@ require_once('triggers.php');
 </header>
 
 <h1>WEBSHOP!</h1>
+    <a href="./">HOME</a>
     <a href="./products">Products</a>
     <a href="./orders">Orders</a>
+    <a href="./cart">Cart</a>
+    <br>
 <?php require_once('router.php');?>
 
 </body>

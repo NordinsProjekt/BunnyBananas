@@ -48,4 +48,40 @@ function UploadFile($productId)
     return $text;
 }
 
+function ProductCard($productID, $name, $category, $color,$price, $Balance){
+
+    $text = "";
+    $text .= "$name<br>";
+    $text .= "$category<br>";
+    $text .= "$color<br>";
+    $text .= "$price:-<br>";
+    $text .= "<form action='' method='post'>";
+    $text .= "<input type='Hidden' name='productID' value='$productID'/>";
+    $text .= "<input type='number' name='amount' value='1' min='1'max='20'/>";
+    $text .= "<input type='Hidden' name='AddToCart' value='AddToCart'/>";
+    $text .= "<input type='submit' id='submit' name='submit' value='Add To Cart' />";
+    $text .= "</form>";
+    return $text;
+
+}
+
+function CartProduct($productID, $name, $category, $color, $price, $Balance){
+
+    $text = "";
+    $text .= "$name<br>";
+    $text .= "$category<br>";
+    $text .= "$color<br>";
+    $text .= "$price:-<br>";
+    $text .= "<form action='' method='post'>";
+    $text .= "<input type='Hidden' name='productID' value='$productID'/>";
+    $text .= $_SESSION['ShoppingCart'][$productID]."    <input type='number' name='amount' value='".$_SESSION['ShoppingCart'][$productID]."' min='0' max='99'/>";
+    $text .= "<input type='Hidden' name='updateCart' value='updateCart'/>";
+    $text .= "<input type='submit' id='submit' name='submit' value='Update' />";
+    $text .= "</form>";
+    return $text;
+
+}
+
+
+
 ?>

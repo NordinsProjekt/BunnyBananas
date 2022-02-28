@@ -19,21 +19,21 @@ class OrderModel extends PDOHandler
     Function GetSpecificOrder($orderID){
 
         $sql = 'SELECT orows.ProductID, o.ID, o.UserID, p.Name as ProductName, o.Date, orows.ProductID, col.Name as Color, c.Name as Category, orows.Amount, orows.Price, orows.Discount, o.Sent, o.Delivered
-      FROM orderrows orows 
-      INNER JOIN orders o 
-      ON orows.OrderID = o.ID 
-      INNER JOIN products p 
-      ON orows.ProductID = p.ID
-      INNER JOIN categories c
-      ON p.CategoryID = c.ID
-      INNER JOIN colors col
-      ON p.ColorID = col.ID
-      WHERE o.ID = ?;';
+                FROM orderrows orows 
+                INNER JOIN orders o 
+                ON orows.OrderID = o.ID 
+                INNER JOIN products p 
+                ON orows.ProductID = p.ID
+                INNER JOIN categories c
+                ON p.CategoryID = c.ID
+                INNER JOIN colors col
+                ON p.ColorID = col.ID
+                WHERE o.ID = :id;';
 
         $stmt = $this->Connect()->prepare($sql);
-        $stmt->execute(array($orderID));
+
+        $stmt->bindParam(':id',$orderID);
         $stmt->execute();
-        
         return $stmt->fetchAll();
 
 

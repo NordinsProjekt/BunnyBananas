@@ -2,6 +2,7 @@
 require_once('User.Controller.php');
 require_once('Order.Controller.php');
 require_once('Products.Controller.php');
+require_once('Cart.Controller.php');
 require_once('Upload.Controller.php');
 
 switch (parseUrl()) {
@@ -17,7 +18,6 @@ switch (parseUrl()) {
     case 'products' :
         require __DIR__ . '/views/products.php';
         break;
-
     case 'cart':
         require __DIR__ . '/views/cart.php';
         break;

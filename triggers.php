@@ -95,3 +95,30 @@ if(key_exists('addImage',$_POST) && key_exists('productId',$_POST))
     $controller->AddImage($_POST['productId']);
 }
 ?>
+
+
+
+<?php 
+//CART TRIGGERS!
+Require_once('Cart.Controller.php');
+
+// echo var_dump($_POST).'<br><br>';
+
+
+
+if (isset($_POST['AddToCart'])) {
+    $cart = new CartController();
+
+    $cart->AddToCart($_POST['productID'],$_POST['amount']);
+}
+
+if (isset($_POST['updateCart'])) {
+    $cart = new CartController();
+
+    $cart->UpdateProductInCart($_POST['productID'],$_POST['amount']);
+}
+
+// if (isset($_SESSION['ShoppingCart'])) {
+//     echo '<pre>', print_r($_SESSION['ShoppingCart']),'</pre>'.'<br><br>';
+// }
+?>
