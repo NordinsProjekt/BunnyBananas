@@ -15,6 +15,62 @@ class UserModel extends PDOHandler
       return $stmt->fetchAll();       
     }
 
+    function GetUser($id)
+    {
+      $stmt = $this->Connect()->prepare('SELECT * FROM users WHERE ID=:id;');
+      $stmt->bindParam(':id',$id);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
+    function GetUserId($username)
+    {
+      $stmt = $this->Connect()->prepare('SELECT ID FROM users WHERE Username = :username');
+      $stmt->bindParam(':username',$username);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
+    function GetUserShippingAddress($userId)
+    {
+      $stmt = $this->Connect()->prepare('SELECT Firstname,Lastname,Adress1,Adress2,Postort,Postnummer,Land 
+      FROM users WHERE ID=:id;');
+      $stmt->bindParam(':id',$userId);
+      $stmt->execute();
+      return $stmt->fetch();
+    }
+
+    function UpdateUserShippingAddress($userinputs)
+    {
+      $stmt = $this->Connect()->prepare('UPDATE users SET Firstname = ?, Lastname = ?, Adress1 = ?,
+        Adress2 = ?, Postnummer = ?, Postort = ?, Land = ? WHERE ID = ?;');
+      $stmt->bindParam(':id',$userId,PDO::PARAM_INT);
+      $stmt->execute($userinputs);
+    }
+    
+    function GetGroup($id)
+    {
+      $stmt = $this->Connect()->prepare('SELECT GroupName as name FROM groups WHERE ID = :id;');
+      $stmt->bindParam(':id',$id);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
+    function GetGroupId($groupName)
+    {
+      $stmt = $this->Connect()->prepare('SELECT ID FROM groups WHERE GroupName = :groupname;');
+      $stmt->bindParam(':groupname',$groupName);
+      $stmt->execute();
+      return $stmt->fetch(); 
+    }
+
+    function GetAllGroups()
+    {
+      $stmt = $this->Connect()->prepare('SELECT ID, GroupName as name FROM groups;');
+      $stmt->execute();
+      return $stmt->fetchAll();     
+    }
+
     function GetUserGroup($id)
     {
       $stmt = $this->Connect()->prepare('SELECT GroupName as name FROM groups
@@ -22,22 +78,46 @@ class UserModel extends PDOHandler
       WHERE UserID =:id;');
       $stmt->bindParam(':id',$id,PDO::PARAM_INT);
       $stmt->execute();
-      return $stmt->fetch();;
+      return $stmt->fetch();
     }
 
-    private function CheckIfUserExists($username, $email)
+    function SetGroup($gruppnamn)
     {
-      $username = $this->CheckUserInputs($username);
-      $stmt = $this->Connect()->prepare('SELECT * FROM users WHERE username =? OR email=?;');
-      $stmt->execute(array($username,$email));
-      if (count($stmt->fetchAll())>0)
-      {
+        $stmt = $this->Connect()->prepare('INSERT INTO groups (GroupName) VALUES(:gruppnamn)');
+        $param = [':gruppnamn'=>$gruppnamn];
+        $stmt->execute($param);
         return true;
-      }
-      else
-      {
-        return false;
-      }      
+    }
+
+    function SetReklam($userId)
+    { 
+      $stmt = $this->Connect()->prepare('INSERT INTO reklam (UserID) VALUES (:userId);');
+      $stmt->bindParam(':userId',$userId);
+      $stmt->execute();
+      return $stmt->fetch();
+    }
+
+    function DeleteReklam($userId)
+    {
+      $stmt = $this->Connect()->prepare('DELETE FROM reklam WHERE UserId = :userId;');
+      $stmt->bindParam(':userId',$userId);
+      $stmt->execute();
+      return $stmt->fetch();
+    }
+
+    function SetGroupToUser($idArray)
+    {
+      $stmt = $this->Connect()->prepare('INSERT INTO usergroups (GroupID,UserID) VALUES (?,?);');
+      $stmt->execute($idArray);
+      return $stmt->fetch();
+    }
+
+    function CheckIfUserExists($username)
+    {
+      $stmt = $this->Connect()->prepare('SELECT COUNT(ID) as row FROM users WHERE username =:username;');
+      $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+      $stmt->execute();
+      return $stmt->fetch();    
     }
 
     function Login($username)
@@ -47,72 +127,19 @@ class UserModel extends PDOHandler
         $stmt->execute();
         return $stmt->fetch();
     }
-    function SetUser($username,$password,$email)
-    {
-      $username = $this->CheckUserInputs($username);
-      $password = $this->CheckUserInputs($password);
-      
-      if (!$this->CheckIfUserExists($username,$email))
-      {
-        if ($hashedPassword = password_hash($password, PASSWORD_DEFAULT))
-        {
-          $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disabled) VALUES(:username,:password,:email,0)');
-          $param = [
-            ':username'=>$username,
-            ':password'=>$hashedPassword,
-            ':email'=>$email];
-          $stmt->execute($param);
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      else
-      {
-        return false;
-      }
+
+    function SetUser($userArr)
+    {    
+      $stmt = $this->Connect()->prepare('INSERT INTO users (username,password,email,disable) VALUES(?,?,?,0)');
+      $stmt->execute($userArr);
+      return true;
     }
 
-    function GetAllGroups()
+    function CheckIfGroupExist($gruppnamn)
     {
-      $stmt = $this->Connect()->prepare('SELECT id,grupp_namn as name FROM groups;');
-      $stmt->execute();
-      return $stmt->fetchAll();     
-    }
-
-    protected function SetGroup($gruppnamn)
-    {
-      if (!$this->CheckIfGroupExist($gruppnamn))
-      {
-        $stmt = $this->Connect()->prepare('INSERT INTO groups (GroupName) VALUES(:gruppnamn)');
-        $param = [':gruppnamn'=>$gruppnamn];
-        $stmt->execute($param);
-        return true;
-      }
-    }
-
-    protected function CheckIfGroupExist($gruppnamn)
-    {
-      $gruppnamn = $this->CheckUserInputs($gruppnamn);
-      $stmt = $this->Connect()->prepare('SELECT * FROM groups WHERE GroupName =?;');
+      $stmt = $this->Connect()->prepare('SELECT COUNT(ID) as row FROM groups WHERE GroupName =?;');
       $stmt->execute(array($gruppnamn));
-      if (count($stmt->fetchAll())>0)
-      {
-          return true;
-      }
-      else
-      {
-        return false;
-      }  
-    }
-
-    private function CheckUserInputs($notsafeText)
-    {
-      $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]");
-      $safe = str_replace($banlist,"",$notsafeText);
-      return $safe;
+      return $stmt->fetch();
     }
 }
 

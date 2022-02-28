@@ -22,19 +22,64 @@ class UserController
             return true;
         }
     }
-    function AddNewUser($username,$password,$email)
+    function AddNewUser($username,$password,$email,$groupId,$reklam)
+    {
+        //Tar bort dumma saker i userinputs
+        $username = $this->CheckUserInputs($username);
+        $password = $this->CheckUserInputs($password);
+        $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+        $db = new UserModel();
+        //Om mailen inte är ok eller de andra fälten tomma så blir det ingen ny användare.
+        if ($this->ValidateEmail($email) && $username != "" && $hashpassword != false)
+        {
+            //Kollar om användaren finns
+            if ($db->CheckIfUserExists($username,$email)['row'] == 0)
+            {
+                $arr = Array (
+                    $username,$hashpassword,$email
+                );
+                //Skapar användaren
+                if ($db->SetUser($arr))
+                {
+                    $userId = $db->GetUserId($username);
+                    $arr = array (
+                        $groupId,$userId['ID']
+                    );
+                    //Lägger användaren i en grupp
+                    $db->SetGroupToUser($arr);
+                    //Lägger till i reklamutskick
+                    $db->SetReklam($userId['ID']);
+                }
+                else
+                {
+                    echo "Användaren skapades inte";
+                }
+            }
+            else
+            {
+                echo "Användaren finns redan";
+            }
+        }
+
+    }
+
+    function AddUserToGroup($userId,$groupId)
     {
         $db = new UserModel();
-        $svar = $db->SetUser($username,$password,$email);
-        if ($svar == true)
+        if ($userId > 0 && $groupId > 0)
         {
-            echo "Allt gick bra";
+            $arr = array (
+                $userId,$groupId
+            );
+            $db->SetGroupToUser($arr);
         }
         else
         {
-            echo "Användaren skapades inte";
+            echo "Felaktiga grupp ID";
         }
+
     }
+
     function VerifyUserAdmin()
     {
         $db = new UserModel();
@@ -44,21 +89,89 @@ class UserController
             if ($id > 0)
             {
                 $group = $db->GetUserGroup($id);
-                foreach ($group as $row => $item) {
-                    if (strtoupper($item) === "ADMIN")
-                    {
-                        return true;
+                if ($group) //Om detta är false tillhör inte användaren en grupp.
+                {
+                    foreach ($group as $row => $item) {
+                        if (strtoupper($item) === "ADMIN")
+                        {
+                            return true;
+                        }
                     }
                 }
             }
         }
         return false;
     }
+    function GetAllUserGroups()
+    {
+        $db = new UserModel();
+        $arr = $db->GetAllGroups();
+        return $arr;
+    }
+
+    function GetShippingAddress()
+    {
+        $db = new UserModel();
+        if (isset($_SESSION['userId']) && $_SESSION['userId']>0)
+        {
+            $result = $db->GetUserShippingAddress($_SESSION['userId']);
+            return $result;
+        }
+        return array("");
+    }
+
+    function SaveShippingAddress($firstname,$lastname,$address1,$address2,$postalcode,$postalarea,$country)
+    {
+        $userinputs = array(
+            $this->CheckShippingAddress($firstname),$this->CheckShippingAddress($lastname),
+            $this->CheckShippingAddress($address1),$this->CheckShippingAddress($address2),
+            $this->CheckShippingAddress($postalcode),$this->CheckShippingAddress($postalarea),
+            $this->CheckShippingAddress($country), $_SESSION['userId']
+        );
+        $db = new UserModel();
+        //if sats för att kolla om användaren fortfarande vill ha reklamutskick?
+        $db->UpdateUserShippingAddress($userinputs);
+    }
+
+    function AddGroup($groupName)
+    {
+        $groupName = $this->CheckUserInputs($groupName);
+        $db = new UserModel();
+        if ($db->CheckIfGroupExist($groupName)['row'] == 0)
+        {
+            $db->SetGroup($groupName);
+        }
+    }
+
+    private function ValidateEmail($email)
+    {
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     function GetLetterArray(){
         $letterArray = array('a','b','c','d');
         return $letterArray;
     }
+
+    private function CheckShippingAddress($notsafeText)
+    {
+        $banlist = array(".",";",",","<",">",")","(","=","[","]");
+        $safe = str_replace($banlist,"",$notsafeText);
+        return $safe;
+    }
+
+    private function CheckUserInputs($notsafeText)
+    {
+      $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]");
+      $safe = str_replace($banlist,"",$notsafeText);
+      return $safe;
+    }
+
 }
 
 

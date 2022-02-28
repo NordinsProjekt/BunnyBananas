@@ -23,6 +23,42 @@ Enkel inloggnings funktionallitet lades till av Markus.
 
 En simpel routingfunkonalitet samt view-tamplates-struktur sattes upp av Staffan.
 
+# 25/2
+
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+
+Lucas
+- Tabellerna för Products, Categories, Colors
+- Kodat Model och Controller för Products
+- Börjat titta på Products Views
+- Fyllt tabellerna med information för webshoppen.
+- Testkod för dessa.
+
+Markus
+- Skapat tabellerna för User, Groups och usergroups
+- Fyllt dem med information
+- Kodat Model, Controller och Views som är kopplade till användaren.
+- Gjort klart inloggningen, samt låst Adminpanelen från användare som inte är med i gruppen
+  Admin.
+- Lagt till logga ut knapp i headern samt gömt inloggningsrutan när användaren är inloggad.
+- Gjort ett litet mini API som kan skicka mail via en googlemail (C#).
+
+Staffan
+
+-Skapat tabellerna för Orders, orderrows med nödvändiga keys etc.
+-Fyllt tabeller med lite testdata.
+-Konstruerat Model, Controller och Views för en simpel grundstomme av "showorders", med möjlighet att välja en specifik order och titta på dess "order-content"
+
+# 26/2
+
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
+
+Markus
+ - Lagt till profilknapp och adminknapp i headern.
+ - Gjort signup Views och lagt till Skapa konto länk i headern.
+ - Skapa user i adminpanelen kan välja användargrupp och lägga till nya grupper.
+ - Vanlig person blir medlem i user group.
 
 
 

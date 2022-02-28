@@ -2,6 +2,7 @@
 function LoginForm()
 {
     $text = "";
+    $text .= "<a href='./signup'>Skapa konto</a>";
     $text .= "<form method='post'>";
     $text .= "<label for='txtUsername' id ='lblUsername' class=''>Username: </label>";
     $text .= "<input type='text' id ='txtUsername' name='txtUsername' class='userInput' value='' size='10' />";
@@ -24,6 +25,14 @@ function ProfileButtonForm()
     $text = "";
     $text .= "<form method='post'>";
     $text .= "<input type='submit' id='profile' class='profileButton' name='profile' value='".$_SESSION['username']." profile' />";
+    $text .= "</form>";
+    return $text;
+}
+function AdminPanelButton()
+{
+    $text = "";
+    $text .= "<form method='post'>";
+    $text .= "<input type='submit' id='admin' class='adminButton' name='adminButton' value='Admin' />";
     $text .= "</form>";
     return $text;
 }
