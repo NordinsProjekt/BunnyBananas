@@ -1,20 +1,3 @@
-<?php
-require_once "User.Controller.php";
-require_once "triggers.php";
-?>
-
-<?php
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/stil.css" media="screen" />
-    <title>Admin - User</title>
-</head>
-<body>
-    <main class="adminUser">
     <section class="AddUser">
             <h2>Add User</h2>
         <form method="post">
@@ -54,6 +37,3 @@ require_once "triggers.php";
                 <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Add Group" />
             </form>
         </section>
-    </main>
-</body>
-</html>

@@ -92,7 +92,7 @@ if (key_exists('addGroup',$_POST))
 if(key_exists('addImage',$_POST) && key_exists('productId',$_POST)) 
 {
     $controller = new UploadController();
-    $controller->AddImage($_POST['productId']);
+    $controller->AddProductImage($_POST['productId']);
 }
 ?>
 
@@ -109,7 +109,7 @@ Require_once('Cart.Controller.php');
 if (isset($_POST['AddToCart'])) {
     $cart = new CartController();
 
-    $cart->AddToCart($_POST['productID'],$_POST['amount']);
+    $cart->AddToCart($_POST['productID'],$_POST['amount'],$_POST['price']);
 }
 
 if (isset($_POST['updateCart'])) {
@@ -121,4 +121,19 @@ if (isset($_POST['updateCart'])) {
 // if (isset($_SESSION['ShoppingCart'])) {
 //     echo '<pre>', print_r($_SESSION['ShoppingCart']),'</pre>'.'<br><br>';
 // }
+?>
+
+
+<?php 
+//ORDER TRIGGERS!
+Require_once('Order.Controller.php');
+
+if (isset($_POST['betala'])) {
+    $order = new OrderController();
+
+    $order->SendOrder();
+}
+
+
+
 ?>

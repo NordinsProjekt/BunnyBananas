@@ -15,12 +15,28 @@ require_once "triggers.php";
 </head>
 <body>
     <nav>
-        <a href="./admin/users.php">Manage Users</a>
-        <a href="./admin/orders.php">Manage Users</a>
-        <a href="./admin/products.php">Manage Users</a>
+        <a href="?admin=users">Manage Users</a>
+        <a href="?admin=orders">Manage Orders</a>
+        <a href="?admin=products">Manage Products</a>
     </nav>
     <main>
-        
+        <?php 
+            if(key_exists('admin',$_GET))
+            {
+                switch($_GET['admin'])
+                {
+                    case "users":
+                        require_once "admin/users.php";
+                        break;
+                    case "orders":
+                        require_once "admin/orders.php";
+                        break;
+                    case "products":
+                        require_once "admin/products.php";
+                        break;
+                }
+            }
+        ?>
     </main>
 </body>
 </html>
