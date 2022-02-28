@@ -102,6 +102,7 @@ class UserController
         }
         return false;
     }
+    
     function GetAllUserGroups()
     {
         $db = new UserModel();

@@ -36,6 +36,17 @@ function AdminPanelButton()
     $text .= "</form>";
     return $text;
 }
+function UploadFile($productId)
+{
+    $text ="";
+    $text .= "<form method='post' enctype='multipart/form-data'>";
+    $text .= "<label for='fileToUpload'>Select image to upload:</label>";
+    $text .= "<input type='file' name='fileToUpload' id='fileToUpload' />";
+    $text .= "<input type='hidden' name='productId' value='" . $productId . "' />";
+    $text .= "<input type='submit' value='Upload Image' name='addImage' />";
+    $text .= "</form>";
+    return $text;
+}
 
 function ProductCard($productID, $name, $category, $color,$price, $Balance){
 

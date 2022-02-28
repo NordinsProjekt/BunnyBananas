@@ -88,6 +88,12 @@ if (key_exists('addGroup',$_POST))
     $controller = new UserController();
     $controller->AddGroup($groupName);
 }
+
+if(key_exists('addImage',$_POST) && key_exists('productId',$_POST)) 
+{
+    $controller = new UploadController();
+    $controller->AddImage($_POST['productId']);
+}
 ?>
 
 
