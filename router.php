@@ -19,7 +19,7 @@ switch (parseUrl()[0]) {
     case 'products' :
         require __DIR__ . '/views/products.php';
         break;
-    case 'admin2' :
+    case 'admin' :
         $controller = new UserController();
         if ($controller->VerifyUserAdmin())
         {
