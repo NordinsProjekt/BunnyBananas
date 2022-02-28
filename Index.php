@@ -12,7 +12,8 @@ require_once('triggers.php');
 </header>
 
 <h1>WEBSHOP!</h1>
-
+    <a href="./products">Products</a>
+    <a href="./orders">Orders</a>
 <?php require_once('router.php');?>
 
 </body>
