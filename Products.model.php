@@ -62,45 +62,52 @@ class ProductDB extends PDOHandler
 
     function setNewProductDB($name, $category, $color, $description, $price, $balance)
     {
+        echo "------INSIDE DB------"."<br>";
+        echo "Name: ".$name."<br>";
+        echo "Category: ".$category."<br>";
+        echo "Color: ".$color."<br>";
+        echo "Desc: ".$description."<br>";
+        echo "Price: ".$price."<br>";
+        echo "Balance: ".$balance."<br>";
+        echo "--------------------------"."<br>";
+        
         $stmt = $this->Connect()->prepare("INSERT INTO products (Name, CategoryID, ColorID, Description, Price, Balance, Discontinued) 
-        VALUES (':name','category','color',':description',':price',':balance',':discontinued')");
+        VALUES (:name, :category, :color, :description, :price, :balance, 0)"); //0 = När ny produkt skapas förutsätt det att den ska finnas med i sortimentet
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":category", $category);
         $stmt->bindParam(":color", $color);
         $stmt->bindParam(":description", $description);
         $stmt->bindParam(":price", $price);
         $stmt->bindParam(":balance", $balance);
-        $stmt->bindParam(":discontinued", 0); //När ny produkt skapas förutsätt det att den ska finnas med i sortimentet
         $stmt->execute();
         echo $msg = "SUCCESS! New product added to DB!";
     }
 
 
-
-
-
-
-
-
-
-
     function getColorID($colorName)
     {
-        $stmt = $this->Connect()->prepare("SELECT ID FROM `colors` WHERE Name=':name';");
+        //echo "---INSIDE Model---"."<br>";
+        //echo "BEFORE Query: $colorName"."<br>";
+        $stmt = $this->Connect()->prepare("SELECT ID FROM colors WHERE Name=:name;");
         $stmt->bindParam(":name", $colorName);
         $stmt->execute();
-        return $result = $stmt->fetchAll();
+        $result = $stmt->fetch()['ID'];
+        //echo "AFTER Query: ".$result;
+        return $result;
     }
 
-    function getAllCategoriesID($categoryName)
+    function getCategoryID($categoryName)
     {
-        $stmt = $this->Connect()->prepare("SELECT ID FROM `categories` WHERE Name=':name';");
+        $stmt = $this->Connect()->prepare("SELECT ID FROM categories WHERE Name=:name;");
         $stmt->bindParam(":name", $categoryName);
         $stmt->execute();
-        return $result = $stmt->fetchAll();
+        $result = $stmt->fetch()['ID'];
+        return $result;
     }
 
+    function removeProduct(){
 
+    }
 
 
 
