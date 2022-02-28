@@ -1,6 +1,7 @@
 <?php
 require_once('User.Controller.php');
 require_once('Order.Controller.php');
+require_once('Products.Controller.php');
 
 switch (parseUrl()[0]) {
     case 'NULL':
@@ -15,6 +16,11 @@ switch (parseUrl()[0]) {
     case 'orders':
         require __DIR__ . '/views/orders.php';
         break;
+
+    case 'products' :
+        require __DIR__ . '/views/products.php';
+        break;
+
     case 'cart':
         require __DIR__ . '/views/cart.php';
         break;

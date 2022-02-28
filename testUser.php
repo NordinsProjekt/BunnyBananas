@@ -16,18 +16,32 @@ require_once "Products.controller.php";
     <title>Adminpanel</title>
 </head>
 <body>
-<h1>Login</h1>
+<h1>Products</h1>
+
 <?php
     $controller = new ProductController();
     //$controller->listAllCategories();
+    //$controller->listAllColors();
+    $controller->listAllProducts();
+?>
 
+
+
+
+
+<?php
+
+    //$controller = new ProductController();
+    
     // $color = "--/*sv-art ((";
     // $controller->insertColor($color);
-
+    
     // $category = "--/*ho-odie/ ((";
     // $controller->insertCategory($category);
-
-    $controller->listAllProducts();
+    
+    //$controller->listAllCategories();
+    //$controller->listAllColors();
+    //$controller->listAllProducts();
 ?>
 </body>
 </html>

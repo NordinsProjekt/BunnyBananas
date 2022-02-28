@@ -8,106 +8,68 @@ class ProductController
 
     }
 
+    function listAllProducts()
+    {
+        $model = new ProductDB();
+        return $model->getAllProducts();
+    }
+
     function listAllColors()
     {
         $model = new ProductDB();
-        $arr = $model->getAllColors();
+        return $model->getAllColors();
 
-        echo '<pre>';
-        var_dump($arr);
-        echo '</pre>';
+        // echo "<h2>Colors</h2>";
+        // echo "<table>";
+        //     echo "<tr>";
+        //         echo "<th>ID</th>";
+        //         echo "<th>Name</th>";
+        //     echo "</tr>";
+
+        // foreach ($arr as $row)
+        // {
+        //     echo "<tr>";
+        //         echo "<td>" . $row["ID"]. "</td>";
+        //         echo "<td>" . $row["Name"]. "</td>";
+        //     echo "</tr>";
+        // }
+        // echo "</table>";
     }
 
     function listAllCategories()
     {
         $model = new ProductDB();
-        $arr = $model->getAllCategories();
-
-        echo '<pre>';
-        var_dump($arr);
-        echo '</pre>';
+        return $model->getAllCategories();
     }
 
-    function listAllProducts()
+    function listProduct()
     {
-        $model = new ProductDB();
-        $arr = $model->getAllProducts();
 
-        // echo '<pre>';
-        // var_dump($arr);
-        // echo '</pre>';
-        // foreach($arr as $x => $x_value)
-        // {
-        //     $arr2 = $x_value;
-        //     foreach($arr2 as $y => $y_value)
-        //     {
-        //         echo "Key = " . $y . ", Value = " . $y_value." | ";
-        //     }
-        //     echo "<br><br>";
-        // }
-
-        // for ($i=0; $i < count($arr); $i++)
-        // {   
-        //     echo '<table>';
-        //         echo '<tr>';
-        //             echo '<th>ID</th>';
-        //             echo '<th>Category</th>';
-        //             echo '<th>Name</th>';
-        //             echo '<th>Color</th>';
-        //             echo '<th>Price</th>';
-        //             echo '<th>Balance</th>';
-        //             echo '<th>Discontinued</th>';
-        //         echo '</tr>';
-        //         echo '<tr>';
-        //             echo '<td>Alfreds Futterkiste</td>';
-        //             echo '<td>Maria Anders</td>';
-        //             echo '<td>Germany</td>';
-        //         echo '</tr>';
-        //         echo '<tr>';
-        //             echo '<td>Centro comercial Moctezuma</td>';
-        //             echo '<td>Francisco Chang</td>';
-        //             echo '<td>Mexico</td>';
-        //         echo '</tr>';
-        //     echo '</table>';
-        // }
-
-        if ($arr->num_rows > 0) {
-            echo "<table><tr><th>ID</th><th>Name</th></tr>";
-            // output data of each row
-            while($row = $arr->fetch_assoc()) {
-                echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["Name"]. " " . $row["Price"]. "</td></tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "0 results";
-        }
-        
-
-       
-       
     }
 
     function insertColor($color)
     {
-        // $model = new ProductDB();
-        // echo "Input: ".$color." [UNWASHED]"."<br>";
-        // echo "Input: ".$this->washInput($color)." [WASHED]";
-        // echo "<br>"."-------------------"."<br>";
-        // echo $this->checkUserInput($color);
-        // echo "<br>"."<br>"."<br>";
-        // $input = $this->checkUserInput($color);
-        // //$model->setColorDB($input);
+        $model = new ProductDB();
+        $arr = $model->getAllColors();
+        echo "Input: ".$color." [UNWASHED]"."<br>";
+        echo "Input: ".$this->washInput($color)." [WASHED]";
+        echo "<br>"."-------------------"."<br>";
+        echo $this->checkUserInput($color, $arr);
+        echo "<br>"."<br>"."<br>";
+        $input = $this->checkUserInput($color, $arr);
+        //$model->setColorDB($input);
     }
 
     function insertCategory($category)
     {
         $model = new ProductDB();
+        $arr = $model->getAllCategories();
         echo "Input: ".$category." [UNWASHED]"."<br>";
         echo "Input: ".$this->washInput($category)." [WASHED]";
         echo "<br>"."-------------------"."<br>";
-        echo $this->checkUserInput($category);
+        echo $this->checkUserInput($category, $arr);
         echo "<br>"."<br>"."<br>";
-        $input = $this->checkUserInput($category);
+        $input = $this->checkUserInput($category, $arr);
         //$model->setCategoryDB($input);
     }
 
@@ -115,46 +77,41 @@ class ProductController
     {
         $input = htmlspecialchars($input, ENT_QUOTES);
         $input = trim($input, " ");
-        $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]","-","*");
+        $input = preg_replace('/[0-9]+/', '', $input);
+        $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]","-","*","%","!","#","?","&");
         $safeInput = str_replace($banlist,"",$input);
         return ucfirst($safeInput); //Capitalize first letter
         
     }
 
-    function checkUserInput($input)
+    function checkUserInput($input, $arr)
     {
         $model = new ProductDB();
-        $arr = $model->getAllColors();
+        //$arr = $model->getAllColors();
         $input = $this->washInput($input);
         $clr = "";
-        if ($input == NULL || $input == "") 
-        {
-            return $msg = "Insertion failed: Invalid input!";
+        if ($input == NULL || $input == "") {
+            //return $msg = "Insertion failed: Invalid input!";
+            return $input;
         }
-        else
-        {
-            for ($i=0; $i<count($arr); $i++)
-            { 
+        else{
+            for ($i=0; $i<count($arr); $i++){ 
                 $clr = $arr[$i]['Name'];
-                
-                if ($input == $clr) 
-                {
+                if ($input == $clr) {
                     return $msg = "Insertion failed: Input already exists in DB!";
                     break;
                 }
-
             }
-            if ($input != $clr) //Check if input not already exists
-            {
+            //Check if input not already exists
+            if ($input != $clr) {
                 return $input;
-            }
-            else
-            {
+            } else{
                 return $msg = "ERROR! Something went wrong with the insertion.";
-                
             }
         }
     }
+
+
 
 }
 
