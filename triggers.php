@@ -92,7 +92,7 @@ if (key_exists('addGroup',$_POST))
 if(key_exists('addImage',$_POST) && key_exists('productId',$_POST)) 
 {
     $controller = new UploadController();
-    $controller->AddImage($_POST['productId']);
+    $controller->AddProductImage($_POST['productId']);
 }
 ?>
 

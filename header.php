@@ -5,10 +5,11 @@ require_once('buildHTML.php');
 if (isset($_SESSION['is_logged_in']))
 {
     echo LogoutForm();
-    echo ProfileButtonForm();
+    echo "<a href='./profile'>Profile</a>";
     if ($userCtrl->VerifyUserAdmin())
     {
-        echo AdminPanelButton();
+        
+        echo "<a href='./admin'>Admin</a>";//AdminPanelButton();
     }
 }
 else
