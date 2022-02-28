@@ -14,6 +14,11 @@ require_once "triggers.php";
     <title>Main Page</title>
 </head>
 <body>
+    <nav>
+        <a href="./admin/users.php">Manage Users</a>
+        <a href="./admin/orders.php">Manage Users</a>
+        <a href="./admin/products.php">Manage Users</a>
+    </nav>
     <main>
         
     </main>
