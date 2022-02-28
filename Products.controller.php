@@ -14,6 +14,11 @@ class ProductController
         return $model->getAllProducts();
     }
 
+    function listProduct()
+    {
+
+    }
+
     function listAllColors()
     {
         $model = new ProductDB();
@@ -42,11 +47,6 @@ class ProductController
         return $model->getAllCategories();
     }
 
-    function listProduct()
-    {
-
-    }
-
     function insertColor($color)
     {
         $model = new ProductDB();
@@ -73,6 +73,25 @@ class ProductController
         //$model->setCategoryDB($input);
     }
 
+    function insertProduct($name, $category, $color, $description, $price, $balance)
+    {
+        $model = new ProductDB();
+        $colorID = $model->getColorID($color);
+        $categoryID = $model->getColorID($category);
+        
+        $model->setNewProductDB($name, $category, $colorID, $description, $price, $balance);
+        
+        
+        
+        // if ($balance >= 0 || $balance <= 100 || is_numeric($price))
+        // {
+        // }
+        // else {
+        //     //$msg = "Description can't be NULL and balance must be between 0-100."."<br>"."Please try again!";
+        //     $msg = "Oops, something went wrong";
+        // }
+    }
+
     function washInput($input) //"Tvätta" användarinput på specialtecken och mellanslag. Ska returnera den tvättade inputen!
     {
         $input = htmlspecialchars($input, ENT_QUOTES);
@@ -91,7 +110,7 @@ class ProductController
         $input = $this->washInput($input);
         $clr = "";
         if ($input == NULL || $input == "") {
-            //return $msg = "Insertion failed: Invalid input!";
+            return $msg = "Insertion failed: Invalid input!";
             return $input;
         }
         else{
