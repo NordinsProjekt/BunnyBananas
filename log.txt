@@ -45,6 +45,10 @@ Markus
 
 Staffan
 
+-Skapat tabellerna för Orders, orderrows med nödvändiga keys etc.
+-Fyllt tabeller med lite testdata.
+-Konstruerat Model, Controller och Views för en simpel grundstomme av "showorders", med möjlighet att välja en specifik order och titta på dess "order-content"
+
 # 26/2
 
 Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
