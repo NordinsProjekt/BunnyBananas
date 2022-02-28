@@ -3,6 +3,12 @@ class UploadController
 {
     function AddImage($productId)
     {
+        if ($productId == "" || $productId <=0)
+        {
+            $_SESSION['Message'] = "Något är fel med Produkt ID";
+            return false;
+        }
+
         $target_dir = "img/products/" .$productId . "/";
         $this->CreateFolder($target_dir);
         $file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
