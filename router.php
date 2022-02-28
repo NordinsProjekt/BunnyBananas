@@ -2,6 +2,7 @@
 require_once('User.Controller.php');
 require_once('Order.Controller.php');
 require_once('Products.Controller.php');
+require_once('Upload.Controller.php');
 
 switch (parseUrl()[0]) {
     case 'NULL':
@@ -40,12 +41,12 @@ switch (parseUrl()[0]) {
         else {
             require_once __DIR__ . '/views/index.php';
         }
-
         break;
     case 'signup':
         require_once __DIR__ . '/views/signup.php';
         break;
     case 'test':
+        require_once __DIR__ . '/views/upload.php';
         break;
     default:
         http_response_code(404);

@@ -88,4 +88,16 @@ if (key_exists('addGroup',$_POST))
     $controller = new UserController();
     $controller->AddGroup($groupName);
 }
+
+if(key_exists('addImage',$_POST)) 
+{
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+}
 ?>
