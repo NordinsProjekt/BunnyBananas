@@ -43,14 +43,6 @@
         </form>
     
     <?php }?>
-   
-
-
-
-
-
-   
-
 <?php } else { ?>
     Din varukorg är tom!
 <?php }?>
