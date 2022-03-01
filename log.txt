@@ -93,3 +93,8 @@ Staffan
  -Kodat checkout så att order sparas i databasen och kunden får se ett kvitto.
  -css:at en jävla massa och pillat med designen i allmänhet.
  -Produktkort: Små för webshoppen samt börjat med stora för "detailedcloseup"
+
+Markus
+- Kodat Admin och Profil sidorna
+- Fixat med CSS:en och design av tabellerna.
+- Strukturerat koden och funktionerna.
