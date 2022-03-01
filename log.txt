@@ -80,7 +80,7 @@ Markus
  - Views för User, Order, Products.
  - Checkout som sparar order i databasen
 
-Lukas
+Lucas
  - Fortsatt jobba med kopplingen mellan PHP och databasen i produktdelen (admin)
  - Byggt ut model med fler querys etc.
 
@@ -98,3 +98,9 @@ Markus
 - Kodat Admin och Profil sidorna
 - Fixat med CSS:en och design av tabellerna.
 - Strukturerat koden och funktionerna.
+
+Lucas
+- Gjort klart produktdelen.
+  - Löste infogande av ny produkt.
+  - Påbörjat felhantering.
+- Strukturerat upp koden i triggers för produktdelen.
