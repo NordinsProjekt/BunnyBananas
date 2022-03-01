@@ -29,6 +29,13 @@ class OrderController {
         return $db->GetAllOrdersByUserId($userId);
     }
 
+    function ListLastOrderByUserId($userId)
+    {
+        $db = new OrderModel;
+
+        return $db->GetLastOrderByUserId($userId);
+    }
+
     function SendOrder(){
 
         $model = new OrderModel();
@@ -55,7 +62,7 @@ class OrderController {
 
         }
 
-        echo var_dump($orderRows);
+        //echo var_dump($orderRows);
 
         $model->SetOrder($order,$orderRows);
 

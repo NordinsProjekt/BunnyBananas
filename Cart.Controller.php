@@ -61,6 +61,11 @@ class CartController {
         
         
     }
+
+    function Checkout(){
+
+        unset($_SESSION['ShoppingCart']); //empty cart
+    }
 }
 
 ?>

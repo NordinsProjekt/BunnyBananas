@@ -12,14 +12,14 @@ require_once('triggers.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/banan/css/styles.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/bunnybananas/css/styles.css" media="screen" />
     <title>Main Page</title>
 </head>
 <body>
 <header>
 <?php require_once('header.php');?>
 </header>
-<h1>WEBSHOP!</h1>
+
     <a href="./">HOME</a>
     <a href="./products">Products</a>
     <a href="./orders">Orders</a>
