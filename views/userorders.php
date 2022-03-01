@@ -10,7 +10,6 @@ $rows = $controller->ListOrdersByUser($_SESSION['userId']);
         <td>Date</td>
         <td>Sent</td>
         <td>Delivered</td>
-
     </tr>
 </thead>
 <tbody>

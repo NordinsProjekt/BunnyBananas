@@ -6,11 +6,11 @@
 <table>
 <thead>
     <tr>
-        <td>OrderID</td>
-        <td>UserID</td>
-        <td>Date</td>
-        <td>Sent</td>
-        <td>Delivered</td>
+        <th>OrderID</th>
+        <th>UserID</th>
+        <th>Date</th>
+        <th>Sent</th>
+        <th>Delivered</th>
 
     </tr>
 </thead>
@@ -29,21 +29,22 @@
 </tbody>
 </table>
 
-<table>
+
 
 <?php if (isset($_GET['orderID'])) {?>
+    <table>
     <thead>
     <tr>
-        <td>OrderID</td>
-        <td>UserID</td>
-        <td>ProductName</td>
-        <td>Color</td>
-        <td>Category</td>
-        <td>Amount</td>
-        <td>Price</td>
-        <td>Discount</td>
-        <td>Sent</td>
-        <td>Delivered</td>
+        <th>OrderID</th>
+        <th>UserID</th>
+        <th>ProductName</th>
+        <th>Color</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Sent</th>
+        <th>Delivered</th>
     </tr>
 </thead>
 <tbody>
@@ -61,10 +62,11 @@
         <td><?php echo $value['Sent']?></td>
         <td><?php echo $value['Delivered']?></td>
     </tr>
-
+    
+<!--END LOOP-->
 <?php }?>
 </tbody>
 </table>
 
-
+<!--END IF-->
 <?php }?>

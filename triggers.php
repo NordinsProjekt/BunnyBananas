@@ -34,14 +34,6 @@ if (key_exists('login',$_POST))
     exit();
 }
 
-if (key_exists('logout',$_POST))
-{
-    session_unset();
-    session_destroy();
-    header("Location: ./");
-    exit();
-}
-
 if (key_exists('saveProfile',$_POST))
 {
     //Dessa är frivillga fält i profilen.
@@ -96,9 +88,14 @@ if(key_exists('addImage',$_POST) && key_exists('productId',$_POST))
     $controller = new UploadController();
     $controller->AddProductImage($_POST['productId']);
 }
+
+if (key_exists('logout',$_POST))
+{
+    session_destroy();
+    header("Location: ./");
+    exit();
+}
 ?>
-
-
 
 <?php 
 //CART TRIGGERS!

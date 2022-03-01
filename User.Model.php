@@ -10,8 +10,8 @@ class UserModel extends PDOHandler
     function GetAllUsersWithGroups()
     {
       //Prepare kräver execute()
-      $stmt = $this->Connect()->prepare('SELECT ID, groups.GroupName,Username, Email, Disable FROM users
-      INNER JOIN usergroups ON users.GroupID = usergroups.GroupID 
+      $stmt = $this->Connect()->prepare('SELECT users.ID, groups.GroupName,users.Username, users.Email, Disable FROM users
+      INNER JOIN usergroups ON users.ID = usergroups.UserID 
       INNER JOIN groups ON usergroups.GroupID = groups.ID;');
       $stmt->execute();
       return $stmt->fetchAll();
