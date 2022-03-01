@@ -12,6 +12,25 @@ function LoginForm()
     $text .= "</form>";
     return $text;
 }
+
+function AdminButton()
+{
+    $text = "";
+    $text .= "<form method='post'>";
+    $text .= "<input type='submit' id='adminButton' class='adminButton' name='adminButton' value='Admin' />";
+    $text .= "</form>";
+    return $text;
+}
+
+function ProfileButton()
+{
+    $text = "";
+    $text .= "<form method='post'>";
+    $text .= "<input type='submit' id='profile' class='profileButton' name='profile' value='Profile' />";
+    $text .= "</form>";
+    return $text;
+}
+
 function LogoutForm()
 {
     $text = "";
@@ -35,13 +54,13 @@ function UploadFile($productId)
 
 function ShowAllUsers(array $arr)
 {
-    $page = "<section class='ShowAllUsers'><h2>All Users in Oasis</h2>";
-    $page .="<table><tr><th>ID</th><th>Username</th><th>Email</th>Active<th></th></tr>";
+    $page = "<section class='ShowAllUsers'><h2>All Users in webshop</h2>";
+    $page .="<table><tr><th>ID</th><th>Username</th><th>Email</th><th>Active</th></tr>";
     foreach ($arr as $row => $user) 
     {
         $page .= "<tr>";
         $page .= "<td>" . $user['ID'] . "</td><td>". $user['Username'] . "</td><td>" . $user['Email'] . "</td>";
-        if ($user['disable'] == 0)
+        if ($user['Disable'] == 0)
         {
             $page .= "<td>Yes</td>";
         }

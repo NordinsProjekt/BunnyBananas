@@ -12,3 +12,26 @@ form {
 body{
     background-color: aqua;
 }
+
+.AdminUserSection{
+  display:flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.UserSection{
+  font-size: 16px;
+  border: 1px solid black;
+  padding: 5px;
+  height: 200px;
+}
+.UserSection:nth-child(odd){
+  background-color: pink;
+}
+.UserSection:nth-child(even){
+  background-color: whitesmoke;
+}
+th {
+  text-align: left;
+}
