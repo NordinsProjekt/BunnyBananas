@@ -87,27 +87,27 @@ class UploadController
         }
     }
 
-    function CreateFolder($folder)
+    private function CreateFolder($folder)
     {
         if (!file_exists($folder)) 
         { 
             mkdir($folder, 0777, true); 
         }
     }
-    function CheckFileExists($file)
+    private function CheckFileExists($file)
     {
         if (file_exists($file)) {
             return false;
         }
     }
 
-    function CheckFileSize($file)
+    private function CheckFileSize()
     {
         if ($_FILES["fileToUpload"]["size"] > 500000) {
             return false;
         }
     }
-    function CheckFileFormat($file)
+    private function CheckFileFormat($file)
     {
         $imageFileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"

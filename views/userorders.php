@@ -6,10 +6,10 @@ $rows = $controller->ListOrdersByUser($_SESSION['userId']);
 <table>
 <thead>
     <tr>
-        <td>OrderID</td>
-        <td>Date</td>
-        <td>Sent</td>
-        <td>Delivered</td>
+        <th>OrderID</th>
+        <th>Date</th>
+        <th>Sent</th>
+        <th>Delivered</th>
     </tr>
 </thead>
 <tbody>
@@ -25,20 +25,21 @@ $rows = $controller->ListOrdersByUser($_SESSION['userId']);
 </tbody>
 </table>
 
-<table>
+
 
 <?php if (isset($_GET['orderID'])) {?>
+    <table>
     <thead>
     <tr>
-        <td>OrderID</td>
-        <td>ProductName</td>
-        <td>Color</td>
-        <td>Category</td>
-        <td>Amount</td>
-        <td>Price</td>
-        <td>Discount</td>
-        <td>Sent</td>
-        <td>Delivered</td>
+        <th>OrderID</th>
+        <th>ProductName</th>
+        <th>Color</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Sent</th>
+        <th>Delivered</th>
     </tr>
 </thead>
 <tbody>

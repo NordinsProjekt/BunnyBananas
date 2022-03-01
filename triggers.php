@@ -135,7 +135,6 @@ if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $cart->Checkout();
     
 }
-
 //----------------PRODUCT TRIGGERS!---------------------------
 
 if (isset($_POST['submit-product'])) //Skapar ny produkt i DB
@@ -182,5 +181,4 @@ if (isset($_POST['submit-category'])) //Skapar ny kategori i DB
     $category = $_POST['new-category'];
     $controller->insertCategory($category);
 }
-
 ?>

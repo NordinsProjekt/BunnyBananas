@@ -1,14 +1,16 @@
 <div class="AdminUserSection">
+<details>
+<summary>Add User</summary>
     <section class="UserSection" id="AddUser">
         <h2>Add User</h2>
-        <form method="post">
-            <label for="txtUsername" id ="lblUsername" class="">Username: </label>
-            <input type="text" id ="txtUsername" name="txtUsername" class="userInput" value="" size="30" /><br />
-            <label for="txtPassword" id ="lblPassword" class="">Password: </label>
-            <input type="password" id ="txtPassword" name="txtPassword" class="userInput" value="" size="30" /><br />
-            <label for="txtEmail" id ="lblEmail" class="">Email: </label>
-            <input type="email" id ="txtEmail" name="txtEmail" class="userInput" value="" size="30" /><br />
-            <label for="selGroups" id="lblGroups" class="">Grupp: </label>
+           <form method="post">
+            <!--<label for="txtUsername" id ="lblUsername" class="">Username: </label>-->
+            <input type="text" id ="txtUsername" name="txtUsername" placeholder="Användarnamn" class="userInput" value="" size="30" /><br />
+            <!--<label for="txtPassword" id ="lblPassword" class="">Password: </label>-->
+            <input type="password" id ="txtPassword" name="txtPassword" placeholder="Lösenord" class="userInput" value="" size="30" /><br />
+            <!--<label for="txtEmail" id ="lblEmail" class="">Email: </label>-->
+            <input type="email" id ="txtEmail" name="txtEmail" placeholder="Email" class="userInput" value="" size="30" /><br />
+            <!--<label for="selGroups" id="lblGroups" class="">Grupp: </label>-->
             <select name="selGroups" id="selGroups">
                 <?php 
                 $arr = $controller->ListAllUserGroups();
@@ -17,33 +19,40 @@
                 }
                 ?>
             </select><br />
-            <input type="submit" id="add" class="addButton" name="addUser" value="Add user" />
+            <input type="submit" id="add" class="addButton" name="addUser" value="Lägg till" />
             <br />
         </form>
+    </details>
     </section>
-    <section class="UserSection" id="CreateGroup">
-        <h2>Add Group</h2>
-            <form method="post">
-                <label for="txtGroupname" id ="lblGroupname" class="">Group name: </label>
-                <input type="text" id ="txtGroupname" name="txtGroupname" class="userInput" value="" size="10" /><br />
-                <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Add Group" />
-            </form>
-    </section>
-    <section class="UserSection" id="DeleteGroup">
-        <h2>Delete Group</h2>
-            <form method="post">
-                <label for="txtGroupname" id ="lblGroupname" class="">Group name: </label>
-                <select name="selGroups" id="selGroups">
-                <?php 
-                $arr = $controller->ListAllUserGroups();
-                foreach ($arr as $key => $value) {
-                    echo "<option value='".$value['ID']."'>". $value["name"] . "</option>";
-                }
-                ?>
-                </select><br />
-                <input type="submit" id="deleteGroup" class="deleteGroupButton" name="deleteGroup" value="Delete Group" />
-            </form>
-    </section>
+
+    <details>
+        <summary>Add Group</summary>
+        <section class="UserSection" id="CreateGroup">
+            <h2>Add Group</h2>
+                <form method="post">
+                    <input type="text" id ="txtGroupname" name="txtGroupname" placeholder="Grupp namn" class="userInput" value="" size="10" /><br />
+                    <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Lägg till" />
+                </form>
+        </section>
+    </details>
+    <details>
+        <summary>Delete Group</summary>
+        <section class="UserSection" id="DeleteGroup">
+            <h2>Delete Group</h2>
+                <form method="post">
+                    <label for="txtGroupname" id ="lblGroupname" placeholder="Grupp namn" class="">Group name: </label>
+                    <select name="selGroups" id="selGroups">
+                    <?php 
+                    $arr = $controller->ListAllUserGroups();
+                    foreach ($arr as $key => $value) {
+                        echo "<option value='".$value['ID']."'>". $value["name"] . "</option>";
+                    }
+                    ?>
+                    </select><br />
+                    <input type="submit" id="deleteGroup" class="deleteGroupButton" name="deleteGroup" value="Tabort" />
+                </form>
+        </section>
+    </details>
 </div>
 <section class="ShowAll" id="ShowAllUsers">
     <?php 

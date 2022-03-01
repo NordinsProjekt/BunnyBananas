@@ -26,7 +26,7 @@
         </tr>
         <?php }?>
     </table>
-</details>
+
 <br>
 <details>
     <summary>View all discountinued products</summary>
@@ -194,6 +194,44 @@ if (isset($_GET['module']))
     }
 }
 
+
+function addNewColorToDB()
+{
+    $controller = new ProductController();
+    $color = "";
+    if (isset($_POST['submit-color']))
+    {
+        if (isset($_POST['new-color']))
+        {
+            $color = ($_POST['new-color']);
+            $controller->insertColor($color);
+        }
+    }
+}
+
+function addNewCategoryToDB()
+{
+    $controller = new ProductController();
+    $category = "";
+    if (isset($_POST['submit-category']))
+    {
+        if (isset($_POST['new-category']))
+        {
+            $category = ($_POST['new-category']);
+            $controller->insertCategory($category);
+        }
+    }
+
+
+}
+
+    function changeProduct(){
+
+    }
+
+    function discontinueProduct(){
+
+    }
 ?>
 
 
