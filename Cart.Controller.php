@@ -66,6 +66,37 @@ class CartController {
 
         unset($_SESSION['ShoppingCart']); //empty cart
     }
+
+    function CurrentSum(){
+        if (isset($_SESSION['ShoppingCart'])) {
+            $sum = 0;
+            foreach($_SESSION['ShoppingCart'] as $productID){ 
+                
+                $sum += ($productID[0] * $productID[1]);
+        
+            }
+            return $sum;
+        } else {
+            return 0;
+        }
+
+    }
+
+    function CurrentAmountOfItems(){
+        if (isset($_SESSION['ShoppingCart'])) {
+            $items = 0;
+            foreach($_SESSION['ShoppingCart'] as $productID){ 
+                
+                $items += $productID[0];
+        
+            }
+            return $items;
+        } else {
+            return 0;
+        }
+
+    }
+ 
 }
 
 ?>

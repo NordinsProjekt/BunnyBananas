@@ -1,36 +1,46 @@
-<?php $orderController = new OrderController();?>
+<?php $orderController = new OrderController();
+$lastOrderID = $orderController->ListLastOrderByUserId($_SESSION['userId']);
+?>
 
 
 <?php if (isset($_POST['betala'])) {?>
 
-    Tack för din order!<br>
-    Ditt order nummer är: <?php echo $orderController->ListLastOrderByUserId($_SESSION['userId'])?><br>
+    <main class="cart">
+            
+        <p>Tack för din order!</p>
+        <p>Ordernummer: <b><?php echo $lastOrderID?></b></p>
 
-    Tack! Du har köpt följande:<br>
-
-    <table>
-        <thead>
-        <tr>
-            <td>ProductName</td>
-            <td>Color</td>
-            <td>Category</td>
-            <td>Amount</td>
-            <td>Price</td>
-        </tr>
-    </thead>
-        <tbody>
-        <?php foreach($orderController->ListSpecificOrder($orderController->ListLastOrderByUserId($_SESSION['userId'])) as $value){?>
-
+        <table>
+            <thead>
             <tr>
-                <td><?php echo $value['ProductName']?></td>
-                <td><?php echo $value['Color']?></td>
-                <td><?php echo $value['Category']?></td>
-                <td><?php echo $value['Amount']?></td>
-                <td><?php echo $value['Price']?></td>
+                <th>ID:</th>
+                <th>Produkt:</th>
+                <th>Färg:</th>
+                <th>Kategori:</th>
+                <th>Antal:</th>
+                <th>Pris:</th>
             </tr>
-        <?php } //END FOREACH ?>
-        </tbody>
-    </table>
+        </thead>
+            <tbody>
+            <?php foreach($orderController->ListSpecificOrder($lastOrderID) as $value){?>
 
-<?php } else { header('Location: .'); } //ENDIF ?>
+                <tr>
+                    <td><?php echo $value['ProductID']?></td>
+                    <td><?php echo $value['ProductName']?></td>
+                    <td><?php echo $value['Color']?></td>
+                    <td><?php echo $value['Category']?></td>
+                    <td><?php echo $value['Amount']?></td>
+                    <td><?php echo $value['Price']?>:-</td>
+                </tr>
+            <?php } //END FOREACH ?>
+
+                <tr>
+                    <td colspan="6" style="text-align:right;"><b>Summa: <?php echo $orderController->ListTotalCostSpecificOrder($lastOrderID); ?>:-</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+<?php } else { header('Location: .'); } //ENDIF Redirect if you try to access without correct _POST ?>
 

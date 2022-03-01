@@ -36,6 +36,15 @@ class OrderController {
         return $db->GetLastOrderByUserId($userId);
     }
 
+
+    
+    function ListTotalCostSpecificOrder($userId)
+    {
+        $db = new OrderModel;
+
+        return $db->GetTotalCostSpecificOrder($userId);
+    }
+    
     function SendOrder(){
 
         $model = new OrderModel();
