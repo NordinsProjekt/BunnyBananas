@@ -17,15 +17,10 @@ require_once('buildHTML.php');
     <title>Main Page</title>
 </head>
 <body>
-<header>
-<?php require_once('header.php');?>
-</header>
 
-    <a href="./">HOME</a>
-    <a href="./products">Products</a>
-    <a href="./orders">Orders</a>
-    <a href="./cart">Cart</a>
-    <br>
+<?php require_once('header.php');?>
+
+
 <?php require_once('router.php');?>
 </body>
 </html>

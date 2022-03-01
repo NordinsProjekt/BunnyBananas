@@ -1,19 +1,37 @@
 *{
   padding: 0px;
   margin: 0px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 header {
   background-color:white;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-end;
   padding: 10px;
 }
 
 body{
-    background-color: rgb(223,223,223);
+    background-color: rgb(223, 223, 223);
 }
 
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
 .AdminUserSection{
   display:flex;
   flex-direction: row;
@@ -69,11 +87,23 @@ td{
   padding: 5px;
     background-color: rgb(240, 240, 240);
 }
+
+
 .main{
   justify-content: center;
   display:flex;
   flex-wrap: wrap;
   
+}
+
+
+.cart{
+  margin-top: 20px;
+  justify-content: center;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .ProductCard {
   padding: 15px;
@@ -120,6 +150,28 @@ td{
   justify-content: center;
   
 } 
+
+.ProductCardLarge{
+  padding: 15px;
+  margin: 15px;
+  height: 600px;
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  box-shadow: 1px 1px 1px grey;
+
+}
+
+.ProductCardLarge > .InfoText{
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
 
 .inputnumber{
   width: 30px;

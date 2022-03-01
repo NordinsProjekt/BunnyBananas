@@ -135,20 +135,50 @@ if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $cart->Checkout();
     
 }
-//Products trigger
-if (isset($_POST['update-product']))
-    {
-        $controller = new ProductController();
-        $id = $_POST['productId'];
-        $name = $_POST['productName'];
-        $category = $_POST['categories'];
-        $color = $_POST['colors'];
-        $description = $_POST['description'];
-        $price = $_POST['update-price'];
-        $balance = $_POST['balance'];
-        $discontined = $_POST['discontinued'];
+//----------------PRODUCT TRIGGERS!---------------------------
 
-        $controller->insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontined);
+if (isset($_POST['submit-product'])) //Skapar ny produkt i DB
+{
+    $controller = new ProductController();
+    $name = $_POST['new-product'];
+    $category = $_POST['categories'];
+    $color = $_POST['colors'];
+    $description = $_POST['description'];
+    $price = $_POST['new-price'];
+    $balance = $_POST['balance'];
+
+    $worked = $controller->insertProduct($name, $category, $color, $description, $price, $balance);
+    if ($worked) {
+        # code...
     }
+}
 
+if (isset($_POST['update-product'])) //Uppdaterar produktdata i DB
+{
+    $controller = new ProductController();
+    $id = $_POST['productID'];
+    $name = $_POST['productName'];
+    $category = $_POST['categories'];
+    $color = $_POST['colors'];
+    $description = $_POST['description'];
+    $price = $_POST['update-price'];
+    $balance = $_POST['balance'];
+    $discontinued = $_POST['discontinued'];
+
+    $controller->insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontinued);
+}
+
+if (isset($_POST['submit-color'])) //Skapar ny färg i DB
+{
+    $controller = new ProductController();
+    $color = $_POST['new-color'];
+    $controller->insertColor($color);
+}
+
+if (isset($_POST['submit-category'])) //Skapar ny kategori i DB
+{
+    $controller = new ProductController();
+    $category = $_POST['new-category'];
+    $controller->insertCategory($category);
+}
 ?>

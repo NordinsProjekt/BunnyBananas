@@ -46,15 +46,10 @@ class ProductDB extends PDOHandler
 
     function getProduct($productID)
     {
-        // $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Discontinued 
-        // FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID 
-        // INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.ID = ':id';");
-
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Description, 
         pr.Balance, pr.Discontinued FROM `products` AS pr 
         INNER JOIN categories AS ca ON pr.CategoryID = ca.ID 
         INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.ID = :id;");
-
         $stmt->bindParam(':id', $productID);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -79,14 +74,14 @@ class ProductDB extends PDOHandler
 
     function setNewProductDB($name, $category, $color, $description, $price, $balance)
     {
-        echo "------INSIDE DB------"."<br>";
-        echo "Name: ".$name."<br>";
-        echo "Category: ".$category."<br>";
-        echo "Color: ".$color."<br>";
-        echo "Desc: ".$description."<br>";
-        echo "Price: ".$price."<br>";
-        echo "Balance: ".$balance."<br>";
-        echo "--------------------------"."<br>";
+        // echo "------INSIDE DB------"."<br>";
+        // echo "Name: ".$name."<br>";
+        // echo "Category: ".$category."<br>";
+        // echo "Color: ".$color."<br>";
+        // echo "Desc: ".$description."<br>";
+        // echo "Price: ".$price."<br>";
+        // echo "Balance: ".$balance."<br>";
+        // echo "--------------------------"."<br>";
         
         $stmt = $this->Connect()->prepare("INSERT INTO products (Name, CategoryID, ColorID, Description, Price, Balance, Discontinued) 
         VALUES (:name, :category, :color, :description, :price, :balance, 0)"); //0 = När ny produkt skapas förutsätt det att den ska finnas med i sortimentet
@@ -102,10 +97,8 @@ class ProductDB extends PDOHandler
 
     function updateProductDB($id, $name, $category, $color, $description, $price, $balance, $discontinued)
     {
-        // $stmt = $this->Connect()->prepare("INSERT INTO products (Name, CategoryID, ColorID, Description, Price, Balance, Discontinued) 
-        // VALUES (:name, :category, :color, :description, :price, :balance, :discontinued)");
-        $stmt = $this->Connect()->prepare("UPDATE products SET Name=:name, CategoryID=:category,ColorID=:color,
-        Description=:description,Price=:price,Balance=:balance,Discontinued=:discontinued WHERE ID=:id");
+        $stmt = $this->Connect()->prepare("UPDATE products SET Name=:name, CategoryID=:category, ColorID=:color,
+        Description=:description, Price=:price, Balance=:balance, Discontinued=:discontinued WHERE ID=:id");
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":category", $category);

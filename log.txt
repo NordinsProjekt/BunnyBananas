@@ -80,10 +80,27 @@ Markus
  - Views för User, Order, Products.
  - Checkout som sparar order i databasen
 
-Lukas
+Lucas
  - Fortsatt jobba med kopplingen mellan PHP och databasen i produktdelen (admin)
  - Byggt ut model med fler querys etc.
 
+# 1/3
 
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
   
+Staffan
+ -Kodat checkout så att order sparas i databasen och kunden får se ett kvitto.
+ -css:at en jävla massa och pillat med designen i allmänhet.
+ -Produktkort: Små för webshoppen samt börjat med stora för "detailedcloseup"
 
+Markus
+- Kodat Admin och Profil sidorna
+- Fixat med CSS:en och design av tabellerna.
+- Strukturerat koden och funktionerna.
+
+Lucas
+- Gjort klart produktdelen.
+  - Löste infogande av ny produkt.
+  - Påbörjat felhantering.
+- Strukturerat upp koden i triggers för produktdelen.

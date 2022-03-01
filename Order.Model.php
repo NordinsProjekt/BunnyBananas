@@ -61,6 +61,20 @@ class OrderModel extends PDOHandler
 
     }
 
+    Function GetTotalCostSpecificOrder($orderID){
+
+      $sql = 'SELECT SUM(price * amount) as totalcost FROM orderrows
+              WHERE orderID = :id;';
+
+      $stmt = $this->Connect()->prepare($sql);
+
+      $stmt->bindParam(':id',$orderID);
+      $stmt->execute();
+      return $stmt->fetch()['totalcost'];
+
+
+  }
+
     Function SetOrder($order, $orderRows){
       $sql = 'INSERT INTO orders (UserID, Date, Firstname, Lastname, Adress1, Adress2, Postort, Postnummer, Land) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 

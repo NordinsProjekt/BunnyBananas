@@ -1,13 +1,30 @@
 <?php $cartController = new CartController(); ?>
 <?php $ctrlr = new UserController(); ?>
- 
 
-<?php if (isset($_SESSION['ShoppingCart'])) {
-    foreach ($cartController->listCart() as $product) {?>
-        <?php echo CartProduct($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?>
+<main class="cart">
 
-    <?php }?>
+<?php if (isset($_SESSION['ShoppingCart'])) {?>
 
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>vara:</th>
+                <th>typ:</th>
+                <th>färg:</th>
+                <th>pris:</th>
+                <th>antal:</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($cartController->listCart() as $product) {?>
+                <?php echo CartProduct($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?>
+
+            <?php }?>
+        </tbody>
+    </table>
     <?php 
     $sum = 0;
     foreach($_SESSION['ShoppingCart'] as $productID){ 
@@ -39,10 +56,12 @@
             <input type="text" id="postalarea" name="txtPostalarea" value="<?php echo $row['Postort']; ?>"><br>
             <label for="country">Land:</label><br>
             <input type="text" id="country" name="txtCountry" value="<?php echo $row['Land']; ?>"><br>
-            <input type="submit" name="betala" value="betala" />
+            <input type="submit" name="betala" value="Godkänn!" />
         </form>
     
     <?php }?>
 <?php } else { ?>
     Din varukorg är tom!
 <?php }?>
+
+</main>
