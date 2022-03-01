@@ -1,7 +1,8 @@
-<?php $productController = new ProductController(); 
+<?php $productController = new ProductController();
+
 
 $images = "";
-$dir = 'img/products/'.$_GET['productID'];
+$dir = 'img/products/' . $_GET['productID'];
 
 $product = $productController->listProduct($_GET['productID']);
 
@@ -10,33 +11,43 @@ $product = $productController->listProduct($_GET['productID']);
 if (file_exists($dir)) {
     $imagePaths = scandir($dir);
 
-    if (isset($imagePaths)){
+    if (isset($imagePaths)) {
         foreach ($imagePaths as $img) {
             if ($img != '.' && $img != '..') {
-                $images .= "<img src='img/products/".$_GET['productID']."/".$img."' height='500px'>";
+                $images .= "<div class='carousel-cell'>";
+                $images .= "<img class='carousel-cell-image' data-flickity-lazyload='img/products/" . $_GET['productID'] . "/" . $img . "' />";
+                $images .= "</div>";
             }
-            
+
         }
-    } 
+    }
+
 }
 ?>
 
 <main class="main">
     <div class="ProductCardLarge">
-        <div>
+        
+    
+    <div style="background-color: red; width: 400px;">
+
+        <div class="carousel"data-flickity='{ "lazyLoad": true }'>
             <?php echo $images;?>
         </div>
+
+            
+    </div>
         <div class="InfoText">
-            <p><h2><?php echo $product[0]['Name'];?></h2></p>
-            <p><?php echo $product[0]['Category'];?></p>
-            <p>färg:<?php echo $product[0]['Color'];?></p>            
-            <p><?php echo $product[0]['Description'];?></p>
-            <p><?php echo $product[0]['Balance'];?> kvar i lager!</p>
-            <p><h2><?php echo $product[0]['Price'];?>:-</h2></p>
+            <p><h2><?php echo $product[0]['Name']; ?></h2></p>
+            <p><?php echo $product[0]['Category']; ?></p>
+            <p>färg:<?php echo $product[0]['Color']; ?></p>            
+            <p><?php echo $product[0]['Description']; ?></p>
+            <p><?php echo $product[0]['Balance']; ?> kvar i lager!</p>
+            <p><h2><?php echo $product[0]['Price']; ?>:-</h2></p>
             <div class='buybox'>
                 <form action='' method='post'>
-                    <input type='Hidden' name='productID' value='<?php echo $_GET['productID'];?>'/>
-                    <input type='Hidden' name='price' value='<?php echo $product[0]['Price'];?>'/>
+                    <input type='Hidden' name='productID' value='<?php echo $_GET['productID']; ?>'/>
+                    <input type='Hidden' name='price' value='<?php echo $product[0]['Price']; ?>'/>
                     <input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>
                     <input type='Hidden' name='AddToCart' value='AddToCart'/>
                     <input type='submit' id='submit' name='submit' value='KÖP!' />
@@ -45,4 +56,6 @@ if (file_exists($dir)) {
         </div>
     </div>
 </main>
+
+
 
