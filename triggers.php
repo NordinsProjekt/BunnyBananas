@@ -25,7 +25,7 @@ if (key_exists('login',$_POST))
     if ($username == "" or $password == "")
     {
         echo "Fyll i alla fält tack";
-        header("Location: index.php");
+        header("Location: ./");
         exit();
     }
     $controller = new UserController();
@@ -42,17 +42,17 @@ if (key_exists('logout',$_POST))
     exit();
 }
 
-if (key_exists('profile',$_POST))
-{
-    header("Location: ./profile");
-    exit();
-}
+// if (key_exists('profile',$_POST))
+// {
+//     header("Location: ./profile");
+//     exit();
+// }
 
-if (key_exists('adminButton',$_POST))
-{
-    header("Location: ./admin");
-    exit();
-}
+// if (key_exists('adminButton',$_POST))
+// {
+//     header("Location: ./admin");
+//     exit();
+// }
 
 if (key_exists('saveProfile',$_POST))
 {
@@ -62,8 +62,16 @@ if (key_exists('saveProfile',$_POST))
     $controller->SaveShippingAddress($_POST['txtFirstname'],$_POST['txtLastname'],
     $_POST['txtAddress'],$_POST['txtAddress2'], $_POST['txtPostalcode'],
     $_POST['txtPostalarea'],$_POST['txtCountry']);
-    header("Location: ./profile");
-    exit();
+    if (key_exists('reklam',$_POST))
+    {
+        $controller->AddToReklam($_SESSION['userId']);
+    }
+    else
+    {
+        $controller->RemoveReklam($_SESSION['userId']);
+    }
+    //header("Location: ./profile");
+    //exit();
 }
 if (key_exists('signup',$_POST))
 {

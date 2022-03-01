@@ -22,6 +22,12 @@ class OrderController {
         return $db->GetSpecificOrder($value);
     }
 
+    function ListOrdersByUser($userId)
+    {
+        $db = new OrderModel;
+
+        return $db->GetAllOrdersByUserId($userId);
+    }
 
     function SendOrder(){
 

@@ -10,7 +10,7 @@
             <label for="selGroups" id="lblGroups" class="">Grupp: </label>
             <select name="selGroups" id="selGroups">
                 <?php 
-                $arr = $controller->GetAllUserGroups();
+                $arr = $controller->ListAllUserGroups();
                 foreach ($arr as $key => $value) {
                     echo "<option value='".$value['ID']."'>". $value["name"] . "</option>";
                 }
@@ -36,4 +36,9 @@
                 <input type="text" id ="txtGroupname" name="txtGroupname" class="userInput" value="" size="10" /><br />
                 <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Add Group" />
             </form>
+        </section>
+        <section class="AllUsers">
+            <php 
+            
+            ?>
         </section>

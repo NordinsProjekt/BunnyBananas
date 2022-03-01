@@ -10,7 +10,7 @@ class UserController
     function VerifyUser($username,$password)
     {
         $db = new UserModel();
-        $row = $db->Login($username);
+        $row = $db->GetUserByName($username);
         //Kontrollerar lösenordet och att det är rätt användarnamn
         if (password_verify($password,$row['Password']) && $username === $row['Username'])
         {
@@ -103,14 +103,14 @@ class UserController
         return false;
     }
     
-    function GetAllUserGroups()
+    function ListAllUserGroups()
     {
         $db = new UserModel();
         $arr = $db->GetAllGroups();
         return $arr;
     }
 
-    function GetShippingAddress()
+    function ListShippingAddress()
     {
         $db = new UserModel();
         if (isset($_SESSION['userId']) && $_SESSION['userId']>0)
@@ -143,6 +143,22 @@ class UserController
             $db->SetGroup($groupName);
         }
     }
+    function AddToReklam($userId)
+    {
+        $db = new UserModel();
+        if ($db->GetReklam($userId)['row'] == 0)
+        {
+            $db->SetReklam($userId);
+        }
+    }
+    function RemoveReklam($userId)
+    {
+        $db = new UserModel();
+        if ($db->GetReklam($userId)['row'] == 1)
+        {
+            $db->DeleteReklam($userId);
+        }
+    }
 
     private function ValidateEmail($email)
     {
@@ -152,11 +168,6 @@ class UserController
         else {
             return false;
         }
-    }
-
-    function GetLetterArray(){
-        $letterArray = array('a','b','c','d');
-        return $letterArray;
     }
 
     private function CheckShippingAddress($notsafeText)

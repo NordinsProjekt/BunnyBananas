@@ -1,13 +1,12 @@
-<?php $orderController = new OrderController();?>
-
-<h3>All orders:</h3>
-
-
+<?php 
+$controller = new OrderController();
+$rows = $controller->ListOrdersByUser($_SESSION['userId']);
+?>
+<h2>My Orders</h2>
 <table>
 <thead>
     <tr>
         <td>OrderID</td>
-        <td>UserID</td>
         <td>Date</td>
         <td>Sent</td>
         <td>Delivered</td>
@@ -15,11 +14,9 @@
     </tr>
 </thead>
 <tbody>
-<?php foreach($orderController->ListAllOrders() as $value){?>
-
+<?php foreach($rows as $value){?>
     <tr>
-        <td><a href="?orderID=<?php echo $value['ID']?>"><?php echo $value['ID']?></a></td>
-        <td><?php echo $value['UserID']?></td>
+        <td><a href="?profile=orders&orderID=<?php echo $value['ID']?>"><?php echo $value['ID']?></a></td>
         <td><?php echo $value['Date']?></td>
         <td><?php echo $value['Sent']?></td>
         <td><?php echo $value['Delivered']?></td>
@@ -35,7 +32,6 @@
     <thead>
     <tr>
         <td>OrderID</td>
-        <td>UserID</td>
         <td>ProductName</td>
         <td>Color</td>
         <td>Category</td>
@@ -47,11 +43,9 @@
     </tr>
 </thead>
 <tbody>
-<?php foreach($orderController->ListSpecificOrder($_GET['orderID']) as $value){?>
-
+<?php foreach($controller->ListSpecificOrder($_GET['orderID']) as $value){?>
     <tr>
         <td><?php echo $value['ID']?></td>
-        <td><?php echo $value['UserID']?></td>
         <td><?php echo $value['ProductName']?></td>
         <td><?php echo $value['Color']?></td>
         <td><?php echo $value['Category']?></td>
@@ -61,10 +55,7 @@
         <td><?php echo $value['Sent']?></td>
         <td><?php echo $value['Delivered']?></td>
     </tr>
-
 <?php }?>
 </tbody>
 </table>
-
-
 <?php }?>
