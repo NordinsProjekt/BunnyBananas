@@ -1,8 +1,7 @@
 <?php $orderController = new OrderController();?>
-
+<details>
+    <summary>Show All Orders</summary>
 <h3>All orders:</h3>
-
-
 <table>
 <thead>
     <tr>
@@ -16,7 +15,6 @@
 </thead>
 <tbody>
 <?php foreach($orderController->ListAllOrders() as $value){?>
-
     <tr>
         <td><a href="?admin=orders&orderID=<?php echo $value['ID']?>"><?php echo $value['ID']?></a></td>
         <td><?php echo $value['UserID']?></td>
@@ -28,7 +26,7 @@
 <?php }?>
 </tbody>
 </table>
-
+</details>
 
 
 <?php if (isset($_GET['orderID'])) {?>

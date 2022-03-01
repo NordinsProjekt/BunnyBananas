@@ -1,16 +1,17 @@
+*{
+  padding: 0px;
+  margin: 0px;
+}
 header {
   background-color:white;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 20px;
+  padding: 10px;
 }
-form {
-  padding: 0px;
-  margin: 0px;
-}
+
 body{
-    background-color: aqua;
+    background-color: rgb(223,223,223);
 }
 
 .AdminUserSection{
@@ -20,17 +21,30 @@ body{
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.AdminProducts {
+  display:flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .UserSection{
   font-size: 16px;
   border: 1px solid black;
-  padding: 5px;
   height: 200px;
-}
-.UserSection:nth-child(odd){
-  background-color: lightgrey;
-}
-.UserSection:nth-child(even){
   background-color: whitesmoke;
+}
+
+h2,h3 {
+  text-align: center;
+  padding: 10px;
+  background-color: lightgrey;
+  border-bottom: 1px solid black;
+}
+form {
+  padding: 5px;
 }
 table {
   border-collapse: collapse;
@@ -110,6 +124,11 @@ td{
 .inputnumber{
   width: 30px;
 
+}
+
+.ProfileUser{
+  display:flex;
+  flex-direction: row;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

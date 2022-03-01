@@ -104,8 +104,8 @@ class ProductDB extends PDOHandler
     {
         // $stmt = $this->Connect()->prepare("INSERT INTO products (Name, CategoryID, ColorID, Description, Price, Balance, Discontinued) 
         // VALUES (:name, :category, :color, :description, :price, :balance, :discontinued)");
-        $stmt = $this->Connect()->prepare("UPDATE `products` SET `Name`=':name', `CategoryID`=':category',`ColorID`=':color',
-        `Description`=':description',`Price`='price',`Balance`='balance',`Discontinued`=':discontinued' WHERE ID=':id'");
+        $stmt = $this->Connect()->prepare("UPDATE products SET Name=:name, CategoryID=:category,ColorID=:color,
+        Description=:description,Price=:price,Balance=:balance,Discontinued=:discontinued WHERE ID=:id");
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":category", $category);

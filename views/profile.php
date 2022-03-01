@@ -1,21 +1,18 @@
 <h1>Profilsida för <?php echo $_SESSION['username']; ?></h1>
 
-<nav>
-    <a href="?profile=users">Delivery Address</a>
-    <a href="?profile=orders">See Orders</a>
-</nav>
+<div class="ProfileUser">
+    <details>
+        <summary>Show My Delivery Address</summary>
         <?php 
-            if(key_exists('profile',$_GET))
-            {
-                switch($_GET['profile'])
-                {
-                    case "users":
-                        require_once "deliveryaddress.php";
-                        break;
-                    case "orders":
-                        require_once "userorders.php";
-                        break;
-                }
-            }
+            require_once "deliveryaddress.php";
         ?>
+    </details>
+    
+    <details>
+        <summary>Show My Orders</summary>
+        <?php 
+            require_once "userorders.php";
+        ?>
+    </details>
+</div>
 

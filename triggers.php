@@ -135,7 +135,20 @@ if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $cart->Checkout();
     
 }
+//Products trigger
+if (isset($_POST['update-product']))
+    {
+        $controller = new ProductController();
+        $id = $_POST['productId'];
+        $name = $_POST['productName'];
+        $category = $_POST['categories'];
+        $color = $_POST['colors'];
+        $description = $_POST['description'];
+        $price = $_POST['update-price'];
+        $balance = $_POST['balance'];
+        $discontined = $_POST['discontinued'];
 
-
+        $controller->insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontined);
+    }
 
 ?>

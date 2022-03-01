@@ -60,10 +60,10 @@
                 echo "<label for='discontinued'><b>In stock? </b></label>";
                 echo "<input type='number' id='discontinued' name='discontinued' value='".$value['Discontinued']."' min='0' max='1'>";
                 echo " 0 = Active product, 1 = Discontinued"."<br><br>";
-
+                echo "<input type='hidden' name='productId' value='".$_GET['productID']."'>";
                 echo "<input type='submit' name='update-product' value='Run changes'>";
             echo "</form>";
-            echo $val = updateProductInDB($_GET['productID']);
+            //echo $val = updateProductInDB($_GET['productID']);
         }
     }
     
@@ -259,70 +259,70 @@ function addNewProductToDB()
 }
 
 
-function updateProductInDB($productID)
-{
-    $controller = new ProductController();
-    $id = $productID;
-    $name = "";
-    $category = "";
-    $color = "";
-    $description = "";
-    $price = "";
-    $balance = "";
-    $discontined = "";
+// function updateProductInDB($productID)
+// {
+//     $controller = new ProductController();
+//     $id = $productID;
+//     $name = "";
+//     $category = "";
+//     $color = "";
+//     $description = "";
+//     $price = "";
+//     $balance = "";
+//     $discontined = "";
 
-    if (isset($_POST['update-product']))
-    {
-        echo "---INSIDE View---"."<br>";
-        echo "ID: $id"."<br>";
-        if (isset($_POST['productName']))
-        {
-            $name = $_POST['productName'];
-            echo "Name: $name";
-            echo "<br>";
-        }
-        if (isset($_POST['categories']))
-        {
-            $category = $_POST['categories'];
-            echo "Category: $category";
-            echo "<br>";
-        }
-        if (isset($_POST['colors']))
-        {
-            $color = $_POST['colors'];
-            echo "Color: $color";
-            echo "<br>";
-        }
-        if (isset($_POST['description']))
-        {
-            $description = $_POST['description'];
-            echo "Desc: $description";
-            echo "<br>";
-        }
-        if (isset($_POST['update-price']))
-        {
-            $price = $_POST['update-price'];
-            echo "Price: $price";
-            echo "<br>";
-        }
-        if (isset($_POST['balance']))
-        {
-            $balance = $_POST['balance'];
-            echo "Balance: $balance";
-            echo "<br>";
-        }
-        if (isset($_POST['discontinued']))
-        {
-            $discontined = $_POST['discontinued'];
-            echo "Discontinued: $discontined";
-            echo "<br>";
-        }
-        else {
-            echo "Incorrect input!";
-        }
-        $controller->insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontined);
-    }
-}
+//     if (isset($_POST['update-product']))
+//     {
+//         echo "---INSIDE View---"."<br>";
+//         echo "ID: $id"."<br>";
+//         if (isset($_POST['productName']))
+//         {
+//             $name = $_POST['productName'];
+//             echo "Name: $name";
+//             echo "<br>";
+//         }
+//         if (isset($_POST['categories']))
+//         {
+//             $category = $_POST['categories'];
+//             echo "Category: $category";
+//             echo "<br>";
+//         }
+//         if (isset($_POST['colors']))
+//         {
+//             $color = $_POST['colors'];
+//             echo "Color: $color";
+//             echo "<br>";
+//         }
+//         if (isset($_POST['description']))
+//         {
+//             $description = $_POST['description'];
+//             echo "Desc: $description";
+//             echo "<br>";
+//         }
+//         if (isset($_POST['update-price']))
+//         {
+//             $price = $_POST['update-price'];
+//             echo "Price: $price";
+//             echo "<br>";
+//         }
+//         if (isset($_POST['balance']))
+//         {
+//             $balance = $_POST['balance'];
+//             echo "Balance: $balance";
+//             echo "<br>";
+//         }
+//         if (isset($_POST['discontinued']))
+//         {
+//             $discontined = $_POST['discontinued'];
+//             echo "Discontinued: $discontined";
+//             echo "<br>";
+//         }
+//         else {
+//             echo "Incorrect input!";
+//         }
+//         $controller->insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontined);
+//     }
+// }
 
 function addNewColorToDB()
 {
