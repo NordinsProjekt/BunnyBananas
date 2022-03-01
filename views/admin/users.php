@@ -37,3 +37,8 @@
                 <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Add Group" />
             </form>
         </section>
+        <section class="AllUsers">
+            <php 
+            
+            ?>
+        </section>
