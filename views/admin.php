@@ -5,9 +5,9 @@ require_once "Products.controller.php";
 require_once "triggers.php";
 ?>
     <nav>
-        <a href="?admin=users">Manage Users</a>
-        <a href="?admin=orders">Manage Orders</a>
-        <a href="?admin=products">Manage Products</a>
+        <a href="?admin=users">Hantera Användare</a>
+        <a href="?admin=orders">Hantera Ordrar</a>
+        <a href="?admin=products">Hantera Produkter</a>
     </nav>
         <?php 
             if(key_exists('admin',$_GET))

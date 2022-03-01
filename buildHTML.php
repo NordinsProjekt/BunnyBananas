@@ -9,7 +9,7 @@ function LoginForm()
     $text .= "<input type='password' id ='txtPassword' name='txtPassword' class='userInput' value='' size='10' />";
     $text .= "<input type='submit' id='login' class='loginButton' name='login' value='Login' />";
     $text .= "</form>";
-    $text .= "<a href='./signup'>Skapa konto</a>";
+    $text .= "<a class='LinkHeader' href='./signup'>Skapa konto</a>";
     return $text;
 }
 
@@ -54,8 +54,8 @@ function UploadFile($productId)
 
 function ShowAllUsers(array $arr)
 {
-    $page = "<section class='ShowAllUsers'><h2>All Users in webshop</h2>";
-    $page .="<table><thead><tr><th>ID</th><th>Rättighet</th><th>Användarnamn</th><th>Email</th><th>Aktivt</th></tr></thead>";
+    $page = "<section class='ShowAllUsers'><h2>Alla Användare/Kunder</h2>";
+    $page .="<table><thead><tr><th>ID</th><th>Rättigheter</th><th>Användarnamn</th><th>Email</th><th>Aktivt</th></tr></thead>";
     foreach ($arr as $row => $user) 
     {
         $page .= "<tr>";

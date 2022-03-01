@@ -40,7 +40,6 @@
         <section class="UserSection" id="DeleteGroup">
             <h2>Radera Grupp</h2>
                 <form method="post">
-                    <label for="txtGroupname" id ="lblGroupname" placeholder="Grupp namn" class="">Group name: </label>
                     <select name="selGroups" id="selGroups">
                     <?php 
                     $arr = $controller->ListAllUserGroups();
