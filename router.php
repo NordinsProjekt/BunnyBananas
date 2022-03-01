@@ -27,6 +27,9 @@ switch ($_GET['url']) {
     case 'checkout':
         require __DIR__ . '/views/checkout.php';  
         break;
+    case 'product':
+        require __DIR__ . '/views/product.php';
+        break;
     case 'admin':
         $controller = new UserController();
         if ($controller->VerifyUserAdmin()) {
