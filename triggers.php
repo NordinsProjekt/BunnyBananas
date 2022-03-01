@@ -42,18 +42,6 @@ if (key_exists('logout',$_POST))
     exit();
 }
 
-// if (key_exists('profile',$_POST))
-// {
-//     header("Location: ./profile");
-//     exit();
-// }
-
-// if (key_exists('adminButton',$_POST))
-// {
-//     header("Location: ./admin");
-//     exit();
-// }
-
 if (key_exists('saveProfile',$_POST))
 {
     //Dessa är frivillga fält i profilen.

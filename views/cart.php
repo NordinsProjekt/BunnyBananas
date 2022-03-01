@@ -23,7 +23,7 @@
                 
 
         <h2>Leveransadress:</h2>
-        <?php $row = $ctrlr->GetShippingAddress(); ?>
+        <?php $row = $ctrlr->ListShippingAddress(); ?>
         <form class="profileForm" method="post">
             <label for="fname">Förnamn:</label><br>
             <input type="text" id="fname" name="txtFirstname" value="<?php echo $row['Firstname']; ?>"><br>

@@ -9,7 +9,7 @@ if (isset($_SESSION['is_logged_in']))
     if ($userCtrl->VerifyUserAdmin())
     {
         
-        echo "<a href='./admin'>Admin</a>";//AdminPanelButton();
+        echo "<a href='./admin'>Admin</a>";
     }
 }
 else
