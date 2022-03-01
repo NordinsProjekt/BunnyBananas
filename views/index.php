@@ -6,14 +6,11 @@ $productController = new ProductController();
 ?>
 
 
-<table>
-<?php
+<main class="main">
+<?php foreach ($productController->listAllProducts() as $product) { ?>
 
-foreach ($productController->listAllProducts() as $product) { ?>
-
-    <tr>
-        <td><?php echo ProductCard($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?></td>
-    </tr>
-
+    <?php echo ProductCard($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?>
+    
 <?php }?>
-</table>
+
+</main>
