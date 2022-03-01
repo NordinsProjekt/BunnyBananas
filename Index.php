@@ -12,7 +12,7 @@ require_once('triggers.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/bunnybananas/css/styles.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/bunnybananas/github/css/styles.css" media="screen" />
     <title>Main Page</title>
 </head>
 <body>
