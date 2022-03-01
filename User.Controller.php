@@ -103,14 +103,14 @@ class UserController
         return false;
     }
     
-    function GetAllUserGroups()
+    function ListAllUserGroups()
     {
         $db = new UserModel();
         $arr = $db->GetAllGroups();
         return $arr;
     }
 
-    function GetShippingAddress()
+    function ListShippingAddress()
     {
         $db = new UserModel();
         if (isset($_SESSION['userId']) && $_SESSION['userId']>0)
@@ -168,11 +168,6 @@ class UserController
         else {
             return false;
         }
-    }
-
-    function GetLetterArray(){
-        $letterArray = array('a','b','c','d');
-        return $letterArray;
     }
 
     private function CheckShippingAddress($notsafeText)

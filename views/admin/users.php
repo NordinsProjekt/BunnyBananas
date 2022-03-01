@@ -10,7 +10,7 @@
             <label for="selGroups" id="lblGroups" class="">Grupp: </label>
             <select name="selGroups" id="selGroups">
                 <?php 
-                $arr = $controller->GetAllUserGroups();
+                $arr = $controller->ListAllUserGroups();
                 foreach ($arr as $key => $value) {
                     echo "<option value='".$value['ID']."'>". $value["name"] . "</option>";
                 }

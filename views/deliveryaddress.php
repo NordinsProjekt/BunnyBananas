@@ -1,6 +1,6 @@
 <?php 
     $controller = new UserController();
-    $row = $controller->GetShippingAddress(); 
+    $row = $controller->ListShippingAddress(); 
 ?>
 <h2>Delivery Address</h2>
 <form class="profileForm" method="post">
