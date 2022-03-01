@@ -84,6 +84,12 @@ Lukas
  - Fortsatt jobba med kopplingen mellan PHP och databasen i produktdelen (admin)
  - Byggt ut model med fler querys etc.
 
+# 1/3
 
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
   
-
+Staffan
+ -Kodat checkout så att order sparas i databasen och kunden får se ett kvitto.
+ -css:at en jävla massa och pillat med designen i allmänhet.
+ -Produktkort: Små för webshoppen samt börjat med stora för "detailedcloseup"
