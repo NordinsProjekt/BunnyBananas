@@ -24,24 +24,41 @@ class ProductDB extends PDOHandler
         return $result = $stmt->fetchAll();
     }
 
-    function getAllProducts()
+    function getProducts($status)
     {
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Balance, pr.Discontinued
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
-        INNER JOIN colors AS co ON pr.ColorID = co.ID;");
+        INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.Discontinued = :status;");
+        $stmt->bindParam(':status', $status);
         $stmt->execute();
         return $result = $stmt->fetchAll();
     }
 
-    function getProduct($categoryName)
+    function getAllProducts()
     {
-        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Discontinued 
-        FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID 
-        INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE ca.Name = ':name';");
-
-        $stmt->bindParam(':name', $categoryName);
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co ON pr.ColorID = co.ID 
+        ORDER BY pr.ID ASC;");
         $stmt->execute();
         return $result = $stmt->fetchAll();
+    }
+
+    function getProduct($productID)
+    {
+        // $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Discontinued 
+        // FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID 
+        // INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.ID = ':id';");
+
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Description, 
+        pr.Balance, pr.Discontinued FROM `products` AS pr 
+        INNER JOIN categories AS ca ON pr.CategoryID = ca.ID 
+        INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.ID = :id;");
+
+        $stmt->bindParam(':id', $productID);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
     }
 
     function setColorDB($color)
@@ -83,6 +100,24 @@ class ProductDB extends PDOHandler
         echo $msg = "SUCCESS! New product added to DB!";
     }
 
+    function updateProductDB($id, $name, $category, $color, $description, $price, $balance, $discontinued)
+    {
+        // $stmt = $this->Connect()->prepare("INSERT INTO products (Name, CategoryID, ColorID, Description, Price, Balance, Discontinued) 
+        // VALUES (:name, :category, :color, :description, :price, :balance, :discontinued)");
+        $stmt = $this->Connect()->prepare("UPDATE `products` SET `Name`=':name', `CategoryID`=':category',`ColorID`=':color',
+        `Description`=':description',`Price`='price',`Balance`='balance',`Discontinued`=':discontinued' WHERE ID=':id'");
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":category", $category);
+        $stmt->bindParam(":color", $color);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":balance", $balance);
+        $stmt->bindParam(":discontinued", $discontinued);
+        $stmt->execute();
+        echo $msg = "SUCCESS! Product updated in DB!";
+    }
+
 
     function getColorID($colorName)
     {
@@ -106,6 +141,10 @@ class ProductDB extends PDOHandler
     }
 
     function removeProduct(){
+
+    }
+
+    function updateProduct(){
 
     }
 
