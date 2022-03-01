@@ -26,6 +26,11 @@ body{
 
 }
 
+.ShowAll{
+  display:table;
+  padding: 10px;
+}
+
 .flex-row{
   display: flex;
   flex-direction: row;
@@ -38,8 +43,13 @@ body{
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 10px;
 }
-
+input {
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
 .AdminProducts {
   display:flex;
   flex-direction: row;
@@ -51,9 +61,10 @@ body{
 .UserSection{
   font-size: 16px;
   border: 1px solid black;
-  height: 200px;
+  height: 300px;
   background-color: whitesmoke;
 }
+
 
 h2,h3 {
   text-align: center;

@@ -9,7 +9,7 @@ class CartModel extends PDOHandler
 
     function GetProductsSelective($productsIDArray)
     {
-    
+        $where = "";
         for ($i=0; $i < Count($productsIDArray); $i++) {
             if ($i > 0) {
                 $where .= ' OR pr.ID = ?';
@@ -18,7 +18,6 @@ class CartModel extends PDOHandler
             {
                 $where = 'pr.ID = ?';
             } 
-            
         }
         
 

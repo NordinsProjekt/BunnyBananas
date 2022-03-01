@@ -23,7 +23,6 @@ class CartController {
     }
 
     function UpdateProductInCart($productID, $amount){
-
         if ($amount == 0) {
             unset($_SESSION['ShoppingCart'][$productID]);
             if (count($_SESSION['ShoppingCart']) == 0) {
@@ -34,14 +33,9 @@ class CartController {
         {
             $_SESSION['ShoppingCart'][$productID][0] = $amount; 
         }
-        
-
     }
-
-
     //Tar in en array av HELA varukorgen och uppdaterar den.
     function UpdateCart($wholeCart){
-
     }
 
     function listCart(){
@@ -58,12 +52,9 @@ class CartController {
         {
             return 0;
         }
-        
-        
     }
 
     function Checkout(){
-
         unset($_SESSION['ShoppingCart']); //empty cart
     }
 
@@ -79,24 +70,19 @@ class CartController {
         } else {
             return 0;
         }
-
     }
 
     function CurrentAmountOfItems(){
         if (isset($_SESSION['ShoppingCart'])) {
             $items = 0;
             foreach($_SESSION['ShoppingCart'] as $productID){ 
-                
                 $items += $productID[0];
-        
             }
             return $items;
         } else {
             return 0;
         }
-
     }
- 
 }
 
 ?>

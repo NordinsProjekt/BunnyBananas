@@ -65,25 +65,7 @@ switch ($_GET['url']) {
         require_once __DIR__ . '/views/upload.php';
         break;
     default:
-    require_once __DIR__ . '/views/index.php';
+        header("Location: /banan");
         break;
 }
-
-// function parseUrl()
-// {
-//     //Löser splittningen
-//     //löser inte riktiga folder och filer.
-//     if (isset($_GET['url'])) {
-//         //$url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-//         //var_dump($url);
-//         $url = $_GET['url'];
-//         if ($url == NULL) {
-//             return array("");
-//         }
-//         return $url;
-//     }
-//     else {
-//         return array("");
-//     }
-// }
 ?>

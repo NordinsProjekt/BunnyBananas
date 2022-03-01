@@ -1,8 +1,8 @@
 <div class="AdminUserSection">
 <details>
-<summary>Add User</summary>
+<summary>Skapa Användare</summary>
     <section class="UserSection" id="AddUser">
-        <h2>Add User</h2>
+        <h2>Skapa Användare</h2>
            <form method="post">
             <!--<label for="txtUsername" id ="lblUsername" class="">Username: </label>-->
             <input type="text" id ="txtUsername" name="txtUsername" placeholder="Användarnamn" class="userInput" value="" size="30" /><br />
@@ -19,26 +19,26 @@
                 }
                 ?>
             </select><br />
-            <input type="submit" id="add" class="addButton" name="addUser" value="Lägg till" />
+            <input type="submit" id="add" class="addButton" name="addUser" value="Skapa" />
             <br />
         </form>
     </details>
     </section>
 
     <details>
-        <summary>Add Group</summary>
+        <summary>Skapa Grupp</summary>
         <section class="UserSection" id="CreateGroup">
-            <h2>Add Group</h2>
+            <h2>Skapa Grupp</h2>
                 <form method="post">
                     <input type="text" id ="txtGroupname" name="txtGroupname" placeholder="Grupp namn" class="userInput" value="" size="10" /><br />
-                    <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Lägg till" />
+                    <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Skapa" />
                 </form>
         </section>
     </details>
     <details>
-        <summary>Delete Group</summary>
+        <summary>Radera Grupp</summary>
         <section class="UserSection" id="DeleteGroup">
-            <h2>Delete Group</h2>
+            <h2>Radera Grupp</h2>
                 <form method="post">
                     <label for="txtGroupname" id ="lblGroupname" placeholder="Grupp namn" class="">Group name: </label>
                     <select name="selGroups" id="selGroups">
@@ -49,7 +49,7 @@
                     }
                     ?>
                     </select><br />
-                    <input type="submit" id="deleteGroup" class="deleteGroupButton" name="deleteGroup" value="Tabort" />
+                    <input type="submit" id="deleteGroup" class="deleteGroupButton" name="deleteGroup" value="Radera" />
                 </form>
         </section>
     </details>

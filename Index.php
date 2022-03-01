@@ -7,6 +7,10 @@ require_once('Products.controller.php');
 require_once('Cart.Controller.php');
 require_once('triggers.php');
 require_once('buildHTML.php');
+if (!isset($_SESSION['Message']))
+{
+    $_SESSION['Message'] = "";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -55,11 +55,11 @@ function UploadFile($productId)
 function ShowAllUsers(array $arr)
 {
     $page = "<section class='ShowAllUsers'><h2>All Users in webshop</h2>";
-    $page .="<table><thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Active</th></tr></thead>";
+    $page .="<table><thead><tr><th>ID</th><th>Rättighet</th><th>Användarnamn</th><th>Email</th><th>Aktivt</th></tr></thead>";
     foreach ($arr as $row => $user) 
     {
         $page .= "<tr>";
-        $page .= "<td>" . $user['ID'] . "</td><td>". $user['Username'] . "</td><td>" . $user['Email'] . "</td>";
+        $page .= "<td>" . $user['ID'] . "</td><td>" . $user['GroupName'] . "</td> <td>". $user['Username'] . "</td><td>" . $user['Email'] . "</td>";
         if ($user['Disable'] == 0)
         {
             $page .= "<td>Yes</td>";
