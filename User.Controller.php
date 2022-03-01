@@ -10,7 +10,7 @@ class UserController
     function VerifyUser($username,$password)
     {
         $db = new UserModel();
-        $row = $db->Login($username);
+        $row = $db->GetUserByName($username);
         //Kontrollerar lösenordet och att det är rätt användarnamn
         if (password_verify($password,$row['Password']) && $username === $row['Username'])
         {
@@ -141,6 +141,22 @@ class UserController
         if ($db->CheckIfGroupExist($groupName)['row'] == 0)
         {
             $db->SetGroup($groupName);
+        }
+    }
+    function AddToReklam($userId)
+    {
+        $db = new UserModel();
+        if ($db->GetReklam($userId)['row'] == 0)
+        {
+            $db->SetReklam($userId);
+        }
+    }
+    function RemoveReklam($userId)
+    {
+        $db = new UserModel();
+        if ($db->GetReklam($userId)['row'] == 1)
+        {
+            $db->DeleteReklam($userId);
         }
     }
 

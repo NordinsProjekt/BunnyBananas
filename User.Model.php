@@ -15,7 +15,7 @@ class UserModel extends PDOHandler
       return $stmt->fetchAll();       
     }
 
-    function GetUser($id)
+    function GetUserById($id)
     {
       $stmt = $this->Connect()->prepare('SELECT * FROM users WHERE ID=:id;');
       $stmt->bindParam(':id',$id);
@@ -105,6 +105,14 @@ class UserModel extends PDOHandler
       return $stmt->fetch();
     }
 
+    function GetReklam($userId)
+    {
+      $stmt = $this->Connect()->prepare('SELECT COUNT(ID) as row FROM reklam WHERE UserID =:userId;');
+      $stmt->bindParam(':userId',$userId);
+      $stmt->execute();
+      return $stmt->fetch();  
+    }
+
     function SetGroupToUser($idArray)
     {
       $stmt = $this->Connect()->prepare('INSERT INTO usergroups (GroupID,UserID) VALUES (?,?);');
@@ -120,7 +128,7 @@ class UserModel extends PDOHandler
       return $stmt->fetch();    
     }
 
-    function Login($username)
+    function GetUserByName($username)
     {
         $stmt = $this->Connect()->prepare('SELECT * FROM users WHERE username=:username');
         $stmt->bindParam(':username',$username,PDO::PARAM_STR);
