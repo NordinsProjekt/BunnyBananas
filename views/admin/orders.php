@@ -1,15 +1,15 @@
 <?php $orderController = new OrderController();?>
 <details>
-    <summary>Show All Orders</summary>
-<h3>All orders:</h3>
+    <summary>Visa Alla Beställningar</summary>
+<h3>Alla beställningar:</h3>
 <table>
 <thead>
     <tr>
-        <th>OrderID</th>
-        <th>UserID</th>
-        <th>Date</th>
-        <th>Sent</th>
-        <th>Delivered</th>
+        <th>Order ID</th>
+        <th>Användar ID</th>
+        <th>Datum</th>
+        <th>Skickat</th>
+        <th>Levererat</th>
 
     </tr>
 </thead>
@@ -33,16 +33,16 @@
     <table>
     <thead>
     <tr>
-        <th>OrderID</th>
-        <th>UserID</th>
-        <th>ProductName</th>
-        <th>Color</th>
-        <th>Category</th>
-        <th>Amount</th>
-        <th>Price</th>
-        <th>Discount</th>
-        <th>Sent</th>
-        <th>Delivered</th>
+        <th>Order ID</th>
+        <th>Användar ID</th>
+        <th>Produktnamn</th>
+        <th>Färg</th>
+        <th>Kategori</th>
+        <th>Antal</th>
+        <th>Pris</th>
+        <th>Rabatt</th>
+        <th>Skickat</th>
+        <th>Levererat</th>
     </tr>
 </thead>
 <tbody>

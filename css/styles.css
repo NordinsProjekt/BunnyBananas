@@ -49,6 +49,7 @@ input {
   padding: 5px;
   border-radius: 5px;
   margin: 5px;
+  font-size: 24px;
 }
 .AdminProducts {
   display:flex;
@@ -58,13 +59,21 @@ input {
   gap: 10px;
 }
 
-.UserSection{
-  font-size: 16px;
+.UserSection , .ProductSection{
   border: 1px solid black;
-  height: 300px;
+  height: auto;
   background-color: whitesmoke;
 }
-
+select{
+  font-size: 24px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+label{
+  font-size: 24px;
+  margin: 5px;
+}
 
 h2,h3 {
   text-align: center;
@@ -75,6 +84,54 @@ h2,h3 {
 form {
   padding: 5px;
 }
+input[type=checkbox]{
+  height: 20px;
+  width: 20px;
+}
+input[type=submit]:hover{
+  background-color: lightgray;
+}
+a{
+  font-size: 24px;
+}
+a:link.LinkHeader, a:visited.LinkHeader {
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid black;
+}
+
+a:hover.LinkHeader, a:active.LinkHeader {
+  background-color: lightgray;
+}
+p{
+  font-size:24px;
+}
+details{
+  font-size: 24px;
+}
+
+textarea{
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 24px;
+}
+.loginButton{
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 24px;
+}
+.LinkHeader{
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 24px;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -86,6 +143,7 @@ thead{
   padding: 5px;
 }
 th{
+  font-size: 24px;
   text-align: left;
   background-color: lightgrey;
   color: black;
@@ -93,6 +151,7 @@ th{
   padding: 5px;
 }
 td{
+  font-size: 24px;
   background-color: whitesmoke;
   border: 1px solid black;
   padding: 5px;

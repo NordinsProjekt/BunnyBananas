@@ -11,10 +11,10 @@ require_once('buildHTML.php');
 if (isset($_SESSION['is_logged_in'])) 
 {
     echo LogoutForm();
-    echo "<a href='./profile'>Profile</a>";
+    echo "<a class='LinkHeader' href='./profile'>Profil</a>";
     if ($userCtrl->VerifyUserAdmin()) {
 
-        echo "<a href='./admin'>Admin</a>";
+        echo "<a class='LinkHeader' href='./admin'>Adminpanelen</a>";
     }
 }
 else 
@@ -27,9 +27,9 @@ else
 <a href="./"><img src="img/sinus-logo-landscape -  small.png"></a>
 
 <nav class="flex-row">
-    <a href="./">Hem</a>
+    <a class='LinkHeader' href="./">Hem</a>
     
-    <a href="./cart">Kundvagn</a>
+    <a class='LinkHeader' href="./cart">Kundkorg</a>
 
     <p><?php echo $cartCtrl->CurrentSum(); ?>:- (<?php echo $cartCtrl->CurrentAmountOfItems(); ?>)</p>
 </nav>
