@@ -55,7 +55,7 @@ function UploadFile($productId)
 function ShowAllUsers(array $arr)
 {
     $page = "<section class='ShowAllUsers'><h2>All Users in webshop</h2>";
-    $page .="<table><tr><th>ID</th><th>Username</th><th>Email</th><th>Active</th></tr>";
+    $page .="<table><thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Active</th></tr></thead>";
     foreach ($arr as $row => $user) 
     {
         $page .= "<tr>";
