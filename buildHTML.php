@@ -33,6 +33,28 @@ function UploadFile($productId)
     return $text;
 }
 
+function ShowAllUsers(array $arr)
+{
+    $page = "<section class='ShowAllUsers'><h2>All Users in Oasis</h2>";
+    $page .="<table><tr><th>ID</th><th>Username</th><th>Email</th>Active<th></th></tr>";
+    foreach ($arr as $row => $user) 
+    {
+        $page .= "<tr>";
+        $page .= "<td>" . $user['ID'] . "</td><td>". $user['Username'] . "</td><td>" . $user['Email'] . "</td>";
+        if ($user['disable'] == 0)
+        {
+            $page .= "<td>Yes</td>";
+        }
+        else
+        {
+            $page .= "<td>No</td>";
+        }
+        $page .= "</tr>";
+    }
+    $page .="</table></section>";
+    return $page;
+}
+
 function ProductCard($productID, $name, $category, $color,$price, $Balance){
 
     $text = "";

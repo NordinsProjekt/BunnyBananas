@@ -7,12 +7,14 @@ class UserModel extends PDOHandler
         
     }
 
-    function GetAllUsers()
+    function GetAllUsersWithGroups()
     {
       //Prepare kräver execute()
-      $stmt = $this->Connect()->prepare('SELECT id,username as name,email FROM users;');
+      $stmt = $this->Connect()->prepare('SELECT ID, groups.GroupName,Username, Email, Disable FROM users
+      INNER JOIN usergroups ON users.GroupID = usergroups.GroupID 
+      INNER JOIN groups ON usergroups.GroupID = groups.ID;');
       $stmt->execute();
-      return $stmt->fetchAll();       
+      return $stmt->fetchAll();
     }
 
     function GetUserById($id)
@@ -87,6 +89,14 @@ class UserModel extends PDOHandler
         $param = [':gruppnamn'=>$gruppnamn];
         $stmt->execute($param);
         return true;
+    }
+
+    function DeleteGroup($groupId)
+    {
+      $stmt = $this->Connect()->prepare("DELETE FROM groups WHERE ID=:groupId");
+      $stmt->bindParam(':groupId',$groupId);
+      $stmt->execute();
+      return $stmt->fetch();
     }
 
     function SetReklam($userId)

@@ -102,6 +102,12 @@ class UserController
         }
         return false;
     }
+    function ListAllUsers()
+    {
+        $db = new UserModel();
+        $arr = $db->GetAllUsersWithGroups();
+        return $arr;
+    }
     
     function ListAllUserGroups()
     {
@@ -143,6 +149,27 @@ class UserController
             $db->SetGroup($groupName);
         }
     }
+
+    function RemoveGroup(int $groupId)
+    {
+        if ($groupId > 0)
+        {
+            $db = new UserModel();
+            try
+            {
+                $db->DeleteGroup($groupId);
+            }
+            catch(\Throwable $t)
+            {
+                $_SESSION['Message'] = $t->getMessage();
+            }
+        }
+        else
+        {
+            $_SESSION['Message'] = "Något var fel med group index";
+        }
+    }
+
     function AddToReklam($userId)
     {
         $db = new UserModel();
