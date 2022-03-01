@@ -23,22 +23,6 @@ class ProductController
     {
         $model = new ProductDB();
         return $model->getAllColors();
-
-        // echo "<h2>Colors</h2>";
-        // echo "<table>";
-        //     echo "<tr>";
-        //         echo "<th>ID</th>";
-        //         echo "<th>Name</th>";
-        //     echo "</tr>";
-
-        // foreach ($arr as $row)
-        // {
-        //     echo "<tr>";
-        //         echo "<td>" . $row["ID"]. "</td>";
-        //         echo "<td>" . $row["Name"]. "</td>";
-        //     echo "</tr>";
-        // }
-        // echo "</table>";
     }
 
     function listAllCategories()
@@ -51,38 +35,38 @@ class ProductController
     {
         $model = new ProductDB();
         $arr = $model->getAllColors();
-        echo "Input: ".$color." [UNWASHED]"."<br>";
-        echo "Input: ".$this->washInput($color)." [WASHED]";
-        echo "<br>"."-------------------"."<br>";
-        echo $this->checkUserInput($color, $arr);
-        echo "<br>"."<br>"."<br>";
         $input = $this->checkUserInput($color, $arr);
-        //$model->setColorDB($input);
+        $model->setColorDB($input);
     }
 
     function insertCategory($category)
     {
         $model = new ProductDB();
         $arr = $model->getAllCategories();
-        echo "Input: ".$category." [UNWASHED]"."<br>";
-        echo "Input: ".$this->washInput($category)." [WASHED]";
-        echo "<br>"."-------------------"."<br>";
-        echo $this->checkUserInput($category, $arr);
-        echo "<br>"."<br>"."<br>";
+        // echo "Input: ".$category." [UNWASHED]"."<br>";
+        // echo "Input: ".$this->washInput($category)." [WASHED]";
+        // echo "<br>"."-------------------"."<br>";
+        // echo $this->checkUserInput($category, $arr);
+        // echo "<br>"."<br>"."<br>";
         $input = $this->checkUserInput($category, $arr);
-        //$model->setCategoryDB($input);
+        $model->setCategoryDB($input);
     }
 
     function insertProduct($name, $category, $color, $description, $price, $balance)
     {
         $model = new ProductDB();
         $colorID = $model->getColorID($color);
-        $categoryID = $model->getColorID($category);
+        $categoryID = $model->getCategoryID($category);
+        $model->setNewProductDB($name, $categoryID, $colorID, $description, $price, $balance);
         
-        $model->setNewProductDB($name, $category, $colorID, $description, $price, $balance);
-        
-        
-        
+        //Lägg till inputhantering!
+        // -Allt måste vara ifyllt?
+        // -Namn [OK]
+        // -Category [not null]
+        // -Color [not null]
+        // -Description [OK med null/tom?]
+        // -Price [is_numeric($price)] Måste vara siffor! Maxvärde?
+
         // if ($balance >= 0 || $balance <= 100 || is_numeric($price))
         // {
         // }

@@ -4,7 +4,7 @@ require_once('triggers.php');
 ?>
 <html>
 <head>
-    <link rel="stylesheet" media="all" href="/banan/css/styles.css" />
+    <link rel="stylesheet" media="all" href="/BunnyBananas/GitHub/css/styles.css" />
 </head>
 <body>
 <header>

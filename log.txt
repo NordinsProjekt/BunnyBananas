@@ -60,7 +60,29 @@ Markus
  - Skapa user i adminpanelen kan välja användargrupp och lägga till nya grupper.
  - Vanlig person blir medlem i user group.
 
+# 28/2
 
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
+
+Staffan
+ - Adderat rader som saknades i orders-tabellen
+ - Varukorg i sessions
+ - Checkout som sparar order i databasen
+ - Admin -> lista ordrar och enskild order
+ - Productcards med add to cart funktionallitet
+
+Markus
+ - Ladda upp bilder funktionalitet
+ - Reparearat router
+ - Uppdateringar på router
+ - Hjälpt till vid felsökningar samt optimering av flertalet metoder
+ - Views för User, Order, Products.
+ - Checkout som sparar order i databasen
+
+Lukas
+ - Fortsatt jobba med kopplingen mellan PHP och databasen i produktdelen (admin)
+ - Byggt ut model med fler querys etc.
 
 
   

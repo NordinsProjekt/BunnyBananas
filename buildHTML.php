@@ -36,12 +36,33 @@ function UploadFile($productId)
 function ProductCard($productID, $name, $category, $color,$price, $Balance){
 
     $text = "";
+    
+    $dir = 'img/products/'.$productID;
+
+    if (file_exists($dir)) {
+        $imagePaths = scandir($dir);
+    
+        if (isset($imagePaths)){
+            foreach ($imagePaths as $img) {
+                if ($img != '.' && $img != '..') {
+                    $text .= "<img src='img/products/".$productID."/".$img."' height='150px'>";
+                }
+                
+            }
+        } 
+    }
+    $text .= "<br>";
+
+
+
+    
     $text .= "$name<br>";
     $text .= "$category<br>";
     $text .= "$color<br>";
     $text .= "$price:-<br>";
     $text .= "<form action='' method='post'>";
     $text .= "<input type='Hidden' name='productID' value='$productID'/>";
+    $text .= "<input type='Hidden' name='price' value='$price'/>";
     $text .= "<input type='number' name='amount' value='1' min='1'max='20'/>";
     $text .= "<input type='Hidden' name='AddToCart' value='AddToCart'/>";
     $text .= "<input type='submit' id='submit' name='submit' value='Add To Cart' />";
@@ -52,16 +73,44 @@ function ProductCard($productID, $name, $category, $color,$price, $Balance){
 
 function CartProduct($productID, $name, $category, $color, $price, $Balance){
 
+
     $text = "";
+    
+    $dir = 'img/products/'.$productID;
+
+    if (file_exists($dir)) {
+        $imagePaths = scandir($dir);
+    
+        if (isset($imagePaths)){
+            foreach ($imagePaths as $img) {
+                if ($img != '.' && $img != '..') {
+                    $text .= "<img src='img/products/".$productID."/".$img."' height='50px'>";
+                }
+            }
+        } 
+    }
+    $text .= "<br>";
+
+
+
     $text .= "$name<br>";
     $text .= "$category<br>";
     $text .= "$color<br>";
-    $text .= "$price:-<br>";
+    $text .= $_SESSION['ShoppingCart'][$productID][1].":-<br>";
     $text .= "<form action='' method='post'>";
     $text .= "<input type='Hidden' name='productID' value='$productID'/>";
-    $text .= $_SESSION['ShoppingCart'][$productID]."    <input type='number' name='amount' value='".$_SESSION['ShoppingCart'][$productID]."' min='0' max='99'/>";
+    $text .= $_SESSION['ShoppingCart'][$productID][0]."    <input type='number' name='amount' value='".$_SESSION['ShoppingCart'][$productID][0]."' min='0' max='99'/>";
     $text .= "<input type='Hidden' name='updateCart' value='updateCart'/>";
+    $text .= "<br>";
     $text .= "<input type='submit' id='submit' name='submit' value='Update' />";
+    $text .= "</form>";
+    
+    //deletebutton
+    $text .= "<form action='' method='post'>";
+    $text .= "<input type='Hidden' name='productID' value='$productID'/>";
+    $text .= "<input type='Hidden' name='amount' value='0'/>";
+    $text .= "<input type='Hidden' name='updateCart' value='updateCart'/>";
+    $text .= "<input type='submit' id='submit' name='submit' value='Delete' />";
     $text .= "</form>";
     return $text;
 

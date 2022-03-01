@@ -48,6 +48,31 @@ class OrderModel extends PDOHandler
 
     }
 
+    Function SetOrder($order, $orderRows){
+      $sql = 'INSERT INTO orders (UserID, Date, Firstname, Lastname, Adress1, Adress2, Postort, Postnummer, Land) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+      $dbh = $this->Connect();
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->execute($order);
+
+      foreach ($orderRows as $row){
+        $this->SetOrderRows($dbh->lastInsertId(), $row);
+      }
+
+    }
+
+    private Function SetOrderRows($orderID, $orderRow){
+      $sql = 'INSERT INTO orderrows (ProductID, Price, Amount, Discount, OrderID) VALUES (?, ?, ?, ?, ?)';
+
+      $orderRow[] = $orderID;
+
+      
+      $stmt = $this->Connect()->prepare($sql);
+
+      $stmt->execute($orderRow);
+    }
+
 
 }
 

@@ -29,10 +29,10 @@
 <h3>What do you want to do?</h3>
 
 <ul style="list-style: none">
-    <li><a href="?module=newProduct">Create new product</a></li>
+    <li><a href="?module=newProduct">Create new product [DONE]</a></li>
     <li><a href="?module=newColor">Add new color [DONE]</a></li>
     <li><a href="?module=newCategory">Add new category [DONE]</a></li>
-    <li><a href="?module=newPrice">Change product price</a></li>
+    <li><a href="?module=newPrice">Change product</a></li>
     <li><a href="?module=discontinueProduct">Discontinue product</a></li>
 </ul>
 
@@ -92,21 +92,23 @@ if (isset($_GET['module']))
             break;
 
         case 'newPrice': //Måste hämta alla produkter istället för kategorier.
-            echo "<h3>Change product price</h3>";
-            echo "<form action='#'>";
-                echo "<label for='categories'><b>Choose category</b></label><br>";
-                echo "<select name='categories' id='categories'>";
-                foreach ($controller->listAllCategories() as $row){
-                    echo "<option value='category'>".$row["Name"]."</option>";
-                } echo "</select>"."<br><br>";
-                echo "<label for='new-price'><b>Add new price</b></label><br>";
-                echo "<input type='text' id='new-price' name='new-price' placeholder='Price'>";
-                echo "<input type='submit' name='submit-price' value='Execute'>";
-            echo "</form>";
+            echo "<h3>Change product</h3>";
+            // echo "<form action='#'>";
+            //     echo "<label for='categories'><b>Choose category</b></label><br>";
+            //     echo "<select name='categories' id='categories'>";
+            //     foreach ($controller->listAllCategories() as $row){
+            //         echo "<option value='category'>".$row["Name"]."</option>";
+            //     } echo "</select>"."<br><br>";
+            //     echo "<label for='new-price'><b>Add new price</b></label><br>";
+            //     echo "<input type='text' id='new-price' name='new-price' placeholder='Price'>";
+            //     echo "<input type='submit' name='submit-price' value='Execute'>";
+            // echo "</form>";
+            
             break;
 
         case 'discontinueProduct':
             echo "<h3>Remove product</h3>";
+            //echo "<li><a href='#'>Choose category</a></li>";
             echo "Delete product here";
             echo "<br>";
             echo "Checkbox for security";
@@ -126,11 +128,11 @@ function addNewProductToDB()
     $color = "";
     $description = "";
     $price = "";
-    $category = "";
     $balance = "";
 
     if (isset($_POST['submit-product']))
     {
+        echo "---INSIDE View---"."<br>";
         if (isset($_POST['new-product']))
         {
             $name = $_POST['new-product'];
