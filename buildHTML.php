@@ -3,10 +3,8 @@ function LoginForm()
 {
     $text = "";
     $text .= "<form method='post'>";
-    $text .= "<label for='txtUsername' id ='lblUsername' class=''>Username: </label>";
-    $text .= "<input type='text' id ='txtUsername' name='txtUsername' class='userInput' value='' size='10' />";
-    $text .= "<label for='txtPassword' id ='lblPassword' class=''>Password: </label>";
-    $text .= "<input type='password' id ='txtPassword' name='txtPassword' class='userInput' value='' size='10' />";
+    $text .= "<input type='text' id ='txtUsername' placeholder='Användarnamn' name='txtUsername' class='userInput' value='' size='10' />";
+    $text .= "<input type='password' id ='txtPassword' placeholder='Lösenord' name='txtPassword' class='userInput' value='' size='10' />";
     $text .= "<input type='submit' id='login' class='loginButton' name='login' value='Login' />";
     $text .= "</form>";
     $text .= "<a class='LinkHeader' href='./signup'>Skapa konto</a>";
@@ -35,7 +33,7 @@ function LogoutForm()
 {
     $text = "";
     $text .= "<form method='post'>";
-    $text .= "<input type='submit' id='logout' class='logoutButton' name='logout' value='Logout' />";
+    $text .= "<input type='submit' id='logout' class='logoutButton' name='logout' value='Logga ut' />";
     $text .= "</form>";
     return $text;
 }
