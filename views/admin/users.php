@@ -20,25 +20,35 @@
             <br />
         </form>
         </section>
-        <section class="Session">
-            <?php 
-            echo "Session var_dump <br />";
-            var_dump($_SESSION);
-            $controller = new UserController();
-
-            echo "<br />Is user Admin? " . $controller->VerifyUserAdmin();
-            ?>
-        </section>
         <section class="CreateGroup">
-            <h2>Add Group</h2>
+        <h2>Add Group</h2>
             <form method="post">
                 <label for="txtGroupname" id ="lblGroupname" class="">Group name: </label>
                 <input type="text" id ="txtGroupname" name="txtGroupname" class="userInput" value="" size="10" /><br />
                 <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Add Group" />
             </form>
+
+                
+            </form>
+        </section>
+        <section class="DeleteGroup">
+        <h2>Delete Group</h2>
+            <form method="post">
+                <label for="txtGroupname" id ="lblGroupname" class="">Group name: </label>
+                <select name="selGroups" id="selGroups">
+                <?php 
+                $arr = $controller->ListAllUserGroups();
+                foreach ($arr as $key => $value) {
+                    echo "<option value='".$value['ID']."'>". $value["name"] . "</option>";
+                }
+                ?>
+                </select><br />
+                <input type="submit" id="deleteGroup" class="deleteGroupButton" name="deleteGroup" value="Delete Group" />
+            </form>
         </section>
         <section class="AllUsers">
-            <php 
-            
-            ?>
+                <?php 
+                    $arr = $controller->GetAllUsersWithGroups();
+                    echo ShowAllUsers($arr);
+                ?>
         </section>

@@ -30,6 +30,7 @@ switch (parseUrl()) {
             require_once __DIR__ . '/views/index.php';
         }
         break;
+        
     case 'profile':
         if (key_exists('is_logged_in', $_SESSION)) {
             require_once __DIR__ . '/views/profile.php';

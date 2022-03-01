@@ -84,6 +84,12 @@ if (key_exists('addGroup',$_POST))
     $controller = new UserController();
     $controller->AddGroup($groupName);
 }
+if (key_exists('deleteGroup',$_POST))
+{
+    $groupId = $_POST['selGroups'];
+    $controller = new UserController();
+    $controller->RemoveGroup($groupId);
+}
 
 if(key_exists('addImage',$_POST) && key_exists('productId',$_POST)) 
 {
