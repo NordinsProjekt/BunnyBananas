@@ -18,7 +18,7 @@
 <?php foreach($orderController->ListAllOrders() as $value){?>
 
     <tr>
-        <td><a href="?orderID=<?php echo $value['ID']?>"><?php echo $value['ID']?></a></td>
+        <td><a href="?admin=orders&orderID=<?php echo $value['ID']?>"><?php echo $value['ID']?></a></td>
         <td><?php echo $value['UserID']?></td>
         <td><?php echo $value['Date']?></td>
         <td><?php echo $value['Sent']?></td>
