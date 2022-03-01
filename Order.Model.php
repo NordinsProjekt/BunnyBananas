@@ -25,6 +25,19 @@ class OrderModel extends PDOHandler
       return $stmt->fetchAll();
     }
 
+    function GetLastOrderByUserId($userId)
+    {
+      $sql = 'SELECT ID FROM orders
+              WHERE UserID = :userId
+              ORDER BY ID DESC LIMIT 1;';
+
+      $stmt = $this->Connect()->prepare($sql);
+      $stmt->bindParam(':userId',$userId);
+      $stmt->execute();
+      return $stmt->fetch()['ID'];
+    }
+
+    
     Function GetSpecificOrder($orderID){
 
         $sql = 'SELECT orows.ProductID, o.ID, o.UserID, p.Name as ProductName, o.Date, orows.ProductID, col.Name as Color, c.Name as Category, orows.Amount, orows.Price, orows.Discount, o.Sent, o.Delivered

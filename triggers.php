@@ -127,10 +127,13 @@ if (isset($_POST['updateCart'])) {
 //ORDER TRIGGERS!
 Require_once('Order.Controller.php');
 
-if (isset($_POST['betala'])) {
+if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $order = new OrderController();
+    $cart = new CartController();
 
     $order->SendOrder();
+    $cart->Checkout();
+    
 }
 
 

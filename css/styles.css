@@ -53,4 +53,66 @@ td{
   background-color: whitesmoke;
   border: 1px solid black;
   padding: 5px;
+    background-color: rgb(240, 240, 240);
+}
+.main{
+  justify-content: center;
+  display:flex;
+  flex-wrap: wrap;
+  
+}
+.ProductCard {
+  padding: 15px;
+  margin: 15px;
+  height: 290px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  box-shadow: 1px 1px 1px grey;
+}
+
+.ProductCard > p{
+  margin: 0;
+  padding: 0;
+}
+
+.ProductCard > img{  
+  margin-bottom: auto;
+  padding: 0;
+}
+
+.ProductCard > .buybox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+} 
+
+
+.ProductCard > .buybox > p{
+  font-size: 24px;
+  margin-right: 10px;
+} 
+
+.ProductCard > .buybox > form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+} 
+
+.inputnumber{
+  width: 30px;
+
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
 }

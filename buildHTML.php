@@ -77,7 +77,8 @@ function ShowAllUsers(array $arr)
 function ProductCard($productID, $name, $category, $color,$price, $Balance){
 
     $text = "";
-    
+    $text .= "<div class='ProductCard'>";
+
     $dir = 'img/products/'.$productID;
 
     if (file_exists($dir)) {
@@ -87,27 +88,29 @@ function ProductCard($productID, $name, $category, $color,$price, $Balance){
             foreach ($imagePaths as $img) {
                 if ($img != '.' && $img != '..') {
                     $text .= "<img src='img/products/".$productID."/".$img."' height='150px'>";
+                    break;
                 }
                 
             }
         } 
     }
-    $text .= "<br>";
-
-
-
-    
-    $text .= "$name<br>";
-    $text .= "$category<br>";
-    $text .= "$color<br>";
-    $text .= "$price:-<br>";
+     
+    $text .= "<p>$name</p>";
+    $text .= "<p>$category</p>";
+    $text .= "<p>$color</p>";
+    $text .= "<div class='buybox'>";
+    $text .= "<p>$price:-</p>";
     $text .= "<form action='' method='post'>";
     $text .= "<input type='Hidden' name='productID' value='$productID'/>";
     $text .= "<input type='Hidden' name='price' value='$price'/>";
-    $text .= "<input type='number' name='amount' value='1' min='1'max='20'/>";
+    $text .= "<input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>";
     $text .= "<input type='Hidden' name='AddToCart' value='AddToCart'/>";
-    $text .= "<input type='submit' id='submit' name='submit' value='Add To Cart' />";
+    $text .= "<input type='submit' id='submit' name='submit' value='KÖP!' />";
+    $text .= "</div>";
     $text .= "</form>";
+
+    $text .= "</div>";
+
     return $text;
 
 }

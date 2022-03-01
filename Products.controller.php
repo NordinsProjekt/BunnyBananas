@@ -14,9 +14,20 @@ class ProductController
         return $model->getAllProducts();
     }
 
-    function listProduct()
+    function listProducts($status)
     {
+        $model = new ProductDB();
+        return $model->getProducts($status);
+    }
 
+    function listProduct($productID)
+    {
+        $model = new ProductDB();
+        $arr = $model->getProduct($productID);
+        // echo "<pre>";
+        // print_r($arr);
+        // echo "</pre>";
+        return $arr;
     }
 
     function listAllColors()
@@ -66,14 +77,14 @@ class ProductController
         // -Color [not null]
         // -Description [OK med null/tom?]
         // -Price [is_numeric($price)] Måste vara siffor! Maxvärde?
+    }
 
-        // if ($balance >= 0 || $balance <= 100 || is_numeric($price))
-        // {
-        // }
-        // else {
-        //     //$msg = "Description can't be NULL and balance must be between 0-100."."<br>"."Please try again!";
-        //     $msg = "Oops, something went wrong";
-        // }
+    function insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontinued)
+    {
+        $model = new ProductDB();
+        $colorID = $model->getColorID($color);
+        $categoryID = $model->getCategoryID($category);
+        $model->updateProductDB($id, $name, $categoryID, $colorID, $description, $price, $balance, $discontinued);
     }
 
     function washInput($input) //"Tvätta" användarinput på specialtecken och mellanslag. Ska returnera den tvättade inputen!
