@@ -63,9 +63,8 @@ class CartController {
             $msg .= $product['ProductID'].'|'.$product['ProductName'].'|'.$product['Category'].'|'.$product['Color'].'|'.$product['Price'].'|'.$product['Amount'].'//';
         }
 
-        //echo var_dump($msg);
-        require_once('API.StaffanController.php');
-        SendCheckoutMail($_SESSION['email'], $msg);
+        SendCheckoutMail($_SESSION['email'], $msg); //pratar med API och mailar till kunden
+
         unset($_SESSION['ShoppingCart']); //empty cart
     }
 
