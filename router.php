@@ -65,7 +65,7 @@ switch ($_GET['url']) {
         require_once __DIR__ . '/views/upload.php';
         break;
     default:
-        header("Location: /banan");
+        header("Location: /bunnybananas/github/");
         break;
 }
 ?>

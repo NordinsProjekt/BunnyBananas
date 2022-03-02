@@ -10,7 +10,7 @@ class ProductController
 
     }
 
-    function listAllProducts()
+    function listAllProducts() //Visar alla produkter oavsett status
     {
         $model = new ProductDB();
         return $model->getAllProducts();
@@ -22,13 +22,10 @@ class ProductController
         return $model->getProducts($status);
     }
 
-    function listProduct($productID)
+    function listProduct($productID) //Hämtar produktrad baserat på ID
     {
         $model = new ProductDB();
         $arr = $model->getProduct($productID);
-        // echo "<pre>";
-        // print_r($arr);
-        // echo "</pre>";
         return $arr;
     }
 
@@ -56,11 +53,6 @@ class ProductController
     {
         $model = new ProductDB();
         $arr = $model->getAllCategories();
-        // echo "Input: ".$category." [UNWASHED]"."<br>";
-        // echo "Input: ".$this->washInput($category)." [WASHED]";
-        // echo "<br>"."-------------------"."<br>";
-        // echo $this->checkUserInput($category, $arr);
-        // echo "<br>"."<br>"."<br>";
         $input = $this->checkUserInput($category, $arr);
         $model->setCategoryDB($input);
     }
@@ -70,7 +62,6 @@ class ProductController
         $model = new ProductDB();
 
         if ($name == "" || $category == "" || $color == "" || $price <= 0) {
-            //echo $msg = "Something went wrong!";
             return -1;
         }
         else {
@@ -78,17 +69,6 @@ class ProductController
             $categoryID = $model->getCategoryID($category);
             $model->setNewProductDB($name, $categoryID, $colorID, $description, $price, $balance);
         }
-
-
-
-        
-        //Lägg till inputhantering!
-        // -Allt måste vara ifyllt?
-        // -Namn [OK]
-        // -Category [not null]
-        // -Color [not null]
-        // -Description [OK med null/tom?]
-        // -Price [is_numeric($price)] Måste vara siffor! Maxvärde?
     }
 
     function insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontinued)
@@ -99,6 +79,33 @@ class ProductController
         $model->updateProductDB($id, $name, $categoryID, $colorID, $description, $price, $balance, $discontinued);
     }
 
+    function removeColor($colorName){
+        $model = new ProductDB();
+        
+        if ($colorName == "") {
+            return -1;
+        }
+        else {
+            $colorID = $model->getColorID($colorName);
+            $model->deleteColor($colorID);
+        }
+    }
+
+    function removeCategory($categoryName){
+        $model = new ProductDB();
+
+        if ($categoryName == "") {
+            return -1;
+        }
+        else {
+            $categoryID = $model->getCategoryID($categoryName);
+            $model->deleteCategory($categoryID);
+        }
+    }
+
+
+
+
     function washInput($input) //"Tvätta" användarinput på specialtecken och mellanslag. Ska returnera den tvättade inputen!
     {
         $input = htmlspecialchars($input, ENT_QUOTES);
@@ -107,7 +114,6 @@ class ProductController
         $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]","-","*","%","!","#","?","&");
         $safeInput = str_replace($banlist,"",$input);
         return ucfirst($safeInput); //Capitalize first letter
-        
     }
 
     function checkUserInput($input, $arr)
@@ -136,9 +142,6 @@ class ProductController
         }
     }
 
-    function checkFilledInput(){
-        
-    }
 
 
 

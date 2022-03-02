@@ -10,31 +10,7 @@ class ProductDB extends PDOHandler
 
     }
 
-    function getAllColors()
-    {
-        $stmt = $this->Connect()->prepare("SELECT Name FROM `colors`;");
-        $stmt->execute();
-        return $result = $stmt->fetchAll();
-    }
-
-    function getAllCategories()
-    {
-        $stmt = $this->Connect()->prepare("SELECT Name FROM `categories`;");
-        $stmt->execute();
-        return $result = $stmt->fetchAll();
-    }
-
-    function getProducts($status)
-    {
-        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Balance, pr.Discontinued
-        FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
-        INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.Discontinued = :status;");
-        $stmt->bindParam(':status', $status);
-        $stmt->execute();
-        return $result = $stmt->fetchAll();
-    }
-
-    function getAllProducts()
+    function getAllProducts() //Hämtar alla produkter oavsett status
     {
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
@@ -44,7 +20,17 @@ class ProductDB extends PDOHandler
         return $result = $stmt->fetchAll();
     }
 
-    function getProduct($productID)
+    function getProducts($status) //Hämtar alla produkter med angiven status (0 eller 1)
+    {
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.Discontinued = :status;");
+        $stmt->bindParam(':status', $status);
+        $stmt->execute();
+        return $result = $stmt->fetchAll();
+    }
+
+    function getProduct($productID) //Hämtar EN produkt baserat på ID
     {
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Description, 
         pr.Balance, pr.Discontinued FROM `products` AS pr 
@@ -56,7 +42,39 @@ class ProductDB extends PDOHandler
         return $result;
     }
 
-    function setColorDB($color)
+    function getAllColors() //Hämtar alla färger
+    {
+        $stmt = $this->Connect()->prepare("SELECT * FROM `colors`;");
+        $stmt->execute();
+        return $result = $stmt->fetchAll();
+    }
+
+    function getAllCategories() //Hämtar alla kategorier
+    {
+        $stmt = $this->Connect()->prepare("SELECT * FROM `categories`;");
+        $stmt->execute();
+        return $result = $stmt->fetchAll();
+    }
+
+    function getColorID($colorName) //Hämtar ID:t baserad på namnet
+    {
+        $stmt = $this->Connect()->prepare("SELECT ID FROM colors WHERE Name=:name;");
+        $stmt->bindParam(":name", $colorName);
+        $stmt->execute();
+        $result = $stmt->fetch()['ID'];
+        return $result;
+    }
+
+    function getCategoryID($categoryName) //Hämtar ID:t baserad på namnet
+    {
+        $stmt = $this->Connect()->prepare("SELECT ID FROM categories WHERE Name=:name;");
+        $stmt->bindParam(":name", $categoryName);
+        $stmt->execute();
+        $result = $stmt->fetch()['ID'];
+        return $result;
+    }
+
+    function setColorDB($color) //Lägger till ny färg
     {
         $stmt = $this->Connect()->prepare("INSERT INTO colors (Name) VALUES (:color);");
         $stmt->bindParam(':color', $color);
@@ -64,7 +82,7 @@ class ProductDB extends PDOHandler
         echo $msg = "SUCCESS! New color added to DB!";
     }
 
-    function setCategoryDB($category)
+    function setCategoryDB($category) //Lägger till ny kategori
     {
         $stmt = $this->Connect()->prepare("INSERT INTO categories (Name) VALUES (:category);");
         $stmt->bindParam(":category", $category);
@@ -72,16 +90,8 @@ class ProductDB extends PDOHandler
         echo $msg = "SUCCESS! New category added to DB!";
     }
 
-    function setNewProductDB($name, $category, $color, $description, $price, $balance)
+    function setNewProductDB($name, $category, $color, $description, $price, $balance) //Lägger till ny produkt
     {
-        // echo "------INSIDE DB------"."<br>";
-        // echo "Name: ".$name."<br>";
-        // echo "Category: ".$category."<br>";
-        // echo "Color: ".$color."<br>";
-        // echo "Desc: ".$description."<br>";
-        // echo "Price: ".$price."<br>";
-        // echo "Balance: ".$balance."<br>";
-        // echo "--------------------------"."<br>";
         
         $stmt = $this->Connect()->prepare("INSERT INTO products (Name, CategoryID, ColorID, Description, Price, Balance, Discontinued) 
         VALUES (:name, :category, :color, :description, :price, :balance, 0)"); //0 = När ny produkt skapas förutsätt det att den ska finnas med i sortimentet
@@ -95,7 +105,7 @@ class ProductDB extends PDOHandler
         echo $msg = "SUCCESS! New product added to DB!";
     }
 
-    function updateProductDB($id, $name, $category, $color, $description, $price, $balance, $discontinued)
+    function updateProductDB($id, $name, $category, $color, $description, $price, $balance, $discontinued) //Uppdaterar produktdata
     {
         $stmt = $this->Connect()->prepare("UPDATE products SET Name=:name, CategoryID=:category, ColorID=:color,
         Description=:description, Price=:price, Balance=:balance, Discontinued=:discontinued WHERE ID=:id");
@@ -111,37 +121,22 @@ class ProductDB extends PDOHandler
         echo $msg = "SUCCESS! Product updated in DB!";
     }
 
-
-    function getColorID($colorName)
+    function deleteColor($id) //Tar bort färg
     {
-        //echo "---INSIDE Model---"."<br>";
-        //echo "BEFORE Query: $colorName"."<br>";
-        $stmt = $this->Connect()->prepare("SELECT ID FROM colors WHERE Name=:name;");
-        $stmt->bindParam(":name", $colorName);
+        $stmt = $this->Connect()->prepare("DELETE FROM colors WHERE ID=:id;");
+        $stmt->bindParam(":id", $id);
         $stmt->execute();
-        $result = $stmt->fetch()['ID'];
-        //echo "AFTER Query: ".$result;
-        return $result;
+        echo $msg = "SUCCESS! Color deleted in DB!";
     }
 
-    function getCategoryID($categoryName)
+    function deleteCategory($id) //Tar bort kategori
     {
-        $stmt = $this->Connect()->prepare("SELECT ID FROM categories WHERE Name=:name;");
-        $stmt->bindParam(":name", $categoryName);
+        $stmt = $this->Connect()->prepare("DELETE FROM categories WHERE ID=:id;");
+        $stmt->bindParam(":id", $id);
         $stmt->execute();
-        $result = $stmt->fetch()['ID'];
-        return $result;
+        echo $msg = "SUCCESS! Category deleted in DB!";
     }
 
-    function removeProduct(){
-
-    }
-
-    function updateProduct(){
-
-    }
-
-    
 
 
 }
