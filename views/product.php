@@ -41,11 +41,11 @@ if (file_exists($dir)) {
             <p>färg:<?php echo $product['Color']; ?></p>            
             <p><?php echo $product['Description']; ?></p>
             <p><?php echo $product['Balance']; ?> kvar i lager!</p>
-            <p><h2><?php echo $product['Price']; ?>:-</h2></p>
+            <p><h2><?php echo currency($product['Price']); ?></h2></p>
             <div class='buybox'>
                 <form action='' method='post'>
                     <input type='Hidden' name='productID' value='<?php echo $_GET['productID']; ?>'/>
-                    <input type='Hidden' name='price' value='<?php echo currency($product['Price']); ?>'/>
+                    <input type='Hidden' name='price' value='<?php echo $product['Price']; ?>'/>
                     <input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>
                     <input type='Hidden' name='AddToCart' value='AddToCart'/>
                     <input type='submit' id='submit' name='submit' value='KÖP!' />

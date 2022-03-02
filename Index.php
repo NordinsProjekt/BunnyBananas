@@ -24,10 +24,10 @@ if (!isset($_SESSION['ExchangeRate']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/bunnybananas/github/css/styles.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/bunnybananas/github/css/flickity.css">
-    <script src="/bunnybananas/github/css/flickity.pkgd.js"></script>
-    <script src="/bunnybananas/github/css/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bunnybananas/css/styles.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/bunnybananas/css/flickity.css">
+    <script src="/bunnybananas/css/flickity.pkgd.js"></script>
+    <script src="/bunnybananas/css/javascript.js"></script>
 
 
     <title>Main Page</title>

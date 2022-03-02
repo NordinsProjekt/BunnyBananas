@@ -30,7 +30,7 @@
                 $sum += ($productID[0] * $productID[1]);
 
             }?>
-            <tr><td colspan="8" style="text-align: right;"><b>Totalt: <?php echo $sum;?>:-</b></td></tr>
+            <tr><td colspan="8" style="text-align: right;"><b>Totalt: <?php echo currency($sum);?></b></td></tr>
         </tbody>
     </table>
     
