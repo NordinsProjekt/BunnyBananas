@@ -57,9 +57,9 @@ if (file_exists($dir)) {
 
 
     <div class="flex-col">
-        <p>Gillar du <?php echo $product[0]['Name']?> så kommer du älska!</p>
+        <p>Gillar du <?php echo $product['Name']?> så kommer du älska!</p>
         <div class="flex-row">
-            <?php foreach ($productController->listSimilarProducts(3, $product[0]['CategoryID'], $_GET['productID']) as $p) { ?>
+            <?php foreach ($productController->listSimilarProducts(3, $product['CategoryID'], $_GET['productID']) as $p) { ?>
 
                 <?php echo ProductCard($p['ID'],$p['Name'],$p['Category'],$p['Color'],$p['Price'],$p['Balance']); ?>
 
@@ -69,9 +69,9 @@ if (file_exists($dir)) {
 
     
     <div class="flex-col">
-        <p>Kunder som spanade in <?php echo $product[0]['Name']?> kollade även på!</p>
+        <p>Kunder som spanade in <?php echo $product['Name']?> kollade även på!</p>
         <div class="flex-row">
-            <?php foreach ($productController->listLookedAtProducts(3, $product[0]['CategoryID'], $_GET['productID']) as $p) { ?>
+            <?php foreach ($productController->listLookedAtProducts(3, $product['CategoryID'], $_GET['productID']) as $p) { ?>
 
                 <?php echo ProductCard($p['ID'],$p['Name'],$p['Category'],$p['Color'],$p['Price'],$p['Balance']); ?>
 
