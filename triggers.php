@@ -135,6 +135,7 @@ if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $cart->Checkout();
     
 }
+
 //----------------PRODUCT TRIGGERS!---------------------------
 
 if (isset($_POST['submit-product'])) //Skapar ny produkt i DB
@@ -148,8 +149,9 @@ if (isset($_POST['submit-product'])) //Skapar ny produkt i DB
     $balance = $_POST['balance'];
 
     $worked = $controller->insertProduct($name, $category, $color, $description, $price, $balance);
-    if ($worked) {
-        # code...
+    if ($worked == -1) {
+        //echo $msgEN = "Failed to insert into DB!<br>Make sure everything is filled in correctly.";
+        echo $msgSV = "Misslyckades att föra in data i DB!<br>Kontrollera så att allt är korrekt ifyllt.";
     }
 }
 
@@ -180,5 +182,30 @@ if (isset($_POST['submit-category'])) //Skapar ny kategori i DB
     $controller = new ProductController();
     $category = $_POST['new-category'];
     $controller->insertCategory($category);
+}
+
+if (isset($_POST['delete-color'])) //Raderar färg i DB
+{
+    $controller = new ProductController();
+    $color = $_POST['color'];
+    
+    $worked = $controller->removeColor($color);
+    if ($worked == -1) {
+        //echo $msgEN = "Failed to delete from DB!<br>Make sure a value is choosen.";
+        echo $msgSV = "Misslyckades att ta bort data i DB!<br>Kontrollera så att data är ifyllt.";
+    }
+}
+
+if (isset($_POST['delete-category'])) //Raderar kategori i DB
+{
+    $controller = new ProductController();
+    $category = $_POST['category'];
+
+    $worked = $controller->removeCategory($category);
+    if ($worked == -1) {
+        //echo $msgEN = "Failed to delete from DB!<br>Make sure a value is choosen.";
+        echo $msgSV = "Misslyckades att ta bort data i DB!<br>Kontrollera så att data är ifyllt.";
+    }
+    
 }
 ?>

@@ -98,7 +98,7 @@
 
                 echo "<label for='colors'><b>Color: </b></label>";
                 echo "<select name='colors' id='colors'>";
-                echo "<option value='".$value['Color']."'>".$value['Color']."</option>"; //Visar ej färg
+                echo "<option value='".$value['Color']."'>".$value['Color']."</option>";
                 foreach ($controller->listAllColors() as $row){
                     echo "<option>".$row["Name"]."</option>";
                 } echo "</select>"."<br><br>";
@@ -118,6 +118,7 @@
 
                 echo "<input type='hidden' name='productID' value='".$_GET['productID']."'>";
 
+                //Lägg till bild?
                 echo "<label for='uploadfile'><b>Add image: </b></label>";
                 echo "<input type='file' name='uploadfile' value='' /><br><br>";
 
@@ -128,18 +129,22 @@
 ?>
 
 
+
 <h3>What do you want to do?</h3>
 
 <ul style="list-style: none">
     <li><a href="?module=newProduct">Create new product</a></li>
     <li><a href="?module=newColor">Add new color</a></li>
     <li><a href="?module=newCategory">Add new category</a></li>
-    <!-- <li><a href="?module=addPicture">Add picture</a></li> -->
+    <li><a href="?module=deleteColor">Delete existing color</a></li>
+    <li><a href="?module=deleteCategory">Delete existing category</a></li>
 </ul>
 
 
 <?php
 
+//Nedanstående kod finns inlagt i admin/products.php
+//Detta kan tas bort, finns dock kvar som testning av kod.
 if (isset($_GET['module']))
 {
    switch ($_GET['module'])
@@ -181,12 +186,33 @@ if (isset($_GET['module']))
                 echo "<input type='submit' name='submit-category' value='Execute'>";
             echo "</form>";
             break;
+        
+        case 'deleteColor':
+            echo "<h3>Delete color</h3>";
+            echo "<form action='#' method='post'>";
+                echo "<label for='color'><b>Color: </b></label>";
+                echo "<select name='color' id='color'>";
+                echo "<option value='".$value['Color']."'>".$value['Color']."</option>";
+                foreach ($controller->listAllColors() as $row){
+                    echo "<option>".$row["Name"]."</option>";
+                } echo "</select>";
+                echo "<input type='submit' name='delete-color' value='Delete'>";
+            echo "</form>";
+            break;
 
-        // case 'addPicture':
-        //     echo "<form action='/action_page_binary.asp' method='post' enctype='multipart/form-data'>";
-        //     echo "<label for='uploadfile'><b>Choose image: </b></label>";
-        //     echo "<input type='file' name='uploadfile' value='' /><br><br>";
-        //     break;
+        case 'deleteCategory':
+            echo "<h3>Delete category</h3>";
+            echo "<form action='#' method='post'>";
+                echo "<label for='category'><b>Category: </b></label>";
+                echo "<select name='category' id='category'>";
+                echo "<option value='".$value['Category']."'>".$value['Category']."</option>";
+                foreach ($controller->listAllCategories() as $row){
+                    echo "<option>".$row["Name"]."</option>";
+                } echo "</select>";
+                echo "<input type='submit' name='delete-category' value='Delete'>";
+            echo "</form>";
+            break;
+
        default:
            # code...
            break;
@@ -195,43 +221,7 @@ if (isset($_GET['module']))
 }
 
 
-function addNewColorToDB()
-{
-    $controller = new ProductController();
-    $color = "";
-    if (isset($_POST['submit-color']))
-    {
-        if (isset($_POST['new-color']))
-        {
-            $color = ($_POST['new-color']);
-            $controller->insertColor($color);
-        }
-    }
-}
 
-function addNewCategoryToDB()
-{
-    $controller = new ProductController();
-    $category = "";
-    if (isset($_POST['submit-category']))
-    {
-        if (isset($_POST['new-category']))
-        {
-            $category = ($_POST['new-category']);
-            $controller->insertCategory($category);
-        }
-    }
-
-
-}
-
-    function changeProduct(){
-
-    }
-
-    function discontinueProduct(){
-
-    }
 ?>
 
 
