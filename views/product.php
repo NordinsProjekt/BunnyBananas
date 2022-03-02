@@ -6,8 +6,6 @@ $dir = 'img/products/' . $_GET['productID'];
 
 $product = $productController->listProduct($_GET['productID']);
 
-
-
 if (file_exists($dir)) {
     $imagePaths = scandir($dir);
 
@@ -25,7 +23,7 @@ if (file_exists($dir)) {
 }
 ?>
 
-<main class="main">
+<main class="main flex-col">
     <div class="ProductCardLarge">
         
     
@@ -54,7 +52,33 @@ if (file_exists($dir)) {
                 </form>
             </div>
         </div>
+
     </div>
+
+
+    <div class="flex-col">
+        <p>Gillar du <?php echo $product[0]['Name']?> så kommer du älska!</p>
+        <div class="flex-row">
+            <?php foreach ($productController->listSimilarProducts(3, $product[0]['CategoryID'], $_GET['productID']) as $p) { ?>
+
+                <?php echo ProductCard($p['ID'],$p['Name'],$p['Category'],$p['Color'],$p['Price'],$p['Balance']); ?>
+
+            <?php }?>
+        </div>
+    </div>
+
+    
+    <div class="flex-col">
+        <p>Kunder som spanade in <?php echo $product[0]['Name']?> kollade även på!</p>
+        <div class="flex-row">
+            <?php foreach ($productController->listLookedAtProducts(3, $product[0]['CategoryID'], $_GET['productID']) as $p) { ?>
+
+                <?php echo ProductCard($p['ID'],$p['Name'],$p['Category'],$p['Color'],$p['Price'],$p['Balance']); ?>
+
+            <?php }?>
+        </div>
+    </div>
+
 </main>
 
 
