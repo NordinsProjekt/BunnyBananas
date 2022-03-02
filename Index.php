@@ -36,7 +36,13 @@ if (!isset($_SESSION['ExchangeRate']))
 
 <?php require_once('header.php');?>
 
-
+<main>
 <?php require_once('router.php');?>
+</main>
+<footer>
+    <h2>Adress</h2>
+    <p>Skateparken 3</p>
+    <p>Sverige</p>
+</footer>
 </body>
 </html>

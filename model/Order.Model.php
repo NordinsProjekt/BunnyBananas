@@ -9,7 +9,8 @@ class OrderModel extends PDOHandler
 
     function GetAllOrders()
     {
-      $sql = 'SELECT * FROM orders;';
+      $sql = 'SELECT * FROM orders
+      ORDER BY ID ASC;';
       
       $stmt = $this->Connect()->prepare($sql);
       $stmt->execute();
@@ -18,7 +19,8 @@ class OrderModel extends PDOHandler
 
     function GetAllOrdersByUserId($userId)
     {
-      $sql = 'SELECT * FROM orders WHERE UserID = :userId;';
+      $sql = 'SELECT * FROM orders WHERE UserID = :userId
+      ORDER BY ID ASC;';
       $stmt = $this->Connect()->prepare($sql);
       $stmt->bindParam(':userId',$userId);
       $stmt->execute();
@@ -40,7 +42,8 @@ class OrderModel extends PDOHandler
     
     Function GetSpecificOrder($orderID){
 
-        $sql = 'SELECT orows.ProductID, o.ID, o.UserID, p.Name as ProductName, o.Date, orows.ProductID, col.Name as Color, c.Name as Category, orows.Amount, orows.Price, orows.Discount, o.Sent, o.Delivered
+        $sql = 'SELECT orows.ProductID, o.ID, o.UserID, p.Name as ProductName, o.Date, orows.ProductID, col.Name as Color, c.Name as Category, orows.Amount, orows.Price, orows.Discount, o.Sent, o.Delivered, 
+                o.Firstname, o.Lastname, o.Adress1, o.Adress2, o.Postort, o.Postnummer, o.Land 
                 FROM orderrows orows 
                 INNER JOIN orders o 
                 ON orows.OrderID = o.ID 

@@ -55,6 +55,16 @@ class CartController {
     }
 
     function Checkout(){
+
+        $orderController = new OrderController();
+        $msg = "";
+
+        foreach ($orderController->ListSpecificOrder($orderController->ListLastOrderByUserId($_SESSION['userId'])) as $product) {
+            $msg .= $product['ProductID'].'|'.$product['ProductName'].'|'.$product['Category'].'|'.$product['Color'].'|'.$product['Price'].'|'.$product['Amount'].'//';
+        }
+
+        SendCheckoutMail($_SESSION['email'], $msg); //pratar med API och mailar till kunden
+
         unset($_SESSION['ShoppingCart']); //empty cart
     }
 

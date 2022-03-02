@@ -1,7 +1,7 @@
 <?php $orderController = new OrderController();?>
 
 <details>
-    <summary>Visa Alla Beställningar</summary>
+    <summary>Visa alla beställningar</summary>
 <div class="AllOrders">
 <h3 class="TitelHeader">Alla beställningar:</h3>
 <table>
@@ -31,7 +31,7 @@
 </div>
 </details>
 
-
+<div class="AllOrders">
 <?php if (isset($_GET['orderID'])) {?>
     <table>
     <thead>
@@ -49,7 +49,8 @@
     </tr>
 </thead>
 <tbody>
-<?php foreach($orderController->ListSpecificOrder($_GET['orderID']) as $value){?>
+<?php $order = $orderController->ListSpecificOrder($_GET['orderID']);?>
+<?php foreach($order as $value){?>
 
     <tr>
         <td><?php echo $value['ID']?></td>
@@ -66,8 +67,35 @@
     
 <!--END LOOP-->
 <?php }?>
+
 </tbody>
+</table>
+<br />
+<table>
+    <thead>
+        <tr>
+            <th>Förnamn</th>
+            <th>Efternamn</th>
+            <th>Adress1</th>
+            <th>Adress2</th>
+            <th>Postort</th>
+            <th>Postnummer</th>
+            <th>Land</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?php echo $order[0]['Firstname'];?></td>
+            <td><?php echo $order[0]['Lastname'];?></td>
+            <td><?php echo $order[0]['Adress1'];?></td>
+            <td><?php echo $order[0]['Adress2'];?></td>
+            <td><?php echo $order[0]['Postort'];?></td>
+            <td><?php echo $order[0]['Postnummer'];?></td>
+            <td><?php echo $order[0]['Land'];?></td>
+        </tr>
+    </tbody>
 </table>
 
 <!--END IF-->
 <?php }?>
+</div>

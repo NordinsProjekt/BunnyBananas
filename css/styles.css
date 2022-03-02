@@ -10,7 +10,31 @@ header {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-end;
+  height: 250px;
   padding: 10px;
+}
+.LoginFlex{
+  display: flex;
+  flex-direction: column;
+}
+.main{
+  justify-content: center;
+  display:flex;
+  flex-wrap: wrap;
+}
+body{
+  display:flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  height: 250px;
+  background-color: white;
 }
 
 body{
@@ -29,6 +53,7 @@ body{
 .ShowAll{
   display:table;
   padding: 10px;
+  width: 500px;
 }
 
 .flex-row{
@@ -190,15 +215,6 @@ td{
     background-color: rgb(240, 240, 240);
 }
 
-
-.main{
-  justify-content: center;
-  display:flex;
-  flex-wrap: wrap;
-  
-}
-
-
 .cart{
   margin-top: 20px;
   justify-content: center;
@@ -210,8 +226,8 @@ td{
 .ProductCard {
   padding: 15px;
   margin: 15px;
-  height: 290px;
-  width: 200px;
+  height: 450px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -226,9 +242,10 @@ td{
   padding: 0;
 }
 
-.ProductCard > img{  
+.ProductCard img{  
   margin-bottom: auto;
   padding: 0;
+  height: 250px;
 }
 
 .ProductCard > .buybox{
@@ -281,14 +298,14 @@ td{
 
 }
 .inputnumber{
-  width: 35px;
+  width: 65px;
 }
 
 .ProfileUser, .AllOrders, .EditProduct{
   display:table;
   gap: 10px;
-  background-color: whitesmoke;
-  width:auto;
+  background-color: rgb(223, 223, 223);
+  width:300px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

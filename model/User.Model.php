@@ -12,7 +12,8 @@ class UserModel extends PDOHandler
       //Prepare kräver execute()
       $stmt = $this->Connect()->prepare('SELECT users.ID, groups.GroupName,users.Username, users.Email, Disable FROM users
       INNER JOIN usergroups ON users.ID = usergroups.UserID 
-      INNER JOIN groups ON usergroups.GroupID = groups.ID;');
+      INNER JOIN groups ON usergroups.GroupID = groups.ID
+      ORDER BY ID ASC;');
       $stmt->execute();
       return $stmt->fetchAll();
     }
@@ -68,7 +69,8 @@ class UserModel extends PDOHandler
 
     function GetAllGroups()
     {
-      $stmt = $this->Connect()->prepare('SELECT ID, GroupName as name FROM groups;');
+      $stmt = $this->Connect()->prepare('SELECT ID, GroupName as name FROM groups
+      ORDER BY ID ASC;');
       $stmt->execute();
       return $stmt->fetchAll();     
     }
