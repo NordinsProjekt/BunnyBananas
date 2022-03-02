@@ -12,15 +12,6 @@ switch ($_GET['url']) {
     case '':
         require_once __DIR__ . '/views/index.php';
         break;
-    case 'about':
-        require_once __DIR__ . '/views/about.php';
-        break;
-    case 'orders':
-        require __DIR__ . '/views/orders.php';
-        break;
-    case 'products' :
-        require __DIR__ . '/views/products.php';
-        break;
     case 'cart':
         require __DIR__ . '/views/cart.php';
         break;
