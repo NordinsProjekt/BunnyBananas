@@ -11,12 +11,22 @@ header {
   flex-direction: row;
   justify-content: flex-end;
   padding: 10px;
+  height: 200px;
 }
 
 body{
     background-color: rgb(223, 223, 223);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: flex-start;
 }
 
+footer {
+  margin-top: auto;
+  height: 200px;
+  background-color: white;
+}
 .header{
   display: flex;
   flex-direction: row;
@@ -52,12 +62,13 @@ body{
   gap: 10px;
   padding: 10px;
 }
-input {
+input, select {
   padding: 5px;
   border-radius: 5px;
   margin: 5px;
   font-size: 24px;
 }
+
 .AdminProducts {
   display:flex;
   flex-direction: row;
@@ -210,8 +221,8 @@ td{
 .ProductCard {
   padding: 15px;
   margin: 15px;
-  height: 290px;
-  width: 200px;
+  height: 450px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -226,9 +237,10 @@ td{
   padding: 0;
 }
 
-.ProductCard > img{  
+.ProductCard img{  
   margin-bottom: auto;
   padding: 0;
+  height: 200px;
 }
 
 .ProductCard > .buybox{
@@ -281,7 +293,7 @@ td{
 
 }
 .inputnumber{
-  width: 35px;
+  width: 65px;
 }
 
 .ProfileUser, .AllOrders, .EditProduct{

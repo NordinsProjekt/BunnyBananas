@@ -62,7 +62,8 @@
     <?php }?>
 
 <?php } else { ?>
-    Din varukorg är tom!
+    <br />
+    <p>Din varukorg är tom!</p>
 <?php }?>
 
 </main>

@@ -85,7 +85,7 @@ function ProductCard($productID, $name, $category, $color,$price, $Balance){
         if (isset($imagePaths)){
             foreach ($imagePaths as $img) {
                 if ($img != '.' && $img != '..') {
-                    $text .= "<a href='./product?productID=".$productID."'><img src='img/products/".$productID."/".$img."' height='150px'></a>";
+                    $text .= "<a href='./product?productID=".$productID."'><img src='img/products/".$productID."/".$img."'></a>";
                     break;
                 }
                 
@@ -101,7 +101,7 @@ function ProductCard($productID, $name, $category, $color,$price, $Balance){
     $text .= "  <form action='' method='post'>";
     $text .= "      <input type='Hidden' name='productID' value='$productID'/>";
     $text .= "      <input type='Hidden' name='price' value='$price'/>";
-    $text .= "      <input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>";
+    $text .= "      <input class='inputnumber' type='number' name='amount' value='1' min='1'max='99'/>";
     $text .= "      <input type='Hidden' name='AddToCart' value='AddToCart'/>";
     $text .= "      <input type='submit' id='submit' name='submit' value='KÖP!' />";
     $text .= "  </form>";
