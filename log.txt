@@ -114,7 +114,10 @@ Staffan
 - 
 
 Markus
-- 
+- Suttit med CSS:en
+- Suttit med Adminpanelen och Profilen
+- Lagt till alla produkter
+- Gjort testdata
 
 Lucas
 - Skapat funktioner för att att ta bort kategori och färg.
