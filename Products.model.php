@@ -12,14 +12,14 @@ class ProductDB extends PDOHandler
 
     function getAllColors()
     {
-        $stmt = $this->Connect()->prepare("SELECT Name FROM `colors`;");
+        $stmt = $this->Connect()->prepare("SELECT * FROM `colors`;");
         $stmt->execute();
         return $result = $stmt->fetchAll();
     }
 
     function getAllCategories()
     {
-        $stmt = $this->Connect()->prepare("SELECT Name FROM `categories`;");
+        $stmt = $this->Connect()->prepare("SELECT * FROM `categories`;");
         $stmt->execute();
         return $result = $stmt->fetchAll();
     }
@@ -172,7 +172,79 @@ class ProductDB extends PDOHandler
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    
+
+
+    function GetSearchedProductsAllCriterias($question, $categorys, $colors)
+    {
+        
+        $question = "%$question%";
+        $colors = implode(",", $colors);
+        $categorys =  implode(",", $categorys);
+
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr 
+        INNER JOIN categories AS ca 
+        ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co 
+        ON pr.ColorID = co.ID
+        WHERE co.ID IN ($colors) AND ca.ID IN ($categorys) AND pr.name LIKE :question");
+        $stmt->bindParam(":question", $question);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    function GetSearchedProductsColor($question, $colors)
+    {
+        
+        $question = "%$question%";
+        $colors = implode(",", $colors);
+
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr 
+        INNER JOIN categories AS ca 
+        ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co 
+        ON pr.ColorID = co.ID
+        WHERE co.ID IN ($colors) AND pr.name LIKE :question");
+        $stmt->bindParam(":question", $question);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    function GetSearchedProductsCategorys($question, $categorys)
+    {
+        
+        $question = "%$question%";
+        $categorys =  implode(",", $categorys);
+
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr 
+        INNER JOIN categories AS ca 
+        ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co 
+        ON pr.ColorID = co.ID
+        WHERE ca.ID IN ($categorys) AND pr.name LIKE :question");
+        $stmt->bindParam(":question", $question);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    function GetSearchedProducts($question)
+    {
+        
+        $question = "%$question%";
+
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr 
+        INNER JOIN categories AS ca 
+        ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co 
+        ON pr.ColorID = co.ID
+        WHERE pr.name LIKE :question");
+        $stmt->bindParam(":question", $question);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 

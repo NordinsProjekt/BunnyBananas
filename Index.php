@@ -20,6 +20,7 @@ if (!isset($_SESSION['Message']))
     <link rel="stylesheet" type="text/css" href="/bunnybananas/css/styles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/bunnybananas/css/flickity.css">
     <script src="/bunnybananas/css/flickity.pkgd.js"></script>
+    <script src="/bunnybananas/css/javascript.js"></script>
 
 
     <title>Main Page</title>
