@@ -17,8 +17,6 @@ class ProductDB extends PDOHandler
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
         INNER JOIN colors AS co ON pr.ColorID = co.ID 
         ORDER BY pr.ID ASC;");
-
-
         $stmt->execute();
         return $result = $stmt->fetchAll();
     }
@@ -83,7 +81,6 @@ class ProductDB extends PDOHandler
         $stmt = $this->Connect()->prepare("INSERT INTO colors (Name) VALUES (:color);");
         $stmt->bindParam(':color', $color);
         $stmt->execute();
-        echo $msg = "SUCCESS! New color added to DB!";
     }
 
     function setCategoryDB($category) //Lägger till ny kategori
@@ -91,7 +88,6 @@ class ProductDB extends PDOHandler
         $stmt = $this->Connect()->prepare("INSERT INTO categories (Name) VALUES (:category);");
         $stmt->bindParam(":category", $category);
         $stmt->execute();
-        echo $msg = "SUCCESS! New category added to DB!";
     }
 
     function setNewProductDB($name, $category, $color, $description, $price, $balance) //Lägger till ny produkt
@@ -106,7 +102,6 @@ class ProductDB extends PDOHandler
         $stmt->bindParam(":price", $price);
         $stmt->bindParam(":balance", $balance);
         $stmt->execute();
-        //echo $msg = "SUCCESS! New product added to DB!";
     }
 
     function updateProductDB($id, $name, $category, $color, $description, $price, $balance, $discontinued) //Uppdaterar produktdata
@@ -122,7 +117,6 @@ class ProductDB extends PDOHandler
         $stmt->bindParam(":balance", $balance);
         $stmt->bindParam(":discontinued", $discontinued);
         $stmt->execute();
-        //echo $msg = "SUCCESS! Product updated in DB!";
     }
 
     function deleteColor($id) //Tar bort färg
@@ -130,7 +124,6 @@ class ProductDB extends PDOHandler
         $stmt = $this->Connect()->prepare("DELETE FROM colors WHERE ID=:id;");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-        echo $msg = "SUCCESS! Color deleted in DB!";
     }
 
     function deleteCategory($id) //Tar bort kategori
@@ -138,9 +131,7 @@ class ProductDB extends PDOHandler
         $stmt = $this->Connect()->prepare("DELETE FROM categories WHERE ID=:id;");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-        echo $msg = "SUCCESS! Category deleted in DB!";
     }
-
 
     function getSimilarProducts($limit, $categoryid, $excludePID)
     {
@@ -158,8 +149,6 @@ class ProductDB extends PDOHandler
         return $stmt->fetchAll();
     }
 
-
-
     function getLookedAtProducts($limit,$excludePID)
     {
         
@@ -174,7 +163,6 @@ class ProductDB extends PDOHandler
         $stmt->execute();
         return $stmt->fetchAll();
     }
-
 
     function GetSearchedProductsAllCriterias($question, $categorys, $colors)
     {

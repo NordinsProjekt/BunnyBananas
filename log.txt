@@ -104,3 +104,21 @@ Lucas
   - Löste infogande av ny produkt.
   - Påbörjat felhantering.
 - Strukturerat upp koden i triggers för produktdelen.
+
+# 2/3
+
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
+
+Staffan
+- 
+
+Markus
+- 
+
+Lucas
+- Skapat funktioner för att att ta bort kategori och färg.
+- Felhantering av dessa funktioner.
+- Fyllt på med beskrivande kommentarer.
+- Parprogrammerat finjustering i CSS.
+- Implementerade tydligare felhantering vid produkthantering med bl.a. try-catch.
