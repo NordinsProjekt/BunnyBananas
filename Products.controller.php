@@ -144,7 +144,41 @@ class ProductController
 
 
 
+    function listSimilarProducts($limit, $categoryID, $excludePID)
+    {
+        $model = new ProductDB();
+        return $model->getSimilarProducts($limit, $categoryID, $excludePID);
+    }
 
+
+    function listLookedAtProducts($limit, $excludePID)
+    {
+        $model = new ProductDB();
+        return $model->getLookedAtProducts($limit, $excludePID);
+    }
+
+    function listSearchedProducts(){
+        
+        $model = new ProductDB();
+
+        if (isset($_GET['category']) && isset($_GET['color'])) { //KATEGORI OCH COLOR
+            return $model->GetSearchedProductsAllCriterias($_GET['searchCriteria'], $_GET['category'], $_GET['color']);    
+        }
+        elseif (isset($_GET['category']) && !isset($_GET['color'])) { //BARA KATEGORI
+            return $model->GetSearchedProductsCategorys($_GET['searchCriteria'], $_GET['category']);
+        }
+        elseif (!isset($_GET['category']) && isset($_GET['color'])) { //BARA COLOR
+            return $model->GetSearchedProductsColor($_GET['searchCriteria'], $_GET['color']);
+        }
+        elseif ($_GET['searchCriteria']) {
+            return $model->GetSearchedProducts($_GET['searchCriteria']);
+        }
+        else //UTAN FILTER
+        {
+            return $model->getAllProducts();
+        }
+        
+    }
 }
 
 
