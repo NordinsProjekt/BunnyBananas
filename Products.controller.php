@@ -141,7 +141,18 @@ class ProductController
     }
 
 
+    function listSimilarProducts($limit, $categoryID, $excludePID)
+    {
+        $model = new ProductDB();
+        return $model->getSimilarProducts($limit, $categoryID, $excludePID);
+    }
 
+
+    function listLookedAtProducts($limit, $excludePID)
+    {
+        $model = new ProductDB();
+        return $model->getLookedAtProducts($limit, $excludePID);
+    }
 }
 
 

@@ -46,7 +46,7 @@ class ProductDB extends PDOHandler
 
     function getProduct($productID)
     {
-        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Description, 
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.id as CategoryID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Description, 
         pr.Balance, pr.Discontinued FROM `products` AS pr 
         INNER JOIN categories AS ca ON pr.CategoryID = ca.ID 
         INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.ID = :id;");
@@ -141,9 +141,38 @@ class ProductDB extends PDOHandler
 
     }
 
+    function getSimilarProducts($limit, $categoryid, $excludePID)
+    {
+        
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co ON pr.ColorID = co.ID
+        WHERE ca.id=:categoryID AND NOT pr.ID=:excludePID 
+        ORDER BY RAND()        
+        LIMIT :amount;");
+        $stmt->bindParam(":categoryID", $categoryid, PDO::PARAM_INT);
+        $stmt->bindParam(":excludePID", $excludePID, PDO::PARAM_INT);
+        $stmt->bindValue(":amount", $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
+    function getLookedAtProducts($limit,$excludePID)
+    {
+        
+        $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
+        FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
+        INNER JOIN colors AS co ON pr.ColorID = co.ID
+        WHERE NOT pr.ID=:excludePID 
+        ORDER BY RAND()        
+        LIMIT :amount;");
+        $stmt->bindParam(":excludePID", $excludePID, PDO::PARAM_INT);
+        $stmt->bindValue(":amount", $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     
-
-
 }
 
 
