@@ -30,7 +30,7 @@
 </table>
 </div>
 </details>
-
+<div class="AllOrders">
 <?php if (isset($_GET['orderID'])) {?>
     <table>
     <thead>
@@ -65,7 +65,7 @@
 <?php }?>
 </tbody>
 </table>
-
+</div>
 <!--END IF-->
 <?php }?>
 <details class="ProfileLeverans">
