@@ -5,6 +5,7 @@ require_once('controller/Order.Controller.php');
 require_once('controller/Upload.Controller.php');
 require_once('controller/Products.Controller.php');
 require_once('controller/Cart.Controller.php');
+require_once('controller/API.Controller.php');
 require_once('triggers.php');
 require_once('buildHTML.php');
 
