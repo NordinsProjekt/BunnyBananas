@@ -38,11 +38,11 @@ body{
   gap: 10px;
 }
 .AdminUserSection{
-  display:flex;
-  flex-direction: row;
+  display:table;
+  /*flex-direction: row;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px;*/
   padding: 10px;
 }
 input {
@@ -64,6 +64,7 @@ input {
   height: auto;
   background-color: whitesmoke;
 }
+
 select{
   font-size: 24px;
   padding: 5px;
@@ -102,15 +103,31 @@ a:link.LinkHeader, a:visited.LinkHeader {
   display: inline-block;
   border: 2px solid black;
 }
+.AdminNav > a:link, .AdminNav > a:visited
+{
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid black;
+}
+
 
 a:hover.LinkHeader, a:active.LinkHeader {
   background-color: lightgray;
 }
+
+.AdminNav > a:hover, .AdminNav > a:active {
+  background-color: lightgray;
+}
+
 p{
   font-size:24px;
 }
 details{
   font-size: 24px;
+  padding: 10px;
 }
 
 textarea{
@@ -125,13 +142,16 @@ textarea{
   margin: 5px;
   font-size: 24px;
 }
-.LinkHeader{
+.LinkHeader, .AdminNav > a{
   padding: 5px;
   border-radius: 5px;
-  margin: 5px;
   font-size: 24px;
+  margin-left: 10px;
 }
-
+.LeveransAdress{
+  width: 400px;
+  background-color: whitesmoke;
+}
 table {
   border-collapse: collapse;
 }
@@ -248,8 +268,7 @@ td{
 }
 
 .ProfileUser{
-  display:flex;
-  flex-direction: row;
+  display:table;
   gap: 10px;
 }
 

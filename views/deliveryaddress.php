@@ -2,7 +2,8 @@
     $controller = new UserController();
     $row = $controller->ListShippingAddress(); 
 ?>
-<h2>Delivery Address</h2>
+<section class="LeveransAdress">
+<h2>Adress</h2>
 <form class="profileForm" method="post">
     <label for="fname">Förnamn:</label><br />
     <input type="text" id="fname" name="txtFirstname" value="<?php echo $row['Firstname']; ?>"><br />
@@ -22,3 +23,4 @@
     <label for="reklam"> Få exklusiva erbjudanen via email? </label><br /><br />
     <input type="submit" name="saveProfile" value="Spara" />
 </form>
+</section>
