@@ -24,9 +24,8 @@
         </form>
     </details>
     </section>
-
     <details>
-        <summary>Skapa Grupp</summary>
+        <summary>Hantera Grupper</summary>
         <section class="UserSection" id="CreateGroup">
             <h2>Skapa Grupp</h2>
                 <form method="post">
@@ -34,9 +33,7 @@
                     <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Skapa" />
                 </form>
         </section>
-    </details>
-    <details>
-        <summary>Radera Grupp</summary>
+        <br />
         <section class="UserSection" id="DeleteGroup">
             <h2>Radera Grupp</h2>
                 <form method="post">

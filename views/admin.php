@@ -4,7 +4,7 @@ require_once "Order.Controller.php";
 require_once "Products.controller.php";
 require_once "triggers.php";
 ?>
-    <nav>
+    <nav class="AdminNav">
         <a href="?admin=users">Hantera Användare</a>
         <a href="?admin=orders">Hantera Ordrar</a>
         <a href="?admin=products">Hantera Produkter</a>

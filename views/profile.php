@@ -3,15 +3,15 @@
 
 <div class="ProfileUser">  
     <details>
-    <summary>Show My Orders</summary>
-    <h3>All orders:</h3>
+    <summary>Mina Beställningar</summary>
+    <h3>Beställningar:</h3>
 <table>
 <thead>
     <tr>
-        <th>OrderID</th>
-        <th>Date</th>
-        <th>Sent</th>
-        <th>Delivered</th>
+        <th>Order ID</th>
+        <th>Datum</th>
+        <th>Skickad</th>
+        <th>Levererad</th>
 
     </tr>
 </thead>
@@ -33,15 +33,15 @@
     <table>
     <thead>
     <tr>
-        <th>OrderID</th>
-        <th>ProductName</th>
-        <th>Color</th>
-        <th>Category</th>
-        <th>Amount</th>
-        <th>Price</th>
-        <th>Discount</th>
-        <th>Sent</th>
-        <th>Delivered</th>
+        <th>Order ID</th>
+        <th>Produktnamn</th>
+        <th>Färg</th>
+        <th>Kategori</th>
+        <th>Antal</th>
+        <th>Pris</th>
+        <th>Rabatt</th>
+        <th>Skickad</th>
+        <th>Levererad</th>
     </tr>
 </thead>
 <tbody>
@@ -66,8 +66,8 @@
 
 <!--END IF-->
 <?php }?>
-<details>
-        <summary>Show My Delivery Address</summary>
+<details class="ProfileLeverans">
+        <summary>Min Adress</summary>
         <?php 
             require_once "deliveryaddress.php";
         ?>
