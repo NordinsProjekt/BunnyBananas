@@ -38,11 +38,11 @@ body{
   gap: 10px;
 }
 .AdminUserSection{
-  display:table;
-  /*flex-direction: row;
+  display:flex;
+  flex-direction: row;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 10px;*/
+  gap: 10px;
   padding: 10px;
 }
 input {
@@ -76,7 +76,8 @@ label{
   margin: 5px;
 }
 
-h2,h3 {
+.TitelHeader {
+  font-size: 32px;
   text-align: center;
   padding: 5px;
   background-color: lightgrey;
@@ -94,6 +95,9 @@ input[type=submit]:hover{
 }
 a{
   font-size: 24px;
+}
+.center{
+  text-align: center;
 }
 a:link.LinkHeader, a:visited.LinkHeader {
   background-color: whitesmoke;
@@ -262,12 +266,17 @@ td{
   text-align: right;
 }
 
+.SkapaKonto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+}
 .inputnumber{
   width: 35px;
 }
 
-.ProfileUser{
+.ProfileUser, .AllOrders{
   display:table;
   gap: 10px;
 }

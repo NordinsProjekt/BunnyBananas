@@ -4,7 +4,7 @@
 <div class="ProfileUser">  
     <details>
     <summary>Mina Beställningar</summary>
-    <h3>Beställningar:</h3>
+    <h2 class="TitelHeader">Beställningar:</h2>
 <table>
 <thead>
     <tr>

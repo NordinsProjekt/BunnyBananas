@@ -1,7 +1,8 @@
 <?php $orderController = new OrderController();?>
+<div class="AllOrders">
 <details>
     <summary>Visa Alla Beställningar</summary>
-<h3>Alla beställningar:</h3>
+<h3 class="TitelHeader">Alla beställningar:</h3>
 <table>
 <thead>
     <tr>
@@ -27,7 +28,7 @@
 </tbody>
 </table>
 </details>
-
+</div>
 
 <?php if (isset($_GET['orderID'])) {?>
     <table>
