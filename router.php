@@ -30,6 +30,9 @@ switch ($_GET['url']) {
     case 'product':
         require __DIR__ . '/views/product.php';
         break;
+        case 'search':
+            require __DIR__ . '/views/searchresult.php';
+            break;
     case 'admin':
         $controller = new UserController();
         if ($controller->VerifyUserAdmin()) {
