@@ -46,7 +46,21 @@ class ProductController
         $model = new ProductDB();
         $arr = $model->getAllColors();
         $input = $this->checkUserInput($color, $arr);
-        $model->setColorDB($input);
+
+        if ($input == -1) {
+            $_SESSION['Message'] = "Insertion failed: Invalid color input!";
+        }
+        elseif ($input == -2) {
+            $_SESSION['Message'] = "Insertion failed: Color already exists in DB!";
+        }
+        else{
+            try {
+                $model->setColorDB($input);
+                $_SESSION['Message'] = "SUCCESS: New color added in DB!";
+            } catch (\Throwable $t) {
+                $_SESSION['Message'] = $t->getMessage();
+            }
+        }
     }
 
     function insertCategory($category)
@@ -54,52 +68,105 @@ class ProductController
         $model = new ProductDB();
         $arr = $model->getAllCategories();
         $input = $this->checkUserInput($category, $arr);
-        $model->setCategoryDB($input);
+
+        if ($input == -1) {
+            $_SESSION['Message'] = "Insertion failed: Invalid category input!";
+        }
+        elseif ($input == -2) {
+            $_SESSION['Message'] = "Insertion failed: Category already exists in DB!";
+        }
+        else{
+            try {
+                $model->setCategoryDB($input);
+                $_SESSION['Message'] = "SUCCESS: New category added in DB!";
+            } catch (\Throwable $t) {
+                $_SESSION['Message'] = $t->getMessage();
+            }
+        }
+
     }
 
     function insertProduct($name, $category, $color, $description, $price, $balance)
     {
         $model = new ProductDB();
 
-        if ($name == "" || $category == "" || $color == "" || $price <= 0) {
-            return -1;
+        if ($name == "" || $category == "" || $color == "" || $price <= 0 || $price != is_numeric($price)) {
+            $_SESSION['Message'] = "Insertion failed: Invalid input!<br>Make sure everything is filled in correctly.";
         }
         else {
-            $colorID = $model->getColorID($color);
-            $categoryID = $model->getCategoryID($category);
-            $model->setNewProductDB($name, $categoryID, $colorID, $description, $price, $balance);
+            try
+            {
+                $colorID = $model->getColorID($color);
+                $categoryID = $model->getCategoryID($category);
+                $model->setNewProductDB($name, $categoryID, $colorID, $description, $price, $balance);
+                $_SESSION['Message'] = "SUCCESS: New product added to DB!";
+            }
+            catch (\Throwable $t) {
+                $_SESSION['Message'] = $t->getMessage();
+            }
         }
     }
 
     function insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontinued)
     {
         $model = new ProductDB();
-        $colorID = $model->getColorID($color);
-        $categoryID = $model->getCategoryID($category);
-        $model->updateProductDB($id, $name, $categoryID, $colorID, $description, $price, $balance, $discontinued);
-    }
 
-    function removeColor($colorName){
-        $model = new ProductDB();
-        
-        if ($colorName == "") {
-            return -1;
+        if ($name == "" || $category == "" || $color == "" || $price <= 0 || $price != is_numeric($price)) {
+            $_SESSION['Message'] = "Insertion failed: Invalid input!<br>Make sure everything is filled in correctly.";
         }
         else {
-            $colorID = $model->getColorID($colorName);
-            $model->deleteColor($colorID);
+            try
+            {
+                $colorID = $model->getColorID($color);
+                $categoryID = $model->getCategoryID($category);
+                $model->updateProductDB($id, $name, $categoryID, $colorID, $description, $price, $balance, $discontinued);
+                $_SESSION['Message'] = "SUCCESS: Product updated in DB!";
+            }
+            catch (\Throwable $t) {
+                $_SESSION['Message'] = $t->getMessage();
+            }
         }
     }
 
-    function removeCategory($categoryName){
-        $model = new ProductDB();
-
-        if ($categoryName == "") {
-            return -1;
+    function removeColor($colorName)
+    {
+        if ($colorName != "") 
+        {
+            $model = new ProductDB();
+            try
+            {
+                $colorID = $model->getColorID($colorName);
+                $model->deleteColor($colorID);
+                $_SESSION['Message'] = "SUCCESS: Color deleted from DB!";
+            }
+            catch (\Throwable $t) {
+                $_SESSION['Message'] = $t->getMessage();
+            }
         }
-        else {
-            $categoryID = $model->getCategoryID($categoryName);
-            $model->deleteCategory($categoryID);
+        else
+        {
+            $_SESSION['Message'] = "Deletion failed: Invalid color input!";
+        }
+    }
+
+    function removeCategory($categoryName)
+    {
+        if ($categoryName != "") 
+        {
+            $model = new ProductDB();
+            try
+            {
+                $categoryID = $model->getCategoryID($categoryName);
+                $model->deleteCategory($categoryID);
+                $_SESSION['Message'] = "SUCCESS: Category deleted from DB!";
+            }
+            catch (\Throwable $t) {
+                $_SESSION['Message'] = $t->getMessage();
+            }
+        }
+        else
+        {
+            $_SESSION['Message'] = "Deletion failed: Invalid category input!";
         }
     }
 
@@ -121,24 +188,22 @@ class ProductController
         $model = new ProductDB();
         $input = $this->washInput($input);
         $temp = "";
-        if ($input == NULL || $input == "") {
-            $_SESSION['Message'] = "Insertion failed: Invalid input!";
-            return $input;
+        if ($input == NULL || $input == "")
+        {
+            return -1;
         }
-        else{
-            for ($i=0; $i<count($arr); $i++){ 
+        else
+        {
+            for ($i=0; $i<count($arr); $i++)
+            { 
                 $temp = $arr[$i]['Name'];
-                if ($input == $temp) {
-                    $_SESSION['Message'] = "Insertion failed: Input already exists in DB!";
-                    break;
+                if ($input == $temp)
+                {
+                    return -2;
                 }
             }
-            //Check if input not already exists
-            if ($input != $temp) {
-                return $input;
-            } else{
-                return $msg = "ERROR! Something went wrong with the insertion.";
-            }
+            return $input;
+            
         }
     }
 

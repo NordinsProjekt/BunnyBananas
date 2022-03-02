@@ -148,11 +148,7 @@ if (isset($_POST['submit-product'])) //Skapar ny produkt i DB
     $price = $_POST['new-price'];
     $balance = $_POST['balance'];
 
-    $worked = $controller->insertProduct($name, $category, $color, $description, $price, $balance);
-    if ($worked == -1) {
-        //echo $msgEN = "Failed to insert into DB!<br>Make sure everything is filled in correctly.";
-        echo $msgSV = "Misslyckades att föra in data i DB!<br>Kontrollera så att allt är korrekt ifyllt.";
-    }
+    $controller->insertProduct($name, $category, $color, $description, $price, $balance);
 }
 
 if (isset($_POST['update-product'])) //Uppdaterar produktdata i DB
@@ -194,24 +190,13 @@ if (isset($_POST['delete-color'])) //Raderar färg i DB
 {
     $controller = new ProductController();
     $color = $_POST['color'];
-    
-    $worked = $controller->removeColor($color);
-    if ($worked == -1) {
-        //echo $msgEN = "Failed to delete from DB!<br>Make sure a value is choosen.";
-        echo $msgSV = "Misslyckades att ta bort data i DB!<br>Kontrollera så att data är ifyllt.";
-    }
+    $controller->removeColor($color);
 }
 
 if (isset($_POST['delete-category'])) //Raderar kategori i DB
 {
     $controller = new ProductController();
     $category = $_POST['category'];
-
-    $worked = $controller->removeCategory($category);
-    if ($worked == -1) {
-        //echo $msgEN = "Failed to delete from DB!<br>Make sure a value is choosen.";
-        echo $msgSV = "Misslyckades att ta bort data i DB!<br>Kontrollera så att data är ifyllt.";
-    }
-    
+    $controller->removeCategory($category);
 }
 ?>

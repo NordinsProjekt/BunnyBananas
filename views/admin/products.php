@@ -5,19 +5,19 @@ echo "<div class='AdminProducts'>";
             echo "<section class ='ProductSection' id='AddNewProduct'>";
             echo "<h3 class='TitelHeader'>Skapa Produkt</h3>";
             echo "<form action='#' method='post'>";
-                echo "<input type='text' id='new-product' name='new-product' placeholder='Produktnamn'><br>";
-                echo "<select name='categories' id='categories'>";
+                echo "<input type='text' id='new-product' name='new-product' placeholder='Produktnamn' required><br>";
+                echo "<select name='categories' id='categories' required>";
                 echo "<option value=''>Välj Kategori</option>";
                 foreach ($controller->listAllCategories() as $row){
                     echo "<option>".$row["Name"]."</option>";
                 } echo "</select>"."<br>";
-                echo "<select name='colors' id='colors'>";
+                echo "<select name='colors' id='colors' required>";
                 echo "<option value=''>Välj Färg</option>";
                 foreach ($controller->listAllColors() as $row){
                     echo "<option>".$row["Name"]."</option>";
                 } echo "</select>"."<br>";
                 echo "<textarea name='description' rows='4' placeholder='Beskrivning'></textarea><br>";
-                echo "<input type='text' id='new-price' name='new-price' placeholder='Pris'><br>";
+                echo "<input type='text' id='new-price' name='new-price' placeholder='Pris' required><br>";
                 echo "<label for='balance'><b>Antal: </b></label>";
                 echo "<input type='number' id='balance' name='balance' placeholder='0' min='1' max='100'><br>";
                 echo "<input type='submit' name='submit-product' value='Skapa'>";
@@ -120,6 +120,7 @@ echo "<div class='AdminProducts'>";
 </details>
 <details>
 <summary>Editera produkt</summary>
+<p>För att editera en produkt, klicka på dess ID-nummer.</p>
 <table>
         <tr>
             <th>ID</th>
