@@ -55,6 +55,17 @@ class CartController {
     }
 
     function Checkout(){
+
+        $orderController = new OrderController();
+        $msg = "";
+
+        foreach ($orderController->ListSpecificOrder($orderController->ListLastOrderByUserId($_SESSION['userId'])) as $product) {
+            $msg .= $product['ProductID'].'|'.$product['ProductName'].'|'.$product['Category'].'|'.$product['Color'].'|'.$product['Price'].'|'.$product['Amount'].'//';
+        }
+
+        //echo var_dump($msg);
+        require_once('API.StaffanController.php');
+        SendCheckoutMail($_SESSION['email'], $msg);
         unset($_SESSION['ShoppingCart']); //empty cart
     }
 
