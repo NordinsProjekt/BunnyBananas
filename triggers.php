@@ -167,7 +167,11 @@ if (isset($_POST['update-product'])) //Uppdaterar produktdata i DB
 
     $controller->insertUpdatedProduct($id, $name, $category, $color, $description, $price, $balance, $discontinued);
     $addImage = new UploadController();
-    $addImage->AddProductImage($id);
+    if ($_FILES['fileToUpload']['name'] != "" || $_FILES['fileToUpload']['full_path'] != "" )
+    {
+        var_dump($_FILES);
+        $addImage->AddProductImage($id);
+    }   
 }
 
 if (isset($_POST['submit-color'])) //Skapar ny färg i DB

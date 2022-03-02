@@ -20,10 +20,12 @@ class UploadController
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $file))
                     {
                         $_SESSION['Message'] = "File". $file . "has been uploaded";
+                        unset($_FILES['fileToUpload']);
                     }
                     else
                     {
                         $_SESSION['Message'] = "Unknown error, could not upload";
+                        unset($_FILES['fileToUpload']);
                     }
                 }
                 else
@@ -63,10 +65,12 @@ class UploadController
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $file))
                     {
                         $_SESSION['Message'] = "File". $file . "has been uploaded";
+                        unset($_FILES['fileToUpload']);
                     }
                     else
                     {
                         $_SESSION['Message'] = "Unknown error, could not upload";
+                        unset($_FILES['fileToUpload']);
                     }
                 }
                 else

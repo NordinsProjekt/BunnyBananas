@@ -99,6 +99,7 @@ a{
 .center{
   text-align: center;
 }
+
 a:link.LinkHeader, a:visited.LinkHeader {
   background-color: whitesmoke;
   color: black;

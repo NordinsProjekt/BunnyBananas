@@ -59,6 +59,29 @@ echo "<div class='AdminProducts'>";
             <th>Antal</th>
             <th>I lager</th>
         </tr>
+        <?php foreach ($controller->listAllProducts() as $row){?>
+        <tr>
+            <td><?php echo $row["ID"]?></td>
+            <td><?php echo $row["Category"]?></td>
+            <td><?php echo $row["Name"]?></td>
+            <td><?php echo $row["Price"]?></td>
+            <td><?php echo $row["Balance"]?></td>
+            <td><?php echo $row["Discontinued"]?></td>
+        </tr>
+        <?php }?>
+    </table>
+</details>
+<details>
+    <summary>Visa alla aktiva produkter</summary>
+    <table>
+        <tr>
+            <th>Produkt ID</th>
+            <th>Kategori</th>
+            <th>Namn</th>
+            <th>Pris</th>
+            <th>Antal</th>
+            <th>I lager</th>
+        </tr>
         <?php foreach ($controller->listProducts($status=0) as $row){?>
         <tr>
             <td><?php echo $row["ID"]?></td>
@@ -76,13 +99,13 @@ echo "<div class='AdminProducts'>";
 <table>
         <tr>
             <th>ID</th>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Balance</th>
-            <th>Discontinued</th>
+            <th>Kategori</th>
+            <th>Namn</th>
+            <th>Färg</th>
+            <th>Pris</th>
+            <th>Beskrivning</th>
+            <th>Antal</th>
+            <th>I lager</th>
         </tr>
         <?php foreach ($controller->listAllProducts() as $row){?>
         <tr>

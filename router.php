@@ -61,9 +61,6 @@ switch ($_GET['url']) {
             require_once __DIR__ . '/views/signup.php';
         }
         break;
-    case 'test':
-        require_once __DIR__ . '/views/upload.php';
-        break;
     default:
         header("Location: /banan");
         break;

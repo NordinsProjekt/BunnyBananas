@@ -1,9 +1,10 @@
 <?php $orderController = new OrderController(); ?>
 <h1>Profilsida för <?php echo $_SESSION['username']; ?></h1>
 
-<div class="ProfileUser">  
+
     <details>
     <summary>Mina Beställningar</summary>
+    <div class="ProfileUser">  
     <h2 class="TitelHeader">Beställningar:</h2>
 <table>
 <thead>
@@ -27,8 +28,9 @@
 <?php }?>
 </tbody>
 </table>
-</details>
 </div>
+</details>
+
 <?php if (isset($_GET['orderID'])) {?>
     <table>
     <thead>

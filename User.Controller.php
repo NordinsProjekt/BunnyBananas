@@ -52,12 +52,12 @@ class UserController
                 }
                 else
                 {
-                    echo "Användaren skapades inte";
+                    $_SESSION['Message'] = "Användaren skapades inte";
                 }
             }
             else
             {
-                echo "Användaren finns redan";
+                $_SESSION['Message'] = "Användaren finns redan";
             }
         }
 
@@ -75,7 +75,7 @@ class UserController
         }
         else
         {
-            echo "Felaktiga grupp ID";
+            $_SESSION['Message'] =  "Felaktiga grupp ID";
         }
 
     }
