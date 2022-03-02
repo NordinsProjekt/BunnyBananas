@@ -26,7 +26,8 @@ class ProductDB extends PDOHandler
     {
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Price, pr.Balance, pr.Discontinued
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
-        INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.Discontinued = :status;");
+        INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.Discontinued = :status
+        ORDER BY ID ASC;");
         $stmt->bindParam(':status', $status);
         $stmt->execute();
         return $result = $stmt->fetchAll();

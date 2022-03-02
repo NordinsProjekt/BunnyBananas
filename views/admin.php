@@ -1,9 +1,9 @@
     <nav class="AdminNav">
-        <a href="?admin=users">Hantera Användare</a>
-        <a href="?admin=orders">Hantera Ordrar</a>
-        <a href="?admin=products">Hantera Produkter</a>
+        <a href="?admin=users">Hantera användare</a>
+        <a href="?admin=orders">Hantera ordrar</a>
+        <a href="?admin=products">Hantera produkter</a>
         <details>
-            <summary>Senaste databas meddelandet</summary>
+            <summary>Senaste databasmeddelandet</summary>
             <p><?php echo $_SESSION['Message'];?></p>
         </details>
     </nav>

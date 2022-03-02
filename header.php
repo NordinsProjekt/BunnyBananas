@@ -21,7 +21,9 @@ if (isset($_SESSION['is_logged_in']))
 }
 else 
 {
+    echo "<div class='LoginFlex'>";
     echo LoginForm();
+    echo "</div>";
 }
 ?>
 </nav>
@@ -35,9 +37,6 @@ else
 
     <p><?php echo $cartCtrl->CurrentSum(); ?>:- (<?php echo $cartCtrl->CurrentAmountOfItems(); ?>)</p>
 </div>
-
-
-
 <nav>
 
     <form method="GET" action="./search">
@@ -67,10 +66,5 @@ else
         </div>
 
     </form>
-
-        
 </nav>
-
-
-
 </header>

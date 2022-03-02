@@ -1,7 +1,7 @@
 <?php $orderController = new OrderController();?>
 
 <details>
-    <summary>Visa Alla Beställningar</summary>
+    <summary>Visa alla beställningar</summary>
 <div class="AllOrders">
 <h3 class="TitelHeader">Alla beställningar:</h3>
 <table>

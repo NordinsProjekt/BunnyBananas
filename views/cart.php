@@ -23,17 +23,19 @@
                 <?php echo CartProduct($product['ID'],$product['Name'],$product['Category'],$product['Color'],$product['Price'],$product['Balance']); ?>
 
             <?php }?>
+            <?php 
+            $sum = 0;
+            foreach($_SESSION['ShoppingCart'] as $productID){ 
+        
+                $sum += ($productID[0] * $productID[1]);
+
+            }?>
+            <tr><td colspan="8" style="text-align: right;"><b>Totalt: <?php echo $sum;?>:-</b></td></tr>
         </tbody>
     </table>
-    <?php 
-    $sum = 0;
-    foreach($_SESSION['ShoppingCart'] as $productID){ 
-        
-        $sum += ($productID[0] * $productID[1]);
+    
 
-    }?>
-
-    Totalt: <?php echo $sum;?>:-
+    
 
 
     <?php if(key_exists('userId', $_SESSION)) {?>
@@ -59,10 +61,16 @@
             <input type="submit" name="betala" value="Godkänn!" />
         </form>
     
-    <?php }?>
+    <?php }
+    else
+    {
+        echo "<br /><h2>Logga in för att fortsätta</h2><br />";
+        echo LoginForm();
+    }
+        ?>
 
 <?php } else { ?>
-    Din varukorg är tom!
+    <p>Din varukorg är tom!</p>
 <?php }?>
 
 </main>

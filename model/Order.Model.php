@@ -9,7 +9,8 @@ class OrderModel extends PDOHandler
 
     function GetAllOrders()
     {
-      $sql = 'SELECT * FROM orders;';
+      $sql = 'SELECT * FROM orders
+      ORDER BY ID ASC;';
       
       $stmt = $this->Connect()->prepare($sql);
       $stmt->execute();
@@ -18,7 +19,8 @@ class OrderModel extends PDOHandler
 
     function GetAllOrdersByUserId($userId)
     {
-      $sql = 'SELECT * FROM orders WHERE UserID = :userId;';
+      $sql = 'SELECT * FROM orders WHERE UserID = :userId
+      ORDER BY ID ASC;';
       $stmt = $this->Connect()->prepare($sql);
       $stmt->bindParam(':userId',$userId);
       $stmt->execute();
