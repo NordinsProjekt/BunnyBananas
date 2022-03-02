@@ -23,13 +23,6 @@ class ProductDB extends PDOHandler
         return $result = $stmt->fetchAll();
     }
 
-    function getAllCategories()
-    {
-        $stmt = $this->Connect()->prepare("SELECT * FROM `categories`;");
-
-        $stmt->execute();
-        return $result = $stmt->fetchAll();
-    }
 
     function getProducts($status) //Hämtar alla produkter med angiven status (0 eller 1)
     {
