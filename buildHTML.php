@@ -52,7 +52,7 @@ function UploadFile($productId)
 
 function ShowAllUsers(array $arr)
 {
-    $page = "<section class='ShowAllUsers'><h2 class='TitelHeader'>Alla Användare/Kunder</h2>";
+    $page = "<h2 class='TitelHeader'>Alla Användare/Kunder</h2>";
     $page .="<table><thead><tr><th>ID</th><th>Rättigheter</th><th>Användarnamn</th><th>Email</th><th>Aktiv</th></tr></thead>";
     foreach ($arr as $row => $user) 
     {
@@ -68,7 +68,7 @@ function ShowAllUsers(array $arr)
         }
         $page .= "</tr>";
     }
-    $page .="</table></section>";
+    $page .="</table>";
     return $page;
 }
 
@@ -85,7 +85,7 @@ function ProductCard($productID, $name, $category, $color,$price, $Balance){
         if (isset($imagePaths)){
             foreach ($imagePaths as $img) {
                 if ($img != '.' && $img != '..') {
-                    $text .= "<a href='./product?productID=".$productID."'><img src='img/products/".$productID."/".$img."' height='150px'></a>";
+                    $text .= "<a href='./product?productID=".$productID."'><img src='img/products/".$productID."/".$img."' ></a>";
                     break;
                 }
                 
@@ -101,7 +101,7 @@ function ProductCard($productID, $name, $category, $color,$price, $Balance){
     $text .= "  <form action='' method='post'>";
     $text .= "      <input type='Hidden' name='productID' value='$productID'/>";
     $text .= "      <input type='Hidden' name='price' value='$price'/>";
-    $text .= "      <input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>";
+    $text .= "      <input class='inputnumber' type='number' name='amount' value='1' min='1'max='99'/>";
     $text .= "      <input type='Hidden' name='AddToCart' value='AddToCart'/>";
     $text .= "      <input type='submit' id='submit' name='submit' value='KÖP!' />";
     $text .= "  </form>";

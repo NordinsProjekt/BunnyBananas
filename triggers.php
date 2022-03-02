@@ -99,10 +99,6 @@ if (key_exists('logout',$_POST))
 <?php 
 //CART TRIGGERS!
 
-// echo var_dump($_POST).'<br><br>';
-
-
-
 if (isset($_POST['AddToCart'])) {
     $cart = new CartController();
 
@@ -115,9 +111,6 @@ if (isset($_POST['updateCart'])) {
     $cart->UpdateProductInCart($_POST['productID'],$_POST['amount']);
 }
 
-// if (isset($_SESSION['ShoppingCart'])) {
-//     echo '<pre>', print_r($_SESSION['ShoppingCart']),'</pre>'.'<br><br>';
-// }
 ?>
 
 
@@ -164,7 +157,6 @@ if (isset($_POST['update-product'])) //Uppdaterar produktdata i DB
     $addImage = new UploadController();
     if ($_FILES['fileToUpload']['name'] != "" || $_FILES['fileToUpload']['full_path'] != "" )
     {
-        var_dump($_FILES);
         $addImage->AddProductImage($id);
     }   
 }
