@@ -17,12 +17,13 @@ function SendCheckoutMail($email, $message){
         $response = curl_exec($ch);
     
         if (!$response) {
-            die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
+            //die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
         }
         curl_close($ch);
 
     } catch (\Throwable $e) {
         //fuckit! Om apit inte är igång eller något annat går fel så gör vi ingenting :)
+        die();
     }
     
     

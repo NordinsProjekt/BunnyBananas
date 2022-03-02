@@ -31,7 +31,7 @@
 </div>
 </details>
 
-
+<div class="AllOrders">
 <?php if (isset($_GET['orderID'])) {?>
     <table>
     <thead>
@@ -70,7 +70,7 @@
 
 </tbody>
 </table>
-
+<br />
 <table>
     <thead>
         <tr>
@@ -98,3 +98,4 @@
 
 <!--END IF-->
 <?php }?>
+</div>
