@@ -3,7 +3,7 @@
     $row = $controller->ListShippingAddress(); 
 ?>
 <section class="LeveransAdress">
-<h2>Adress</h2>
+<h2 class="TitelHeader">Adress</h2>
 <form class="profileForm" method="post">
     <label for="fname">Förnamn:</label><br />
     <input type="text" id="fname" name="txtFirstname" value="<?php echo $row['Firstname']; ?>"><br />

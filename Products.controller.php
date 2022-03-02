@@ -122,14 +122,14 @@ class ProductController
         $input = $this->washInput($input);
         $temp = "";
         if ($input == NULL || $input == "") {
-            return $msg = "Insertion failed: Invalid input!";
+            $_SESSION['Message'] = "Insertion failed: Invalid input!";
             return $input;
         }
         else{
             for ($i=0; $i<count($arr); $i++){ 
                 $temp = $arr[$i]['Name'];
                 if ($input == $temp) {
-                    return $msg = "Insertion failed: Input already exists in DB!";
+                    $_SESSION['Message'] = "Insertion failed: Input already exists in DB!";
                     break;
                 }
             }

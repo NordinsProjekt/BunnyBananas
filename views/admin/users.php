@@ -2,7 +2,7 @@
 <details>
 <summary>Skapa Användare</summary>
     <section class="UserSection" id="AddUser">
-        <h2>Skapa Användare</h2>
+        <h3 class="TitelHeader">Skapa Användare</h3>
            <form method="post">
             <!--<label for="txtUsername" id ="lblUsername" class="">Username: </label>-->
             <input type="text" id ="txtUsername" name="txtUsername" placeholder="Användarnamn" class="userInput" value="" size="30" /><br />
@@ -27,7 +27,7 @@
     <details>
         <summary>Hantera Grupper</summary>
         <section class="UserSection" id="CreateGroup">
-            <h2>Skapa Grupp</h2>
+            <h3 class="TitelHeader">Skapa Grupp</h3>
                 <form method="post">
                     <input type="text" id ="txtGroupname" name="txtGroupname" placeholder="Grupp namn" class="userInput" value="" size="10" /><br />
                     <input type="submit" id="addGroup" class="addGroupButton" name="addGroup" value="Skapa" />
@@ -35,7 +35,7 @@
         </section>
         <br />
         <section class="UserSection" id="DeleteGroup">
-            <h2>Radera Grupp</h2>
+            <h3 class="TitelHeader">Radera Grupp</h3>
                 <form method="post">
                     <select name="selGroups" id="selGroups">
                     <?php 

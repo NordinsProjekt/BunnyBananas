@@ -8,6 +8,10 @@ require_once "triggers.php";
         <a href="?admin=users">Hantera Användare</a>
         <a href="?admin=orders">Hantera Ordrar</a>
         <a href="?admin=products">Hantera Produkter</a>
+        <details>
+            <summary>Senaste databas meddelandet</summary>
+            <p><?php echo $_SESSION['Message'];?></p>
+        </details>
     </nav>
         <?php 
             if(key_exists('admin',$_GET))

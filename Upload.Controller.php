@@ -8,23 +8,24 @@ class UploadController
             $_SESSION['Message'] = "Något är fel med Produkt ID";
             return false;
         }
-
         $target_dir = "img/products/" .$productId . "/";
         $this->CreateFolder($target_dir);
         $file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        if($this->CheckFileExists($file))
+        if(!$this->CheckFileExists($file))
         {
-            if($this->CheckFileSize($file))
+            if(!$this->CheckFileSize($file))
             {
-                if($this->CheckFileFormat($file))
+                if(!$this->CheckFileFormat($file))
                 {
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $file))
                     {
                         $_SESSION['Message'] = "File". $file . "has been uploaded";
+                        unset($_FILES['fileToUpload']);
                     }
                     else
                     {
                         $_SESSION['Message'] = "Unknown error, could not upload";
+                        unset($_FILES['fileToUpload']);
                     }
                 }
                 else
@@ -55,19 +56,21 @@ class UploadController
         $target_dir = "img/products/" .$userId . "/";
         $this->CreateFolder($target_dir);
         $file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        if($this->CheckFileExists($file))
+        if(!$this->CheckFileExists($file))
         {
-            if($this->CheckFileSize($file))
+            if(!$this->CheckFileSize($file))
             {
-                if($this->CheckFileFormat($file))
+                if(!$this->CheckFileFormat($file))
                 {
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $file))
                     {
                         $_SESSION['Message'] = "File". $file . "has been uploaded";
+                        unset($_FILES['fileToUpload']);
                     }
                     else
                     {
                         $_SESSION['Message'] = "Unknown error, could not upload";
+                        unset($_FILES['fileToUpload']);
                     }
                 }
                 else
@@ -83,7 +86,6 @@ class UploadController
         else
         {
             $_SESSION['Message'] = "Filen finns redan, ".$file;
-
         }
     }
 

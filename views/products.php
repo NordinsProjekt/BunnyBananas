@@ -26,6 +26,7 @@
         </tr>
         <?php }?>
     </table>
+</details>
 
 <br>
 <details>
