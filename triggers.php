@@ -196,4 +196,9 @@ if (isset($_POST['delete-category'])) //Raderar kategori i DB
     $category = $_POST['category'];
     $controller->removeCategory($category);
 }
+
+if(isset($_POST['currency']))
+{
+    $_SESSION['currency'] = $_POST['currency'];
+}
 ?>

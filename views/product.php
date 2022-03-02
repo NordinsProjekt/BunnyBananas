@@ -45,7 +45,7 @@ if (file_exists($dir)) {
             <div class='buybox'>
                 <form action='' method='post'>
                     <input type='Hidden' name='productID' value='<?php echo $_GET['productID']; ?>'/>
-                    <input type='Hidden' name='price' value='<?php echo $product['Price']; ?>'/>
+                    <input type='Hidden' name='price' value='<?php echo currency($product['Price']); ?>'/>
                     <input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>
                     <input type='Hidden' name='AddToCart' value='AddToCart'/>
                     <input type='submit' id='submit' name='submit' value='KÖP!' />

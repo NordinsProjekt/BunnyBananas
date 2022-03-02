@@ -71,6 +71,10 @@ else
         
 </nav>
 
+<form action="#" method="post">
+<button type="submit" name="currency" value="SEK">SEK</button>
+<button type="submit" name="currency" value="EUR">EUR</button>
+</form>
 
 
 </header>
