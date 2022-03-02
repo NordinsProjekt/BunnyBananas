@@ -1,5 +1,5 @@
 <?php
-require_once('Order.Model.php');
+require_once('model/Order.Model.php');
 
 class OrderController {
 

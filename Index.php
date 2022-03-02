@@ -1,10 +1,10 @@
 <?php 
 session_start();
-require_once('User.Controller.php');
-require_once('Order.Controller.php');
-require_once('Upload.Controller.php');
-require_once('Products.controller.php');
-require_once('Cart.Controller.php');
+require_once('controller/User.Controller.php');
+require_once('controller/Order.Controller.php');
+require_once('controller/Upload.Controller.php');
+require_once('controller/Products.controller.php');
+require_once('controller/Cart.Controller.php');
 require_once('triggers.php');
 require_once('buildHTML.php');
 if (!isset($_SESSION['Message']))

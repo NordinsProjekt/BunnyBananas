@@ -1,5 +1,5 @@
 <?php
-require_once "User.Model.php";
+require_once "model/User.Model.php";
 class UserController
 {
     function __destruct()

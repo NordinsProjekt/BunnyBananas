@@ -1,5 +1,4 @@
 <?php
-require_once "User.Controller.php";
 
 if (key_exists('addUser',$_POST) && key_exists('txtUsername',$_POST) && 
 key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) && key_exists('selGroups',$_POST))
@@ -99,7 +98,6 @@ if (key_exists('logout',$_POST))
 
 <?php 
 //CART TRIGGERS!
-Require_once('Cart.Controller.php');
 
 // echo var_dump($_POST).'<br><br>';
 
@@ -125,7 +123,6 @@ if (isset($_POST['updateCart'])) {
 
 <?php 
 //ORDER TRIGGERS!
-Require_once('Order.Controller.php');
 
 if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $order = new OrderController();

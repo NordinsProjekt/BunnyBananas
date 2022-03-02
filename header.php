@@ -4,8 +4,6 @@ $userCtrl = new UserController();
 $cartCtrl = new CartController();
 $prodCtrl = new ProductController();
 
-require_once('triggers.php');
-require_once('buildHTML.php');
 ?>
 <header class="header">
 <nav class="flex-row">
