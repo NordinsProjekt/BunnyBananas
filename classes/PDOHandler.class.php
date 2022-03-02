@@ -24,7 +24,7 @@ abstract class PDOHandler
         } 
         catch (\Throwable $e) 
         {
-            echo "Connection failed: " .$e->getMessage();
+            $_SESSION['Message'] =  "Connection failed: " .$e->getMessage();
             die();
         }
     }

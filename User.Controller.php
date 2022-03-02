@@ -189,6 +189,7 @@ class UserController
 
     private function ValidateEmail($email)
     {
+        //Kollar om mailen är ok
         if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         }
@@ -199,14 +200,15 @@ class UserController
 
     private function CheckShippingAddress($notsafeText)
     {
-        $banlist = array(".",";",",","<",">",")","(","=","[","]");
+        //Filtrerar leverans adressen.
+        $banlist = array(";","\t","=","[","]");
         $safe = str_replace($banlist,"",$notsafeText);
         return $safe;
     }
 
     private function CheckUserInputs($notsafeText)
     {
-      $banlist = array(".",";"," ","/",",","<",">",")","(","=","[","]");
+      $banlist = array("\t",".",";"," ","/",",","<",">",")","(","=","[","]");
       $safe = str_replace($banlist,"",$notsafeText);
       return $safe;
     }
