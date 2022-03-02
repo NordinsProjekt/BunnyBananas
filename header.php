@@ -35,7 +35,7 @@ else
     
     <a class='LinkHeader' href="./cart">Kundkorg</a>
 
-    <p><?php echo $cartCtrl->CurrentSum(); ?>:- (<?php echo $cartCtrl->CurrentAmountOfItems(); ?>)</p>
+    <p><?php echo currency($cartCtrl->CurrentSum()); ?>(<?php echo $cartCtrl->CurrentAmountOfItems(); ?>)</p>
 </div>
 <nav>
 

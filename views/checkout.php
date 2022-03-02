@@ -30,12 +30,12 @@ $lastOrderID = $orderController->ListLastOrderByUserId($_SESSION['userId']);
                     <td><?php echo $value['Color']?></td>
                     <td><?php echo $value['Category']?></td>
                     <td><?php echo $value['Amount']?></td>
-                    <td><?php echo $value['Price']?>:-</td>
+                    <td><?php echo currency($value['Price'])?></td>
                 </tr>
             <?php } //END FOREACH ?>
 
                 <tr>
-                    <td colspan="6" style="text-align:right;"><b>Summa: <?php echo $orderController->ListTotalCostSpecificOrder($lastOrderID); ?>:-</b></td>
+                    <td colspan="6" style="text-align:right;"><b>Summa: <?php echo currency($orderController->ListTotalCostSpecificOrder($lastOrderID)); ?></b></td>
                 </tr>
             </tbody>
         </table>
