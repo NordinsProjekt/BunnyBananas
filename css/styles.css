@@ -276,9 +276,11 @@ td{
   width: 35px;
 }
 
-.ProfileUser, .AllOrders{
+.ProfileUser, .AllOrders, .EditProduct{
   display:table;
   gap: 10px;
+  background-color: whitesmoke;
+  width:auto;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

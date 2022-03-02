@@ -52,7 +52,7 @@ class ProductDB extends PDOHandler
         INNER JOIN colors AS co ON pr.ColorID = co.ID WHERE pr.ID = :id;");
         $stmt->bindParam(':id', $productID);
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetch();
         return $result;
     }
 
@@ -92,7 +92,7 @@ class ProductDB extends PDOHandler
         $stmt->bindParam(":price", $price);
         $stmt->bindParam(":balance", $balance);
         $stmt->execute();
-        echo $msg = "SUCCESS! New product added to DB!";
+        //echo $msg = "SUCCESS! New product added to DB!";
     }
 
     function updateProductDB($id, $name, $category, $color, $description, $price, $balance, $discontinued)
@@ -108,7 +108,7 @@ class ProductDB extends PDOHandler
         $stmt->bindParam(":balance", $balance);
         $stmt->bindParam(":discontinued", $discontinued);
         $stmt->execute();
-        echo $msg = "SUCCESS! Product updated in DB!";
+        //echo $msg = "SUCCESS! Product updated in DB!";
     }
 
 
