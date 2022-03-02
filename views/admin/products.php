@@ -35,15 +35,13 @@ echo "<div class='AdminProducts'>";
             echo "</section>";
             echo "<br>";
             echo "<section class ='ProductSection' id='DeleteColor'>";
-            echo "<h3>Radera färg</h3>"; //Radera färg
+            echo "<h3 class='TitelHeader'>Radera färg</h3>"; //Radera färg
             echo "<form action='#' method='post'>";
-                echo "<label for='color'><b>Färg: </b></label>";
                 echo "<select name='color' id='color'>";
-                echo "<option value='".$value['Color']."'>".$value['Color']."</option>";
                 foreach ($controller->listAllColors() as $row){
                     echo "<option>".$row["Name"]."</option>";
                 } echo "</select>";
-                echo "<input type='submit' name='delete-color' value='Delete'>";
+                echo "<input type='submit' name='delete-color' value='Radera'>";
             echo "</form>";
             echo "</section>";
             echo "</details>";
@@ -58,15 +56,13 @@ echo "<div class='AdminProducts'>";
             echo "</section>";
             echo "<br>";
             echo "<section class ='ProductSection' id='DeleteCategory'>";
-            echo "<h3>Radera kategori</h3>"; //Radera kategori
+            echo "<h3 class='TitelHeader'>Radera kategori</h3>"; //Radera kategori
             echo "<form action='#' method='post'>";
-                echo "<label for='category'><b>Kategori: </b></label>";
                 echo "<select name='category' id='category'>";
-                echo "<option value='".$value['Category']."'>".$value['Category']."</option>";
                 foreach ($controller->listAllCategories() as $row){
                     echo "<option>".$row["Name"]."</option>";
                 } echo "</select>";
-                echo "<input type='submit' name='delete-category' value='Delete'>";
+                echo "<input type='submit' name='delete-category' value='Radera'>";
             echo "</form>";
             echo "</section>";
             echo "</details>";

@@ -2,7 +2,7 @@
 
 //Här ska all kontroll av data mellan browern och databasen ske
 
-require_once('Products.model.php');
+require_once('model/Products.Model.php');
 
 class ProductController
 {

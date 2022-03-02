@@ -1,9 +1,3 @@
-<?php
-require_once "User.Controller.php";
-require_once "Order.Controller.php";
-require_once "Products.controller.php";
-require_once "triggers.php";
-?>
     <nav class="AdminNav">
         <a href="?admin=users">Hantera Användare</a>
         <a href="?admin=orders">Hantera Ordrar</a>

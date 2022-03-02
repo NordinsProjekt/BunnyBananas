@@ -1,12 +1,13 @@
 <?php 
 session_start();
-require_once('User.Controller.php');
-require_once('Order.Controller.php');
-require_once('Upload.Controller.php');
-require_once('Products.controller.php');
-require_once('Cart.Controller.php');
+require_once('controller/User.Controller.php');
+require_once('controller/Order.Controller.php');
+require_once('controller/Upload.Controller.php');
+require_once('controller/Products.Controller.php');
+require_once('controller/Cart.Controller.php');
 require_once('triggers.php');
 require_once('buildHTML.php');
+
 if (!isset($_SESSION['Message']))
 {
     $_SESSION['Message'] = "";
@@ -17,10 +18,10 @@ if (!isset($_SESSION['Message']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/bunnybananas/github/css/styles.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/bunnybananas/github/css/flickity.css">
-    <script src="/bunnybananas/github/css/flickity.pkgd.js"></script>
-    <script src="/bunnybananas/github/css/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="/banan/css/styles.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/banan/css/flickity.css">
+    <script src="/banan/css/flickity.pkgd.js"></script>
+    <script src="/banan/css/javascript.js"></script>
 
 
     <title>Main Page</title>

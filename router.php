@@ -1,9 +1,5 @@
 <?php
-require_once('User.Controller.php');
-require_once('Order.Controller.php');
-require_once('Products.Controller.php');
-require_once('Cart.Controller.php');
-require_once('Upload.Controller.php');
+
 if (!isset($_GET['url']))
 {
     $_GET['url'] = "";
@@ -56,7 +52,7 @@ switch ($_GET['url']) {
         }
         break;
     default:
-        header("Location: /bunnybananas/github/");
+        header("Location: /banan");
         break;
 }
 ?>

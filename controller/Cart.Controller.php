@@ -1,5 +1,5 @@
 <?php
-require_once('Cart.Model.php');
+require_once('model/Cart.Model.php');
 
 class CartController {
 
