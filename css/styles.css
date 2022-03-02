@@ -305,7 +305,7 @@ td{
   display:table;
   gap: 10px;
   background-color: whitesmoke;
-  width:auto;
+  width:300px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

@@ -3,7 +3,7 @@ $controller = new ProductController();
 echo "<div class='AdminProducts'>";
             echo "<details><summary>Skapa ny produkt</summary>";
             echo "<section class ='ProductSection' id='AddNewProduct'>";
-            echo "<h3 class='TitelHeader'>Skapa Produkt</h3>";
+            echo "<h3 class='TitelHeader'>Skapa produkt</h3>";
             echo "<form action='#' method='post'>";
                 echo "<input type='text' id='new-product' name='new-product' placeholder='Produktnamn' required><br>";
                 echo "<select name='categories' id='categories' required>";

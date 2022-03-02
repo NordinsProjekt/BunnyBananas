@@ -52,7 +52,7 @@ function UploadFile($productId)
 
 function ShowAllUsers(array $arr)
 {
-    $page = "<h2 class='TitelHeader'>Alla Användare/Kunder</h2>";
+    $page = "<h2 class='TitelHeader'>Alla användare/kunder</h2>";
     $page .="<table><thead><tr><th>ID</th><th>Rättigheter</th><th>Användarnamn</th><th>Email</th><th>Aktiv</th></tr></thead>";
     foreach ($arr as $row => $user) 
     {
