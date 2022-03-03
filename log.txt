@@ -4,6 +4,7 @@ Vi har i största möjliga mån försökt dokumentera vem som har gjort vad. Men
 
 # 24/2
 
+Gemensamt:
 
 Satte struktur:
   *Databas struktur/arkitektur
@@ -18,10 +19,12 @@ Vi mob-programerade en grundstruktur som vi alla kan arbeta med och är införst
 
 Ett första utkast på databas-designen gjordes i draw.io.
   *User, group, usergroups tabeller skapades för att kunna testa inlognings systemet.
-  
-Enkel inloggnings funktionallitet lades till av Markus.
 
-En simpel routingfunkonalitet samt view-tamplates-struktur sattes upp av Staffan.
+Markus
+ -Enkel inloggnings funktionallitet lades till.
+
+Staffan
+ -En simpel routingfunkonalitet samt view-tamplates-struktur sattes upp.
 
 # 25/2
 
@@ -100,10 +103,10 @@ Markus
 - Strukturerat koden och funktionerna.
 
 Lucas
-- Gjort klart produktdelen.
-  - Löste infogande av ny produkt.
-  - Påbörjat felhantering.
-  - Strukturerat upp koden i triggers för produktdelen.
+ - Gjort klart produktdelen.
+ - Löste infogande av ny produkt.
+ - Påbörjat felhantering.
+ - Strukturerat upp koden i triggers för produktdelen.
 
 # 2/3
 
@@ -112,12 +115,12 @@ Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges gör
 
 Staffan
  -"Byggt" en dynamisk bildkarusell som hämtar dom bilder som finns ur en folder och sedan bygger den.
-	 sökvägen är img/products/id där id motsvarar produktidt i databasen  (javascripten är ärligt lånade, php:n är egenkonstruerad)
-	-Lagt till visning av liknande produkter på det stora produktkortet
-	-Lagt till visning av förslag på tre produkter på det stora produktkortet
-	-Byggt en sökfunktion med sorteringsalternativ
+  sökvägen är img/products/id där id motsvarar produktidt i databasen  (javascripten är ärligt lånade, php:n är egenkonstruerad)
+ -Lagt till visning av liknande produkter på det stora produktkortet
+ -Lagt till visning av förslag på tre produkter på det stora produktkortet
+ -Byggt en sökfunktion med sorteringsalternativ
  -Pillat lite med CSS, små korrigeringar och tillägg.
-	-Lagt till Adress etc vid visa specifik order i admin.	
+ -Lagt till Adress etc vid visa specifik order i admin.	
  -Mailar kunden efter avslutadorder via Api. (Fungerar endast om API:t är igång på Localhost:5000) //Vi använder oss av Markus egengjorda mail api :D
 
 Markus
@@ -134,5 +137,13 @@ Lucas
 - Implementerade tydligare felhantering vid produkthantering med bl.a. try-catch.
 
 # 3/3
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
+
 Gruppen har felsökt problem med ett egetskapat API. 
 Visade sig vara ett 307 SSL Selfsigned problem som orsakade problemet.
+
+Staffan
+-Bytt ut och byggt om karusellen. Fixat dynamsik visning av bilder även i denna,
+ samt cleanare utseende när det endast finns en bild och karusellen inte behövs. 
+-Små fix i CSS, samt javascript editering.
