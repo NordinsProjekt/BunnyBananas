@@ -191,6 +191,7 @@ textarea{
 }
 table {
   border-collapse: collapse;
+  white-space: nowrap;
 }
 thead{
   text-align: left;
@@ -305,7 +306,7 @@ td{
   display:table;
   gap: 10px;
   background-color: rgb(223, 223, 223);
-  width:300px;
+  width:500px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

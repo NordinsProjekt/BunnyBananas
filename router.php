@@ -52,7 +52,7 @@ switch ($_GET['url']) {
         }
         break;
     default:
-        header("Location: /bunnybananas");
+        header("Location: /banan");
         break;
 }
 ?>
