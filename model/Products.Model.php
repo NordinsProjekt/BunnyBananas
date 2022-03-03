@@ -140,7 +140,7 @@ class ProductDB extends PDOHandler
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
         INNER JOIN colors AS co ON pr.ColorID = co.ID
-        WHERE ca.id=:categoryID AND NOT pr.ID=:excludePID 
+        WHERE ca.id=:categoryID AND NOT pr.ID=:excludePID AND pr.Discontinued = 0
         ORDER BY RAND()        
         LIMIT :amount;");
         $stmt->bindParam(":categoryID", $categoryid, PDO::PARAM_INT);
@@ -156,7 +156,7 @@ class ProductDB extends PDOHandler
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
         FROM `products` AS pr INNER JOIN categories AS ca ON pr.CategoryID = ca.ID
         INNER JOIN colors AS co ON pr.ColorID = co.ID
-        WHERE NOT pr.ID=:excludePID 
+        WHERE NOT pr.ID=:excludePID AND pr.Discontinued = 0
         ORDER BY RAND()        
         LIMIT :amount;");
         $stmt->bindParam(":excludePID", $excludePID, PDO::PARAM_INT);

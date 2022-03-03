@@ -1,5 +1,10 @@
 <?php $productController = new ProductController();
-
+//Felhantering om någon bråkar med GET
+if (!isset($_GET['productID']))
+{
+    header("Location: ./");
+    exit();
+}
 
 $images = "";
 $imgdots = "";
@@ -8,6 +13,12 @@ $displayBlock = 1;
 $dir = 'img/products/' . $_GET['productID'];
 
 $product = $productController->listProduct($_GET['productID']);
+//Felhantering om någon bråkar med GET
+if ($product == false)
+{
+    header("Location: ./");
+    exit();
+}
 
 if (file_exists($dir)) {
     $imagePaths = scandir($dir);
@@ -66,13 +77,20 @@ if (file_exists($dir)) {
             <p><?php echo $product['Balance']; ?> kvar i lager!</p>
             <p><h2><?php echo currency($product['Price']); ?></h2></p>
             <div class='buybox'>
-                <form action='' method='post'>
-                    <input type='Hidden' name='productID' value='<?php echo $_GET['productID']; ?>'/>
-                    <input type='Hidden' name='price' value='<?php echo $product['Price']; ?>'/>
-                    <input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>
-                    <input type='Hidden' name='AddToCart' value='AddToCart'/>
-                    <input type='submit' id='submit' name='submit' value='KÖP!' />
-                </form>
+                
+                    <?php if($product['Discontinued'] == 0)
+                    {?>
+                        <form action='' method='post'>
+                            <input type='Hidden' name='productID' value='<?php echo $_GET['productID']; ?>'/>
+                            <input type='Hidden' name='price' value='<?php echo $product['Price']; ?>'/>
+                            <input class='inputnumber' type='number' name='amount' value='1' min='1'max='20'/>
+                            <input type='Hidden' name='AddToCart' value='AddToCart'/>
+                            <input type='submit' id='submit' name='submit' value='KÖP!' />
+                        </form>
+                    <?php }else{?>
+                        <br />
+                        <p>Produkten har utgått ur sortiment</p>
+                    <?php }?>
             </div>
         </div>
 
