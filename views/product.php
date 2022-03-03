@@ -2,6 +2,9 @@
 
 
 $images = "";
+$imgdots = "";
+$imgCounter = 0;
+$displayBlock = 1;
 $dir = 'img/products/' . $_GET['productID'];
 
 $product = $productController->listProduct($_GET['productID']);
@@ -9,32 +12,52 @@ $product = $productController->listProduct($_GET['productID']);
 if (file_exists($dir)) {
     $imagePaths = scandir($dir);
 
-    if (isset($imagePaths)) {
-        foreach ($imagePaths as $img) {
-            if ($img != '.' && $img != '..') {
-                $images .= "<div class='carousel-cell'>";
-                $images .= "<img class='carousel-cell-image' data-flickity-lazyload='img/products/" . $_GET['productID'] . "/" . $img . "' />";
-                $images .= "</div>";
-            }
+    //clean $imagePaths
+    unset($imagePaths[0]);
+    unset($imagePaths[1]);
 
+    if (isset($imagePaths)) {
+        foreach ($imagePaths as $img) {           
+
+                $imgCounter += 1;
+                //paketera varje image
+                if ($displayBlock == 1) {
+                    $images .= "<div class='mySlides fade' style='display: block;'>"; //set display:block för första bilden.
+                    $displayBlock = 0;
+                }else {
+                    $images .= "<div class='mySlides fade''>";
+                }                
+                $images .= "<img src='img/products/" . $_GET['productID'] . "/" . $img . " '>";
+                $images .= "</div>";
+
+                //bygg imagedots om det är fler än en bild
+                if (count($imagePaths) > 1) {
+                $imgdots .= "<span class='dot' onclick='currentSlide($imgCounter)'></span>";
+                }
+            
+        }
+        //lägg till pilar om det är mer än en bild
+        if (count($imagePaths) > 1) {
+            $images .= "<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
+            $images .= "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
         }
     }
-
 }
 ?>
 
 <main class="main flex-col">
-    <div class="ProductCardLarge">
-        
-    
-    <div style="background-color: red; width: 400px;">
+    <div class="ProductCardLarge">      
+        <div>
+            <div class="slideshow-container">
 
-        <div class="carousel"data-flickity='{ "lazyLoad": true }'>
-            <?php echo $images;?>
+                <?php echo $images;?>
+
+            </div>
+            <br>
+            <div style="text-align:center">
+                <?php echo $imgdots;?>
+            </div>
         </div>
-
-            
-    </div>
         <div class="InfoText">
             <p><h2><?php echo $product['Name']; ?></h2></p>
             <p><?php echo $product['Category']; ?></p>
@@ -80,6 +103,3 @@ if (file_exists($dir)) {
     </div>
 
 </main>
-
-
-
