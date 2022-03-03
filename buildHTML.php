@@ -3,8 +3,8 @@ function LoginForm()
 {
     $text = "";
     $text .= "<form method='post'>";
-    $text .= "<input type='text' id ='txtUsername' placeholder='Användarnamn' name='txtUsername' class='userInput' value='' size='10' />";
-    $text .= "<input type='password' id ='txtPassword' placeholder='Lösenord' name='txtPassword' class='userInput' value='' size='10' />";
+    $text .= "<input type='text' id ='txtUsername' placeholder='Användarnamn' name='txtUsername' class='userInput' value='' size='12' />";
+    $text .= "<input type='password' id ='txtPassword' placeholder='Lösenord' name='txtPassword' class='userInput' value='' size='7' />";
     $text .= "<input type='submit' id='login' class='loginButton' name='login' value='Login' />";
     $text .= "</form>";
     $text .= "<a class='LinkHeader' href='./signup'>Skapa konto</a>";

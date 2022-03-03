@@ -49,7 +49,8 @@
     </tr>
 </thead>
 <tbody>
-<?php $order = $orderController->ListSpecificOrder($_GET['orderID']);?>
+<?php $order = $orderController->ListSpecificOrder($_GET['orderID']);
+$summa = 0;?>
 <?php foreach($order as $value){?>
 
     <tr>
@@ -66,8 +67,8 @@
     </tr>
     
 <!--END LOOP-->
-<?php }?>
-
+<?php $summa+= $value['Amount']*$value['Price']; }?>
+<tr><td colspan="10" style="text-align: right;"><b><?php echo "Summa ".$summa.":-";?></b></td></tr>
 </tbody>
 </table>
 <br />

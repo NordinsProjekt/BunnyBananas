@@ -70,8 +70,8 @@ else
 
 
 <form action="#" method="post">
-<button type="submit" name="currency" value="SEK">SEK</button>
-<button type="submit" name="currency" value="EUR">EUR</button>
+<input type="submit" name="currency" value="SEK" />
+<input type="submit" name="currency" value="EUR" />
 </form>
 
 

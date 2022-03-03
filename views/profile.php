@@ -1,7 +1,6 @@
 <?php $orderController = new OrderController(); ?>
 <h1>Profilsida för <?php echo $_SESSION['username']; ?></h1>
 
-
     <details>
     <summary>Mina Beställningar</summary>
     <div class="ProfileUser">  
@@ -47,7 +46,10 @@
     </tr>
 </thead>
 <tbody>
-<?php foreach($orderController->ListSpecificOrder($_GET['orderID']) as $value){?>
+
+<?php 
+$summa = 0;
+foreach($orderController->ListSpecificOrder($_GET['orderID']) as $value){?>
 
     <tr>
         <td><?php echo $value['ID']?></td>
@@ -60,9 +62,11 @@
         <td><?php echo $value['Sent']?></td>
         <td><?php echo $value['Delivered']?></td>
     </tr>
+    <?php $summa += $value['Price']*$value['Amount']; ?>
     
 <!--END LOOP-->
 <?php }?>
+<tr><td colspan="9" style="text-align: right;"><b><?php echo "Summa ". $summa . ":-";?></b></td></tr>
 </tbody>
 </table>
 </div>
