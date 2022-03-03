@@ -135,6 +135,7 @@ Lucas
 - Fyllt på med beskrivande kommentarer.
 - Parprogrammerat finjustering i CSS.
 - Implementerade tydligare felhantering vid produkthantering med bl.a. try-catch.
+- Skapade API-kontakt för valuta. Implementerade sedan funktionen tillsammans med Staffan.
 
 # 3/3
 Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
@@ -147,3 +148,6 @@ Staffan
 -Bytt ut och byggt om karusellen. Fixat dynamsik visning av bilder även i denna,
  samt cleanare utseende när det endast finns en bild och karusellen inte behövs. 
 -Små fix i CSS, samt javascript editering.
+
+Lucas
+- 
