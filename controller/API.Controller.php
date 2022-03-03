@@ -78,31 +78,34 @@
 
 
 function SendCheckoutMail($email, $message){
-
-    try{
-        $subject = 'test'; 
-
-        //echo var_dump(http_build_query($data)) . "<br>";
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://localhost:5000/Email?email=".$email."subject=".$subject."message=".$message);
-        curl_setopt($ch, CURLOPT_POST, 1); //SET POST
-        //curl_setopt ($ch, CURLOPT_POSTFIELDS,  http_build_query($data)); //$data
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //Vi förväntar oss ett svar?
-
-        $response = curl_exec($ch);
-
-        if (!$response) {
-            //die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
-        }
-        curl_close($ch);
-
-    } catch (\Throwable $e) {
-        //fuckit! Om apit inte är igång eller något annat går fel så gör vi ingenting
-        die();
+    $subject = "test";
+    $html_brand = "http://localhost:5000/Email?email=".$email."&subject=".$subject."&message=".$message;
+    $ch = curl_init();
+    
+    $options = array(
+        CURLOPT_URL            => $html_brand,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HEADER         => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_POST           => 1,
+        CURLOPT_ENCODING       => "",
+        CURLOPT_AUTOREFERER    => true,
+        CURLOPT_CONNECTTIMEOUT => 120,
+        CURLOPT_TIMEOUT        => 120,
+        CURLOPT_MAXREDIRS      => 10,
+    );
+    curl_setopt_array( $ch, $options );
+    $response = curl_exec($ch); 
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+    if ( $httpCode != 200 ){
+        echo "Return code is {$httpCode} \n"
+            .curl_error($ch);
+    } else {
     }
-
-
+    curl_close($ch);
 }
 ?>
 
