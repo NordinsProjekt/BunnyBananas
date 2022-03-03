@@ -24,12 +24,10 @@ if (!isset($_SESSION['ExchangeRate']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/banan/css/styles.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/banan/css/flickity.css">
-    <script src="/banan/css/flickity.pkgd.js"></script>
-    <script src="/banan/css/javascript.js"></script>
-
-
+    <link rel="stylesheet" type="text/css" href="/bunnybananas/css/styles.css" media="screen" />
+    <script src="/bunnybananas/css/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bunnybananas/css/slider.css">
+    <script src="/bunnybananas/css/slider.js"></script>
     <title>Main Page</title>
 </head>
 <body>
@@ -37,6 +35,7 @@ if (!isset($_SESSION['ExchangeRate']))
 <?php require_once('header.php');?>
 
 <main>
+
 <?php require_once('router.php');?>
 </main>
 <footer>
