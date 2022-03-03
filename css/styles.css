@@ -4,14 +4,18 @@
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-header {
+.header {
   background-color:white;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-end;
-  height: 250px;
+  align-items: center;
+  height: 200px;
   padding: 10px;
+  justify-content: space-between;
+  gap: 10px;
+  
+
 }
 .LoginFlex{
   display: flex;
@@ -41,14 +45,7 @@ body{
     background-color: rgb(223, 223, 223);
 }
 
-.header{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
 
-}
 
 .ShowAll{
   display:table;
@@ -315,6 +312,16 @@ input[type=number]::-webkit-outer-spin-button {
    opacity: 1;
 }
 
+.currency{
+	font-size: 0.8em;
+	text-align: left;
+	color: blue;
+	background: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+}
 
 
 /* DROPDOWN */
@@ -327,8 +334,18 @@ input[type=number]::-webkit-outer-spin-button {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  padding: 5px;
 }
 
+.dropdown-label{
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.dropdown-rotateArrow{
+  /* transform: scaleX(-1); */
+  transform: rotate(45deg)
+}
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 /* DROPDOWN END*/
