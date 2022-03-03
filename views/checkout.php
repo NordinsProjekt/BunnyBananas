@@ -43,5 +43,5 @@ $lastOrderID = $orderController->ListLastOrderByUserId($_SESSION['userId']);
         <p>Vill du handla mer? <a href="./">KLICKA HÄR</a></p>
     </main>
 
-<?php } else { header('Location: .'); } //ENDIF Redirect if you try to access without correct _POST ?>
+<?php } else { header('Location: ./'); exit(); } //ENDIF Redirect if you try to access without correct _POST ?>
 

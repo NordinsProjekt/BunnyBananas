@@ -12,7 +12,7 @@ body {font-family: Verdana, sans-serif; margin:0}
 
 .slideshow-container img{
 	vertical-align: middle;
-	width: 400px;
+	height: 400px;
 }
 /* Next & previous buttons */
 .prev, .next {
