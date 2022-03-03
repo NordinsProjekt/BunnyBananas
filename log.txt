@@ -103,7 +103,7 @@ Lucas
 - Gjort klart produktdelen.
   - Löste infogande av ny produkt.
   - Påbörjat felhantering.
-- Strukturerat upp koden i triggers för produktdelen.
+  - Strukturerat upp koden i triggers för produktdelen.
 
 # 2/3
 
@@ -111,7 +111,14 @@ Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
 Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
 
 Staffan
-- 
+ -"Byggt" en dynamisk bildkarusell som hämtar dom bilder som finns ur en folder och sedan bygger den.
+	 sökvägen är img/products/id där id motsvarar produktidt i databasen  (javascripten är ärligt lånade, php:n är egenkonstruerad)
+	-Lagt till visning av liknande produkter på det stora produktkortet
+	-Lagt till visning av förslag på tre produkter på det stora produktkortet
+	-Byggt en sökfunktion med sorteringsalternativ
+ -Pillat lite med CSS, små korrigeringar och tillägg.
+	-Lagt till Adress etc vid visa specifik order i admin.	
+ -Mailar kunden efter avslutadorder via Api. (Fungerar endast om API:t är igång på Localhost:5000) //Vi använder oss av Markus egengjorda mail api :D
 
 Markus
 - Suttit med CSS:en
