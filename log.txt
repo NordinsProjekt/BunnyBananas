@@ -132,3 +132,7 @@ Lucas
 - Fyllt på med beskrivande kommentarer.
 - Parprogrammerat finjustering i CSS.
 - Implementerade tydligare felhantering vid produkthantering med bl.a. try-catch.
+
+# 3/3
+Gruppen har felsökt problem med ett egetskapat API. 
+Visade sig vara ett 307 SSL Selfsigned problem som orsakade problemet.
