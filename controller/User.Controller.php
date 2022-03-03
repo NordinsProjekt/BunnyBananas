@@ -65,6 +65,7 @@ class UserController
 
     function AddUserToGroup($userId,$groupId)
     {
+        //Lägger till en användare till en specefik grupp.
         $db = new UserModel();
         if ($userId > 0 && $groupId > 0)
         {
@@ -92,6 +93,7 @@ class UserController
                 if ($group) //Om detta är false tillhör inte användaren en grupp.
                 {
                     foreach ($group as $row => $item) {
+                        //Finns det smidigare lösning?
                         if (strtoupper($item) === "ADMIN")
                         {
                             return true;
@@ -136,7 +138,7 @@ class UserController
             $this->CheckShippingAddress($country), $_SESSION['userId']
         );
         $db = new UserModel();
-        //if sats för att kolla om användaren fortfarande vill ha reklamutskick?
+        //Sparar till databasen
         $db->UpdateUserShippingAddress($userinputs);
     }
 
@@ -144,6 +146,7 @@ class UserController
     {
         $groupName = $this->CheckUserInputs($groupName);
         $db = new UserModel();
+        //Kollar så namnet inte redan finns
         if ($db->CheckIfGroupExist($groupName)['row'] == 0)
         {
             $db->SetGroup($groupName);
@@ -172,6 +175,8 @@ class UserController
 
     function AddToReklam($userId)
     {
+        //Handlar om reklamtabellen.
+        //För massutskick av reklamblad till mail
         $db = new UserModel();
         if ($db->GetReklam($userId)['row'] == 0)
         {
@@ -180,6 +185,8 @@ class UserController
     }
     function RemoveReklam($userId)
     {
+                //Handlar om reklamtabellen.
+        //För massutskick av reklamblad till mail
         $db = new UserModel();
         if ($db->GetReklam($userId)['row'] == 1)
         {
