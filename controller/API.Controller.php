@@ -69,7 +69,7 @@
 
     }
 
-    function SendCheckoutMail($email, $message){
+    function SendCheckoutMail($email, $message){ //Skickar mail vid orderförmedling. Använder Markusegenkomponerade mailAPI
         $subject = "test";
         $html_brand = "https://localhost:5001/Email?email=".$email."&subject=".$subject."&message=".$message;
         

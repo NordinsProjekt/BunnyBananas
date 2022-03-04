@@ -209,23 +209,24 @@ class ProductController
 
 
 
-    function listSimilarProducts($limit, $categoryID, $excludePID)
+    function listSimilarProducts($limit, $categoryID, $excludePID) //returnerar x-antal($limit) produkter som är av y-kategori
     {
         $model = new ProductDB();
         return $model->getSimilarProducts($limit, $categoryID, $excludePID);
     }
 
 
-    function listLookedAtProducts($limit, $excludePID)
+    function listLookedAtProducts($limit, $excludePID)  //returnerar x-antal($limit) randomisade produkter
     {
         $model = new ProductDB();
         return $model->getLookedAtProducts($limit, $excludePID);
     }
 
-    function listSearchedProducts(){
+    function listSearchedProducts(){  //returnerar sökresultat
         
         $model = new ProductDB();
 
+        //Väljer rätt funktion för sökningen beroende på sorteringsalternativ
         if (isset($_GET['category']) && isset($_GET['color'])) { //KATEGORI OCH COLOR
             return $model->GetSearchedProductsAllCriterias($_GET['searchCriteria'], $_GET['category'], $_GET['color']);    
         }

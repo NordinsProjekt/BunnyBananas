@@ -1,5 +1,6 @@
 <?php
-
+//----------------USER TRIGGERS!---------------------------
+// ADD USER
 if (key_exists('addUser',$_POST) && key_exists('txtUsername',$_POST) && 
 key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) && key_exists('selGroups',$_POST))
 {
@@ -17,6 +18,7 @@ key_exists('txtPassword',$_POST) && key_exists('txtEmail',$_POST) && key_exists(
     $controller->AddNewUser($username,$password,$email,$groupId,$reklam);
 }
 
+// LOGGAR IN DIG
 if (key_exists('login',$_POST))
 {
     $username = $_POST['txtUsername'];
@@ -33,6 +35,7 @@ if (key_exists('login',$_POST))
     exit();
 }
 
+// Sparar profiländringar (leveransadress)
 if (key_exists('saveProfile',$_POST))
 {
     //Dessa är frivillga fält i profilen.
@@ -52,6 +55,8 @@ if (key_exists('saveProfile',$_POST))
     //header("Location: ./profile");
     //exit();
 }
+
+// Skapa nytt konto
 if (key_exists('signup',$_POST))
 {
     $username = $_POST['txtUsername'];
@@ -69,25 +74,29 @@ if (key_exists('signup',$_POST))
     $groupId = 2; //Detta är User gruppen.
     $controller->AddNewUser($username,$password,$email,$groupId,$reklam);
 }
+
+// Lägg till grupp (i adminpanelen)
 if (key_exists('addGroup',$_POST))
 {
     $groupName = $_POST['txtGroupname'];
     $controller = new UserController();
     $controller->AddGroup($groupName);
 }
+// Ta bort grupp (i adminpanelen)
 if (key_exists('deleteGroup',$_POST))
 {
     $groupId = $_POST['selGroups'];
     $controller = new UserController();
     $controller->RemoveGroup($groupId);
 }
-
+// Lägg till bild på en produkt
 if(key_exists('addImage',$_POST) && key_exists('productId',$_POST)) 
 {
     $controller = new UploadController();
     $controller->AddProductImage($_POST['productId']);
 }
 
+// logga ut
 if (key_exists('logout',$_POST))
 {
     session_destroy();
@@ -97,14 +106,16 @@ if (key_exists('logout',$_POST))
 ?>
 
 <?php 
-//CART TRIGGERS!
+//----------------CART TRIGGERS!---------------------------
 
+// Lägg till vara i kundkorgen
 if (isset($_POST['AddToCart'])) {
     $cart = new CartController();
 
     $cart->AddToCart($_POST['productID'],$_POST['amount'],$_POST['price']);
 }
 
+// Uppdatera saldo på en vara i kundkorgen
 if (isset($_POST['updateCart'])) {
     $cart = new CartController();
 
@@ -115,8 +126,9 @@ if (isset($_POST['updateCart'])) {
 
 
 <?php 
-//ORDER TRIGGERS!
+//----------------ORDER TRIGGERS!---------------------------
 
+// Förmedlar ordern
 if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $order = new OrderController();
     $cart = new CartController();
@@ -134,6 +146,7 @@ if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
 }
 
 //----------------PRODUCT TRIGGERS!---------------------------
+
 
 if (isset($_POST['submit-product'])) //Skapar ny produkt i DB
 {

@@ -142,7 +142,7 @@ class ProductDB extends PDOHandler
         $stmt->execute();
     }
 
-    function getSimilarProducts($limit, $categoryid, $excludePID)
+    function getSimilarProducts($limit, $categoryid, $excludePID) //Hämtar en x-antal produkter av y-kategori och exkluderar ett specifikt id
     {
         
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
@@ -158,7 +158,7 @@ class ProductDB extends PDOHandler
         return $stmt->fetchAll();
     }
 
-    function getLookedAtProducts($limit,$excludePID)
+    function getLookedAtProducts($limit,$excludePID) //hämtar x-antal produkter, exkluderar ett specifikt ID
     {
         
         $stmt = $this->Connect()->prepare("SELECT pr.ID, ca.Name AS Category, pr.Name, co.Name AS Color, pr.Description, pr.Price, pr.Balance, pr.Discontinued
@@ -173,7 +173,7 @@ class ProductDB extends PDOHandler
         return $stmt->fetchAll();
     }
 
-    function GetSearchedProductsAllCriterias($question, $categorys, $colors)
+    function GetSearchedProductsAllCriterias($question, $categorys, $colors) 
     {
         
         $question = "%$question%";
@@ -245,8 +245,9 @@ class ProductDB extends PDOHandler
         return $stmt->fetchAll();
     }
 
-    function GetProductsSelective($productsIDArray)
+    function GetProductsSelective($productsIDArray) //Returnerar en lista av specifika produkter
     {
+        //bygger sqlfråga utfrån antalet element i $productsIDArray
         $where = "";
         for ($i=0; $i < Count($productsIDArray); $i++) {
             if ($i > 0) {

@@ -189,9 +189,10 @@ echo "<div class='AdminProducts'>";
                 echo "<input type='submit' name='update-product' value='Spara'>";
             echo "</form></div>";
     
-
+        //visa bilder som tillhör produkten och generarar tillhörande forms
         $imagePaths =  $fileController->ListProductIDimagePaths($_GET['productID']);
 
+       
         if (!$imagePaths == (bool)0) {
     
             echo "<div>";
