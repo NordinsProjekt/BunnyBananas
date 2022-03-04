@@ -12,8 +12,11 @@ Satte struktur:
       (en förenklad mvc-inspirerad variant)
 
 Använder github för enkel versionshantering.
+ -Hjälptes åt att få github att fungera för alla samt testkörde git
 
 Satte upp trello och fyllde backlogen med lämpliga userstories
+ -Eftersom vi satte upp strukturen för projektet gemensamt och kände att alla gruppmedlemmar var överens om målbilden av projektet, så satte vi upp relativt stora/övergripande userstories. Hade behovet av mer detaljerade stories uppstått hade dessa givitvis omformulerarts. Vi täntke att om vi efter ett par merge:ar märkt att vi jobbade i olika riktining så hade vi gått tillbaka till ritbordet. Men det uppstod aldrig så vi fortsatte med att fokusera våran arbetstid på att utveckla istället för att överplanera.
+ -Vi fortsatte givetvis med att fylla på samt flytta runt userstories där det fanns ett behov, för att hålla koll på vem som gjort vad och för att ha tillgång till en levande "todo-list"
 
 Vi mob-programerade en grundstruktur som vi alla kan arbeta med och är införstådda i hur den fungerar.
 
@@ -29,6 +32,7 @@ Staffan
 # 25/2
 
 Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
 
 Lucas
 - Skapade tabellerna för Products, Categories, Colors och fixat dess relationer
@@ -74,12 +78,12 @@ Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges gör
 
 Lucas
  - Jobbade på View-delen. Man kan nu i browsern välja att:
-   Skapa ny produkt
-   Lägga till ny färg
-   Lägga till ny kategori
-   Ändra pris på produkt
-   Ta bort produkt ur sortimentet
- Det funkar att lägga till ny färg och ny kategori.
+ - Skapa ny produkt
+ - Lägga till ny färg
+ - Lägga till ny kategori
+ - Ändra pris på produkt
+ - Ta bort produkt ur sortimentet
+ - Det funkar att lägga till ny färg och ny kategori.
 
 
 # 28/2
@@ -123,9 +127,9 @@ Markus
 
 Lucas
  - Gjort klart produktdelen.
-   - Löste infogande av ny produkt.
-   - Påbörjat felhantering.
-   - Strukturerat upp koden i triggers för produktdelen.
+ - Löste infogande av ny produkt.
+ - Påbörjat felhantering.
+ - Strukturerat upp koden i triggers för produktdelen.
 
 # 2/3
 
@@ -183,8 +187,9 @@ Markus
 Staffan
 - Lagt till "detelepicture @ productID" funktionalitet i admin
 - Fixade till produktkorten så att man inte kan köpa mer än det finns i lager
+- Lagt till lite kommentarer
 
 Lucas
-- Fixat uppdatering av lagersaldo
+- Fixat uppdatering av lagersaldo vid förmedling av kundkorgen
 - Fixade till produktkorten så att man inte kan köpa mer än det finns i lager
 
