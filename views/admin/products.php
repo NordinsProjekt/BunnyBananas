@@ -161,12 +161,12 @@ echo "<div class='AdminProducts'>";
                 echo "<select name='categories' id='categories'>";
                 echo "<option value='".$value['Category']."'>".$value['Category']."</option>";
                 foreach ($controller->listAllCategories() as $row){
-                    echo "<option>".$row["Name"]."</option>"; //Hur tar jag bort dubbla värden?
+                    echo "<option>".$row["Name"]."</option>";
                 } echo "</select>"."<br>";
 
                 echo "<label for='colors'>Färg</label>";
                 echo "<select name='colors' id='colors'>";
-                echo "<option value='".$value['Color']."'>".$value['Color']."</option>"; //Visar ej färg
+                echo "<option value='".$value['Color']."'>".$value['Color']."</option>";
                 foreach ($controller->listAllColors() as $row){
                     echo "<option>".$row["Name"]."</option>";
                 } echo "</select>"."<br>";
