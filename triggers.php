@@ -120,9 +120,16 @@ if (isset($_POST['updateCart'])) {
 if (isset($_POST['betala']) && isset($_SESSION['ShoppingCart'])) {
     $order = new OrderController();
     $cart = new CartController();
+    $balance = new ProductController();
+
+    foreach ($_SESSION['ShoppingCart'] as $productID => $value){
+        $amount = $value[0]; //Antal köp av en vara
+        $balance->updateCurrentBalance($productID, $amount);
+    }
 
     $order->SendOrder();
     $cart->Checkout();
+
     
 }
 

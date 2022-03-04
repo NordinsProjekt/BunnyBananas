@@ -100,13 +100,18 @@ function ProductCard($productID, $name, $category, $color,$price, $Balance){
     $text .= "<p>$color</p>";
     $text .= "<div class='buybox'>";
     $text .= "  <p>".currency($price)."</p>";
-    $text .= "  <form action='' method='post'>";
-    $text .= "      <input type='Hidden' name='productID' value='$productID'/>";
-    $text .= "      <input type='Hidden' name='price' value='$price'/>";
-    $text .= "      <input class='inputnumber' type='number' name='amount' value='1' min='1'max='99'/>";
-    $text .= "      <input type='Hidden' name='AddToCart' value='AddToCart'/>";
-    $text .= "      <input type='submit' id='submit' name='submit' value='KÖP!' />";
-    $text .= "  </form>";
+    if ($Balance > 0) {
+        $text .= "  <form action='' method='post'>";
+        $text .= "      <input type='Hidden' name='productID' value='$productID'/>";
+        $text .= "      <input type='Hidden' name='price' value='$price'/>";
+        $text .= "      <input class='inputnumber' type='number' name='amount' value='1' min='1'max='$Balance'/>";
+        $text .= "      <input type='Hidden' name='AddToCart' value='AddToCart'/>";
+        $text .= "      <input type='submit' id='submit' name='submit' value='KÖP!' />";
+        $text .= "  </form>";
+    }
+    else {
+        $text .= "<p><b>Slut i lager</b></p>";
+    }
     $text .= "</div>";
     $text .= "</div>";
 

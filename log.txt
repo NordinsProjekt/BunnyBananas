@@ -28,11 +28,11 @@ En simpel routingfunkonalitet samt view-tamplates-struktur sattes upp av Staffan
 Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
 
 Lucas
-- Tabellerna för Products, Categories, Colors
+- Skapade tabellerna för Products, Categories, Colors och fixat dess relationer
 - Kodat Model och Controller för Products
 - Börjat titta på Products Views
 - Fyllt tabellerna med information för webshoppen.
-- Testkod för dessa.
+- Testdata för dessa.
 
 Markus
 - Skapat tabellerna för User, Groups och usergroups
@@ -59,6 +59,25 @@ Markus
  - Gjort signup Views och lagt till Skapa konto länk i headern.
  - Skapa user i adminpanelen kan välja användargrupp och lägga till nya grupper.
  - Vanlig person blir medlem i user group.
+
+ Lucas
+ - Gjorde queries för att kunna hämta data ur tabellen Products.
+ - Fixade till presentationen/layouten av hämtad data som listas i browsern.
+
+# 27/2
+
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
+
+Lucas
+ - Jobbade på View-delen. Man kan nu i browsern välja att:
+   Skapa ny produkt
+   Lägga till ny färg
+   Lägga till ny kategori
+   Ändra pris på produkt
+   Ta bort produkt ur sortimentet
+ Det funkar att lägga till ny färg och ny kategori.
+
 
 # 28/2
 
@@ -100,10 +119,10 @@ Markus
 - Strukturerat koden och funktionerna.
 
 Lucas
-- Gjort klart produktdelen.
-  - Löste infogande av ny produkt.
-  - Påbörjat felhantering.
-  - Strukturerat upp koden i triggers för produktdelen.
+ - Gjort klart produktdelen.
+   - Löste infogande av ny produkt.
+   - Påbörjat felhantering.
+   - Strukturerat upp koden i triggers för produktdelen.
 
 # 2/3
 
@@ -127,12 +146,24 @@ Markus
 - Gjort testdata
 
 Lucas
-- Skapat funktioner för att att ta bort kategori och färg.
-- Felhantering av dessa funktioner.
-- Fyllt på med beskrivande kommentarer.
-- Parprogrammerat finjustering i CSS.
-- Implementerade tydligare felhantering vid produkthantering med bl.a. try-catch.
+ - Skapat funktioner för att att ta bort kategori och färg.
+ - Felhantering av dessa funktioner.
+ - Fyllt på med beskrivande kommentarer.
+ - Parprogrammerat finjustering i CSS.
+ - Implementerade tydligare felhantering vid produkthantering med bl.a. try-catch.
 
 # 3/3
 Gruppen har felsökt problem med ett egetskapat API. 
 Visade sig vara ett 307 SSL Selfsigned problem som orsakade problemet.
+Redovisade projektet
+
+# 4/3
+
+Staffan
+ - 
+
+Markus
+ - 
+
+Lucas
+ - Fixat så att lagersaldot (balance) uppdateras efter köp.
