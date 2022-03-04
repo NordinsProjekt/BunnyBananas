@@ -48,6 +48,7 @@ class OrderController {
     function SendOrder(){
 
         $model = new OrderModel();
+        $productController = new ProductController();
         $productModel = new ProductDB();
 
         //$sql = 'INSERT INTO orders (UserID, Date, Firstname, Lastname, Adress1, Adress2, Postort, Postnummer, Land) ';
@@ -75,7 +76,7 @@ class OrderController {
             }
 
             $orderRows[] = array($productID, $value[1], $amount, 0);
-
+            $productController->updateCurrentBalance($productID, $amount);
         }
 
         //echo var_dump($orderRows);
