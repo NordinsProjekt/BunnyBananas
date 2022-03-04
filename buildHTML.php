@@ -142,7 +142,7 @@ function CartProduct($productID, $name, $category, $color, $price, $Balance){
     $text .= "          <td><p>".currency($_SESSION['ShoppingCart'][$productID][1])."</p></td>";
     $text .= "        <form class='flex-row' action='' method='post'><input type='Hidden' name='productID' value='$productID'/>";
     $text .= "          <td>".$_SESSION['ShoppingCart'][$productID][0]."</td>";
-    $text .= "          <td><input class='inputnumber' type='number' name='amount' value='".$_SESSION['ShoppingCart'][$productID][0]."' min='0' max='99'/><input type='submit' id='submit' name='submit' value='Update' /></td>";
+    $text .= "          <td><input class='inputnumber' type='number' name='amount' value='".$_SESSION['ShoppingCart'][$productID][0]."' min='0' max='$Balance'/><input type='submit' id='submit' name='submit' value='Update' /></td>";
     $text .= "        <input type='Hidden' name='updateCart' value='updateCart'/>";
     $text .= "        </form>";
     $text .= "        <form action='' method='post'>";

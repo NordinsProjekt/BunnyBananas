@@ -1,5 +1,5 @@
 <?php
-require_once('model/Cart.Model.php');
+require_once('model/Products.Model.php');
 
 class CartController {
 
@@ -8,7 +8,8 @@ class CartController {
         
     }
 
-    function AddToCart($productID, $amount, $price){
+    
+    function AddToCart($productID, $amount, $price){ //Lägger till produkt i varukorgen.
 
         if (isset($_SESSION['ShoppingCart'][$productID])) { //add if allready in cart
             $_SESSION['ShoppingCart'][$productID][0] += (int)$amount;
@@ -22,26 +23,25 @@ class CartController {
                 
     }
 
-    function UpdateProductInCart($productID, $amount){
+    
+    function UpdateProductInCart($productID, $amount){ //Uppdaterar en specifik produkt i varukorgen
         if ($amount == 0) {
             unset($_SESSION['ShoppingCart'][$productID]);
-            if (count($_SESSION['ShoppingCart']) == 0) {
+            if (count($_SESSION['ShoppingCart']) == 0) { //tarbort produkten om nya saldot = 0
                 unset($_SESSION['ShoppingCart']);
             }
         }
         else
         {
-            $_SESSION['ShoppingCart'][$productID][0] = $amount; 
+            $_SESSION['ShoppingCart'][$productID][0] = $amount; //uppdaterar saldot
         }
     }
-    //Tar in en array av HELA varukorgen och uppdaterar den.
-    function UpdateCart($wholeCart){
-    }
 
-    function listCart(){
-        $model = new CartModel();
+    
+    function listCart(){ //Returnerar alla produkter som finns i varukorgen för att kunna användas i tex Views
+        $model = new ProductDB();
 
-        if (isset($_SESSION['ShoppingCart'])) {
+        if (isset($_SESSION['ShoppingCart'])) { //paketerar om arrayen till en array av bara produktIDn. Så modelen får det den vill ha.
             foreach ($_SESSION['ShoppingCart'] as $key => $value) {
                 $products[] = $key;
             }
@@ -54,21 +54,22 @@ class CartController {
         }
     }
 
-    function Checkout(){
+    function Checkout(){ //Förmedlar varukorgen, mailarkunden och sparar den i databas
 
         $orderController = new OrderController();
         $msg = "";
 
+        //bygger mailet med varor som kunden handlat.
         foreach ($orderController->ListSpecificOrder($orderController->ListLastOrderByUserId($_SESSION['userId'])) as $product) {
             $msg .= $product['ProductID'].'|'.$product['ProductName'].'|'.$product['Category'].'|'.$product['Color'].'|'.$product['Price'].'|'.$product['Amount'].'//';
         }
 
         SendCheckoutMail($_SESSION['email'], $msg); //pratar med API och mailar till kunden
 
-        unset($_SESSION['ShoppingCart']); //empty cart
+        unset($_SESSION['ShoppingCart']); //tömmer varukorgen efter förmedlad order
     }
 
-    function CurrentSum(){
+    function CurrentSum(){ //returnerar totalsumma av varukorgen i sessions
         if (isset($_SESSION['ShoppingCart'])) {
             $sum = 0;
             foreach($_SESSION['ShoppingCart'] as $productID){ 
@@ -82,7 +83,7 @@ class CartController {
         }
     }
 
-    function CurrentAmountOfItems(){
+    function CurrentAmountOfItems(){ //returnerar antalet varor i kundkorgen
         if (isset($_SESSION['ShoppingCart'])) {
             $items = 0;
             foreach($_SESSION['ShoppingCart'] as $productID){ 
