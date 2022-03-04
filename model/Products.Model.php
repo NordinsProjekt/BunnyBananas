@@ -121,7 +121,6 @@ class ProductDB extends PDOHandler
     }
 
     function updateBalance($id, $newBalance){ //Uppdaterar lagerstatus
-        echo "Inside DB!<br>";
         $stmt = $this->Connect()->prepare("UPDATE products SET Balance=:balance WHERE ID=:id");
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":balance", $newBalance);

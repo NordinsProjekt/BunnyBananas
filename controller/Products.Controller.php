@@ -248,8 +248,7 @@ class ProductController
 
     function updateCurrentBalance($productID, $inCart)
     {
-        echo "ID: $productID"."<br>";
-        echo "Amount in cart: $inCart"."<br><br>";
+
         $model = new ProductDB();
         $arr = $model->getProduct($productID);
         $amount = $arr['Balance'];
@@ -258,7 +257,7 @@ class ProductController
             $model->updateBalance($productID, $productsLeft);
         }
         else{
-            echo "FELMEDDELANDE: Kan ej köpa fler antal än det finns i lager!";
+            $_SESSION['Message'] = "FELMEDDELANDE: Kan ej köpa fler antal än det finns i lager!";
         }
     }
 
