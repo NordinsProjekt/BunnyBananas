@@ -118,13 +118,15 @@ class UploadController
         }
     }
 
-    function DeleteProductImage($productId, $file){
+    function DeleteProductImage($productId, $file){ //tabort produktbild
 
         $imgpath = 'img/products/'.$productId.'/'.$file;
 
         echo $imgpath;
+        //kollar om Filen existerar
         if(!$this->CheckFileExists($file))
         {
+            //tar bort bilden
             if(unlink($imgpath)){
                 $_SESSION['message'] =  $imgpath." DELETED";
             } else {
@@ -134,15 +136,15 @@ class UploadController
         }        
     }
 
-    function ListProductIDimagePaths($productID){
+    function ListProductIDimagePaths($productID){ //returnerar alla sökvägar för en produkts bilder
         
         $dir = 'img/products/' .$productID;
 
+        //kollar om directory:t existerar
         if (file_exists($dir)) {
             $imagePaths = scandir($dir);
-
-            //var_dump($imagePaths);
-    
+            
+            //tvättar arrayen
             unset($imagePaths[0]);
             unset($imagePaths[1]);
             

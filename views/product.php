@@ -29,7 +29,7 @@ $displayBlock = 1;
 $imagePaths = $fileController->ListProductIDimagePaths($_GET['productID']);
 
 
-
+//Hämtar alla bilder för produkten och paketerar dom till bildkarusellen
 if (!$imagePaths == (bool)0) {
     foreach ($imagePaths as $img) {
 
@@ -59,6 +59,7 @@ if (!$imagePaths == (bool)0) {
 
 ?>
 
+<!-- STORTPRODUKTKORT -->
 <main class="main flex-col">
     <div class="ProductCardLarge">      
         <div>
@@ -103,7 +104,7 @@ if (!$imagePaths == (bool)0) {
 
     </div>
 
-
+    <!-- LIKNANDE PRODUKTER KORT -->
     <div class="flex-col">
         <p>Gillar du <?php echo $product['Name']?> så kommer du älska!</p>
         <div class="flex-row">
@@ -115,7 +116,7 @@ if (!$imagePaths == (bool)0) {
         </div>
     </div>
 
-    
+    <!-- GILLADE DU DENNA ÄLSKAR DU DESSA KORT -->
     <div class="flex-col">
         <p>Kunder som spanade in <?php echo $product['Name']?> kollade även på!</p>
         <div class="flex-row">
