@@ -81,7 +81,6 @@ class UploadController
 
         $imgpath = 'img/products/'.$productId.'/'.$file;
 
-        echo $imgpath;
         //kollar om Filen existerar
         if(!$this->CheckFileExists($file))
         {
