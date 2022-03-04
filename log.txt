@@ -15,8 +15,12 @@ Använder github för enkel versionshantering.
  -Hjälptes åt att få github att fungera för alla samt testkörde git
 
 Satte upp trello och fyllde backlogen med lämpliga userstories
- -Eftersom vi satte upp strukturen för projektet gemensamt och kände att alla gruppmedlemmar var överens om målbilden av projektet, så satte vi upp relativt stora/övergripande userstories. Hade behovet av mer detaljerade stories uppstått hade dessa givitvis omformulerarts. Vi täntke att om vi efter ett par merge:ar märkt att vi jobbade i olika riktining så hade vi gått tillbaka till ritbordet. Men det uppstod aldrig så vi fortsatte med att fokusera våran arbetstid på att utveckla istället för att överplanera.
- -Vi fortsatte givetvis med att fylla på samt flytta runt userstories där det fanns ett behov, för att hålla koll på vem som gjort vad och för att ha tillgång till en levande "todo-list"
+ -Eftersom vi satte upp strukturen för projektet gemensamt och kände att alla gruppmedlemmar var överens om målbilden av projektet, 
+  så satte vi upp relativt stora/övergripande userstories. Hade behovet av mer detaljerade stories uppstått hade dessa givitvis omformulerarts. 
+  Vi täntke att om vi efter ett par merge:ar märkt att vi jobbade i olika riktining så hade vi gått tillbaka till ritbordet. 
+  Men det uppstod aldrig så vi fortsatte med att    fokusera våran arbetstid på att utveckla istället för att överplanera.
+ -Vi fortsatte givetvis med att fylla på samt flytta runt userstories där det fanns ett behov, 
+  för att hålla koll på vem som gjort vad och för att ha tillgång till en levande "todo-list"
 
 Vi mob-programerade en grundstruktur som vi alla kan arbeta med och är införstådda i hur den fungerar.
 
