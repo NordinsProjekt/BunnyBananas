@@ -120,6 +120,14 @@ class ProductDB extends PDOHandler
         $stmt->execute();
     }
 
+    function updateBalance($id, $newBalance){ //Uppdaterar lagerstatus
+        echo "Inside DB!<br>";
+        $stmt = $this->Connect()->prepare("UPDATE products SET Balance=:balance WHERE ID=:id");
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":balance", $newBalance);
+        $stmt->execute();
+    }
+
     function deleteColor($id) //Tar bort färg
     {
         $stmt = $this->Connect()->prepare("DELETE FROM colors WHERE ID=:id;");

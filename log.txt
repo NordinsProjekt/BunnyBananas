@@ -31,11 +31,11 @@ Staffan
 Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
 
 Lucas
-- Tabellerna för Products, Categories, Colors
+- Skapade tabellerna för Products, Categories, Colors och fixat dess relationer
 - Kodat Model och Controller för Products
 - Börjat titta på Products Views
 - Fyllt tabellerna med information för webshoppen.
-- Testkod för dessa.
+- Testdata för dessa.
 
 Markus
 - Skapat tabellerna för User, Groups och usergroups
@@ -62,6 +62,25 @@ Markus
  - Gjort signup Views och lagt till Skapa konto länk i headern.
  - Skapa user i adminpanelen kan välja användargrupp och lägga till nya grupper.
  - Vanlig person blir medlem i user group.
+
+ Lucas
+ - Gjorde queries för att kunna hämta data ur tabellen Products.
+ - Fixade till presentationen/layouten av hämtad data som listas i browsern.
+
+# 27/2
+
+Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
+Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
+
+Lucas
+ - Jobbade på View-delen. Man kan nu i browsern välja att:
+   Skapa ny produkt
+   Lägga till ny färg
+   Lägga till ny kategori
+   Ändra pris på produkt
+   Ta bort produkt ur sortimentet
+ Det funkar att lägga till ny färg och ny kategori.
+
 
 # 28/2
 
@@ -104,9 +123,9 @@ Markus
 
 Lucas
  - Gjort klart produktdelen.
- - Löste infogande av ny produkt.
- - Påbörjat felhantering.
- - Strukturerat upp koden i triggers för produktdelen.
+   - Löste infogande av ny produkt.
+   - Påbörjat felhantering.
+   - Strukturerat upp koden i triggers för produktdelen.
 
 # 2/3
 
@@ -137,20 +156,22 @@ Lucas
 - Implementerade tydligare felhantering vid produkthantering med bl.a. try-catch.
 - Skapade API-kontakt för valuta. Implementerade sedan funktionen tillsammans med Staffan.
 
+
 # 3/3
 Buggfixar från samtliga medlemmar görs varje dag i samtal med varandra.
 Mergkonflikter kollas igenom antingen på kvällen när alla commits/merges görs eller på morgonen om en medlem inte har pushat.
 
 Gruppen har felsökt problem med ett egetskapat API. 
 Visade sig vara ett 307 SSL Selfsigned problem som orsakade problemet.
+Redovisade projektet
+
+Lucas
+ - Påbörjade att fixa så att lagersaldot (balance) uppdateras efter köp.
 
 Staffan
 -Bytt ut och byggt om karusellen. Fixat dynamsik visning av bilder även i denna,
  samt cleanare utseende när det endast finns en bild och karusellen inte behövs. 
 -Små fix i CSS, samt javascript editering.
-
-Lucas
-- 
 
 Markus
 - Gjort små ändringar i CSS
@@ -161,3 +182,9 @@ Markus
 
 Staffan
 - Lagt till "detelepicture @ productID" funktionalitet i admin
+- Fixade till produktkorten så att man inte kan köpa mer än det finns i lager
+
+Lucas
+- Fixat uppdatering av lagersaldo
+- Fixade till produktkorten så att man inte kan köpa mer än det finns i lager
+

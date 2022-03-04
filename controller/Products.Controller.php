@@ -244,6 +244,23 @@ class ProductController
         }
         
     }
+
+    function updateCurrentBalance($productID, $inCart)
+    {
+        echo "ID: $productID"."<br>";
+        echo "Amount in cart: $inCart"."<br><br>";
+        $model = new ProductDB();
+        $arr = $model->getProduct($productID);
+        $amount = $arr['Balance'];
+        $productsLeft = $amount-$inCart;
+        if ($productsLeft >= 0) {
+            $model->updateBalance($productID, $productsLeft);
+        }
+        else{
+            echo "FELMEDDELANDE: Kan ej köpa fler antal än det finns i lager!";
+        }
+    }
+
 }
 
 
