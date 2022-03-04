@@ -117,5 +117,40 @@ class UploadController
           return false;
         }
     }
+
+    function DeleteProductImage($productId, $file){
+
+        $imgpath = 'img/products/'.$productId.'/'.$file;
+
+        echo $imgpath;
+        if(!$this->CheckFileExists($file))
+        {
+            if(unlink($imgpath)){
+                $_SESSION['message'] =  $imgpath." DELETED";
+            } else {
+                $_SESSION['message'] =  "Gick inte att ta bort".$imgpath;
+            }
+
+        }        
+    }
+
+    function ListProductIDimagePaths($productID){
+        
+        $dir = 'img/products/' .$productID;
+
+        if (file_exists($dir)) {
+            $imagePaths = scandir($dir);
+
+            //var_dump($imagePaths);
+    
+            unset($imagePaths[0]);
+            unset($imagePaths[1]);
+            
+            return  $imagePaths;    
+        } 
+        else {
+            return (bool)0;
+        }
+    }
 }
 ?>

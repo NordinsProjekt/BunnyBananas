@@ -196,7 +196,17 @@ if (isset($_POST['delete-category'])) //Raderar kategori i DB
     $controller->removeCategory($category);
 }
 
-if(isset($_POST['currency']))
+
+if (isset($_POST['deletePic'])) //Tar bort bild från produkt
+{
+    $controller = new UploadController();
+
+    $controller->DeleteProductImage($_GET['productID'], ($_POST['deletePicID']));
+}
+
+
+//----------------CURRENCY TRIGGERS!---------------------------
+if(isset($_POST['currency'])) //ändrar Valuta på hela siten.
 {
     $_SESSION['currency'] = $_POST['currency'];
 }
