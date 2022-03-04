@@ -156,3 +156,8 @@ Markus
 - Gjort små ändringar i CSS
 - Fixat efter commits när något bröt CSS:en
 - Kollat över funktioner och kod och försökt blockera användare från att smyga in där de inte hör hemma.
+
+4/3
+
+Staffan
+- Lagt till "detelepicture @ productID" funktionalitet i admin

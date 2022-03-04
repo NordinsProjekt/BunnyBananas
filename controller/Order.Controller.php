@@ -48,6 +48,7 @@ class OrderController {
     function SendOrder(){
 
         $model = new OrderModel();
+        $productModel = new ProductDB();
 
         //$sql = 'INSERT INTO orders (UserID, Date, Firstname, Lastname, Adress1, Adress2, Postort, Postnummer, Land) ';
         $order = array(
@@ -66,8 +67,14 @@ class OrderController {
         //$sql = 'INSERT INTO orderrows (ProductID, Price, Amount, Discount, OrderID) VALUES (? ? ? ? ?)';
 
         foreach ($_SESSION['ShoppingCart'] as $productID => $value ){
+            $balance = $productModel->getProduct($productID)['Balance'];
+            if ($value[0] > $balance){ //set antal till antal i lager om vi försöker beställa fler än antal i lager.
+                $amount = $balance;
+            }else{
+                $amount = $value[0];
+            }
 
-            $orderRows[] = array($productID, $value[1], $value[0], 0);
+            $orderRows[] = array($productID, $value[1], $amount, 0);
 
         }
 

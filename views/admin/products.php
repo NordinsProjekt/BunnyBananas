@@ -1,5 +1,7 @@
 <?php
 $controller = new ProductController();
+$fileController = new UploadController();
+
 echo "<div class='AdminProducts'>";
             echo "<details><summary>Skapa ny produkt</summary>";
             echo "<section class ='ProductSection' id='AddNewProduct'>";
@@ -19,7 +21,7 @@ echo "<div class='AdminProducts'>";
                 echo "<textarea name='description' rows='4' placeholder='Beskrivning'></textarea><br>";
                 echo "<input type='text' id='new-price' name='new-price' placeholder='Pris' required><br>";
                 echo "<label for='balance'><b>Antal: </b></label>";
-                echo "<input type='number' id='balance' name='balance' placeholder='0' min='1' max='100'><br>";
+                echo "<input type='number' id='balance' name='balance' placeholder='0' min='0' max='100'><br>";
                 echo "<input type='submit' name='submit-product' value='Skapa'>";
             echo "</form>";
             echo "</section>";
@@ -147,6 +149,8 @@ echo "<div class='AdminProducts'>";
     if (isset($_GET['productID']))
     {
         $value = $controller->listProduct($_GET['productID']);
+            echo "<div class='flex-row' style='align-items: flex-start;'>";
+
             echo "<div class='EditProduct'>";
             echo "<h3 class='TitelHeader'>Editera produkt</h3>";
             echo "<form method='post' enctype='multipart/form-data'>";
@@ -174,7 +178,7 @@ echo "<div class='AdminProducts'>";
                 echo "<input type='text' id='update-price' name='update-price' value='".$value['Price']."'><br>";
 
                 echo "<label for='balance'>Antal</label>";
-                echo "<input type='number' id='balance' name='balance' value='".$value['Balance']."' min='1' max='100'><br>";
+                echo "<input type='number' id='balance' name='balance' value='".$value['Balance']."' min='0' max='100'><br>";
 
                 echo "<label for='discontinued'>I lager?</label>";
                 echo "<input type='number' id='discontinued' name='discontinued' value='".$value['Discontinued']."' min='0' max='1'>";
@@ -184,5 +188,31 @@ echo "<div class='AdminProducts'>";
                 echo "<input type='file' name='fileToUpload' value='' /><br>";
                 echo "<input type='submit' name='update-product' value='Spara'>";
             echo "</form></div>";
+    
+
+        $imagePaths =  $fileController->ListProductIDimagePaths($_GET['productID']);
+
+        if (!$imagePaths == (bool)0) {
+    
+            echo "<div>";
+            echo "<h3 class='TitelHeader'>Bilder</h3>";
+        
+            foreach ($imagePaths as $img) {           
+                                    
+                    echo "<form action='' method='POST'>";
+
+                    echo "<input type='hidden' name='deletePicID' value='$img'>";
+                    echo "<p>";
+                    echo "<img src='img/products/" . $_GET['productID'] . "/" . $img . "' style='height:50px;'> $img ";                    
+                    echo "<input type='submit' name='deletePic' value='delete' class='buttonToLink'>";
+                    echo "</p>";
+                    echo "</form>";                    
+            } 
+
+            echo "</div>";
+            echo "</div>";
         }
+       
+    }
 ?>
+

@@ -1,4 +1,5 @@
-<?php 
+<?php
+ob_start();
 session_start();
 require_once('controller/User.Controller.php');
 require_once('controller/Order.Controller.php');
