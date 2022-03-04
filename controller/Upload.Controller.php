@@ -3,14 +3,17 @@ class UploadController
 {
     function AddProductImage($productId)
     {
+        //Felhantering om productId faller utanför index eller är tom.
         if ($productId == "" || $productId <=0)
         {
             $_SESSION['Message'] = "Något är fel med Produkt ID";
             return false;
         }
+        //Bygger sökvägen
         $target_dir = "img/products/" .$productId . "/";
         $this->CreateFolder($target_dir);
         $file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        //Kontroller för att se om filen är ok.
         if(!$this->CheckFileExists($file))
         {
             if(!$this->CheckFileSize($file))
@@ -30,62 +33,18 @@ class UploadController
                 }
                 else
                 {
-                    $_SESSION['Message'] = "Wrong fileformat";
+                    $_SESSION['Message'] = "Fel filformat, jpg, jpeg, png och gif stöds bara.";
                 }
             }
             else
             {
-                $_SESSION['Message'] = "File to big";
+                $_SESSION['Message'] = "Filen är för stor";
             }
         }
         else
         {
             $_SESSION['Message'] = "Filen finns redan, ".$file;
 
-        }
-    }
-
-    function AddProfilePicture($userId)
-    {
-        if ($userId == "" || $userId <=0)
-        {
-            $_SESSION['Message'] = "Något är fel med Produkt ID";
-            return false;
-        }
-
-        $target_dir = "img/products/" .$userId . "/";
-        $this->CreateFolder($target_dir);
-        $file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        if(!$this->CheckFileExists($file))
-        {
-            if(!$this->CheckFileSize($file))
-            {
-                if(!$this->CheckFileFormat($file))
-                {
-                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $file))
-                    {
-                        $_SESSION['Message'] = "File". $file . "has been uploaded";
-                        unset($_FILES['fileToUpload']);
-                    }
-                    else
-                    {
-                        $_SESSION['Message'] = "Unknown error, could not upload";
-                        unset($_FILES['fileToUpload']);
-                    }
-                }
-                else
-                {
-                    $_SESSION['Message'] = "Wrong fileformat";
-                }
-            }
-            else
-            {
-                $_SESSION['Message'] = "File to big";
-            }
-        }
-        else
-        {
-            $_SESSION['Message'] = "Filen finns redan, ".$file;
         }
     }
 
